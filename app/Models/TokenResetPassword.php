@@ -11,14 +11,11 @@ class TokenResetPassword extends Model
     use HasFactory;
 
     protected $table = 'token_reset_passwords';
+
     protected $fillable = [
         'user_id',
         'token',
         'is_used',
     ];
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
+    
 }

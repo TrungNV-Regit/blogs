@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 255)->nullable(false);
-            $table->text('content')->nullable(false);
-            $table->string('link_image', 255)->nullable();
-            $table->integer('user_id')->nullable(false);
-            $table->integer('category_id')->nullable(false);
-            $table->tinyInteger('status')->nullable();
+            $table->string('title', 255);
+            $table->text('content');
+            $table->string('link_image', 255);
+            $table->integer('user_id');
+            $table->integer('category_id');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

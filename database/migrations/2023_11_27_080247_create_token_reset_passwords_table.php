@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('token_reset_passwords', function (Blueprint $table) {
             $table->id();
-            $table->integer("user_id")->nullable(false);
-            $table->timestamps();
+            $table->integer("user_id");
             $table->string("token", 255)->unique;
-            $table->boolean("is_used")->default(false);
+            $table->boolean("is_used")->default(0);
+            $table->timestamps();
         });
     }
 

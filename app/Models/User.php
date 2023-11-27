@@ -18,7 +18,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
     protected $table = 'users';
+
     protected $fillable = [
         'username',
         'email',
@@ -26,7 +28,7 @@ class User extends Authenticatable
         'password',
         'role',
         'email_verified_at',
-        'token_verify_email'
+        'token_verify_email',
     ];
 
     /**
@@ -34,6 +36,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
     protected $hidden = [
         'password',
         'token_verify_email',
@@ -44,28 +47,15 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
+
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-    public function comments(): HasMany
-    {
-        return $this->hasMany(Comment::class);
-    }
-
-    public function likes(): HasMany
-    {
-        return $this->hasMany(Like::class);
-    }
 
     public function blogs(): HasMany
     {
         return $this->hasMany(Blog::class);
     }
 
-    public function resetTokenPassword(): HasMany
-    {
-        return $this->hasMany(TokenResetPassword::class);
-    }
 }
