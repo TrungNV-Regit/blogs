@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('likes', function (Blueprint $table) {
-            $table->integer("user_id")->nullable(false);
-            $table->integer("blog_id")->nullable(false);
-            $table->foreign("user_id")->references("id")->on("users");
-            $table->foreign("blog_id")->references("id")->on("blogs");
+        Schema::create('categories', function (Blueprint $table) {
+            $table->integer('id')->primary()->autoIncrement();
+            $table->string('name',50)->nullable(false);
         });
     }
 
@@ -24,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('likes');
+        Schema::dropIfExists('password_reset_tokens');
     }
 };

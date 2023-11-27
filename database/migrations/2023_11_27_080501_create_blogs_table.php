@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('blogs', function (Blueprint $table) {
-            $table->integer("id")->primary();
+            $table->integer("id")->primary()->autoIncrement();
             $table->string('title',255)->nullable(false);
             $table->text('content')->nullable(false);
             $table->string('link_image',255)->nullable();
@@ -20,8 +20,6 @@ return new class extends Migration
             $table->integer('category_id')->nullable(false);
             $table->tinyInteger('status')->nullable();
             $table->timestamp('created_at')->default(now());
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('failed_jobs');
+        Schema::dropIfExists('blogs');
     }
 };
