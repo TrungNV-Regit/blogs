@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -19,7 +20,6 @@ class User extends Authenticatable
      */
     protected $table='users';
     protected $fillable = [
-        'id',
         'username',
         'email',
         'link_avatar',
@@ -36,7 +36,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        'token_verify_email',
     ];
 
     /**
@@ -48,4 +48,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function comments():HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function likes():HasMany
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function blogs():HasMany
+    {
+        return $this->hasMany(Blog::class);
+    }
+
+    public function resetTokenPassword():HasMany
+    {
+        return $this->hasMany(TokenResetPassword::class);
+    }
 }

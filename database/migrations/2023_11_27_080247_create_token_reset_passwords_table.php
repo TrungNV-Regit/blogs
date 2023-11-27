@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('token_reset_passwords', function (Blueprint $table) {
-            $table->integer("id")->primaryKey()->autoIncrement();
+            $table->id();
             $table->integer("user_id")->nullable(false);
-            $table->timestamp("created_at")->default(now());
-            $table->string("token",255)->unique;
+            $table->timestamps();
+            $table->string("token", 255)->unique;
             $table->boolean("is_used")->default(false);
         });
     }

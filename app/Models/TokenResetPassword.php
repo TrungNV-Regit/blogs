@@ -4,21 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TokenResetPassword extends Model
 {
     use HasFactory;
 
-    protected $table='token_reset_passwords';
-    protected $fillable=[
-        'id',
+    protected $table = 'token_reset_passwords';
+    protected $fillable = [
         'user_id',
-        'created_at',
         'token',
         'is_used',
     ];
 
-    public function user()
+    public function user():BelongsTo
     {
         return $this->belongsTo(User::class);
     }
