@@ -36,7 +36,7 @@ class Blog extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function likes():HasMany
+    public function likes(): HasMany
     {
         return $this->hasMany(Like::class);
     }

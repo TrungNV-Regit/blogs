@@ -18,7 +18,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $table='users';
+    protected $table = 'users';
     protected $fillable = [
         'username',
         'email',
@@ -49,22 +49,22 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function comments():HasMany
+    public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }
 
-    public function likes():HasMany
+    public function likes(): HasMany
     {
         return $this->hasMany(Like::class);
     }
 
-    public function blogs():HasMany
+    public function blogs(): HasMany
     {
         return $this->hasMany(Blog::class);
     }
 
-    public function resetTokenPassword():HasMany
+    public function resetTokenPassword(): HasMany
     {
         return $this->hasMany(TokenResetPassword::class);
     }
