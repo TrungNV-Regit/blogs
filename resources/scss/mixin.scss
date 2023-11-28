@@ -1,0 +1,33 @@
+@mixin breakpoint($min-size, $max-size) {
+  @media (min-width: $min-size) and (max-width: $max-size) {
+    @content;
+  }
+}
+@mixin position($top, $left) {
+  top: $top;
+  left: $left;
+}
+@mixin font-style($font, $size, $width) {
+  font-family: $font;
+  font-size: $size;
+  font-style: normal;
+  font-weight: $width;
+  line-height: normal;
+}
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+@mixin center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin center-flex-absolute {
+  @include center-flex;
+  position: absolute;
+}
+@mixin flex-relative {
+  display: flex;
+  position: relative;
+}

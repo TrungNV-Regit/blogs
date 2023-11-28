@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password', 255);
             $table->boolean('role');
             $table->string('token_verify_email', 255);
+            $table->boolean('status');
             $table->timestamps();
         });
     }

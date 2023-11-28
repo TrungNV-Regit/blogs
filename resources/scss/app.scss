@@ -1,0 +1,444 @@
+@import "variable.scss";
+@import "mixin.scss";
+@keyframes header-up {
+  0% {
+    top: 0px;
+  }
+  100% {
+    top: -122px;
+  }
+}
+@keyframes header-down {
+  0% {
+    top: -122px;
+  }
+  100% {
+    top: 0;
+  }
+}
+body {
+  width: $full;
+  overflow-x: hidden;
+  .header {
+    position: relative;
+    .image-banner {
+      width: 100%;
+      @include breakpoint(0px, 768px) {
+        height: 380px;
+      }
+      @include breakpoint(769px, 2500px) {
+        height: 520px;
+      }
+    }
+    .nav {
+      @include breakpoint(0px, 769px) {
+        display: none;
+      }
+      @include breakpoint(769px, 2500px) {
+        @include size($full, 122px);
+        background: rgba(255, 255, 255, 0.65);
+        box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.25);
+        position: fixed;
+        z-index: 10;
+        .nav-logo {
+          position: relative;
+          left: 5%;
+          top: 33px;
+
+          img {
+            max-width: $full;
+            max-height: $full;
+          }
+
+          span {
+            @include font-style($font-family-1, 20px, 700);
+            position: relative;
+            top: 1px;
+            color: $color-5;
+          }
+
+          input {
+            @include size(50%, 45px);
+            border-radius: 4px;
+            border: 1px solid #d4d4d4;
+            background: $color-3;
+            margin-left: 3%;
+            padding: 13px 50px 13px 20px;
+            &::placeholder {
+              color: $color-8;
+              @include font-style($font-family-1, 15px, 500);
+            }
+          }
+
+          svg {
+            position: relative;
+            cursor: pointer;
+            @include position(-3px, -4%);
+          }
+        }
+
+        .top-blog {
+          @include font-style($font-family-1, 15px, 500);
+          @include size(51px, 31px);
+          @include position(47px, 68%);
+          background-color: $color-9;
+          color: $color-3;
+          border-radius: 4px;
+          position: $position-absolute;
+          border: none;
+        }
+
+        .create-blog {
+          @include font-style($font-family-1, 15px, 500);
+          @include center-flex-absolute;
+          @include position(50px, 73%);
+          color: $color-4;
+          border: none;
+          background-color: transparent;
+        }
+
+        .profile {
+          @include position(46px, 87%);
+          @include center-flex-absolute;
+          span {
+            @include font-style($font-family-1, 15px, 500);
+            color: $color-4;
+            padding-right: 17px;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+  .header-mobile {
+    @include breakpoint(769px, 2500px) {
+      display: none;
+    }
+    @include breakpoint(0px, 768px) {
+      @include size($full, 69px);
+      @include flex-relative;
+      background: $color-3;
+      box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.25);
+
+      .menu {
+        position: relative;
+        @include position(16px, 25px);
+        svg {
+          cursor: pointer;
+        }
+      }
+
+      .logo-mobile {
+        @include position(50%, 50%);
+        @include center-flex;
+        @include flex-relative;
+        height: 45px;
+        position: $position-absolute;
+        transform: $transform-center;
+
+        span {
+          @include font-style($font-family-1, 20px, 700);
+          color: $color-5;
+          align-self: center;
+        }
+      }
+
+      .logo-search-mobile {
+        position: relative;
+        position: absolute;
+        @include position(20px, "");
+        right: 25px;
+        svg {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  select {
+    @include font-style($font-family-1, 15px, 500);
+    color: $color-4;
+    border-radius: 4px;
+    border: 1px solid $color-10;
+    outline: none;
+    background: $color-3;
+    padding: 7px 60px 11px 15px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("../image/arrow.png");
+    background-repeat: no-repeat;
+    background-position: 113px center;
+  }
+
+  .container {
+    @include breakpoint(0, 768px) {
+      padding-right: 10%;
+      padding-left: 10%;
+    }
+
+    @include breakpoint(769px, 2500px) {
+      max-width: 90%;
+    }
+
+    .header-body {
+      @include center-flex;
+      margin-left: auto;
+      margin-top: 73px;
+      margin-bottom: 38px;
+      justify-content: space-between;
+    }
+  }
+
+  .row {
+    .blog,
+    .blog-end {
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: $color-3;
+      background-clip: border-box;
+      border: 1px solid rgba(0, 0, 0, 0.125);
+      border-radius: 0.25rem;
+      padding: 0;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+
+      .card-body {
+        .name-and-time {
+          display: flex;
+          padding-bottom: 15px;
+
+          div {
+            @include center-flex;
+            span {
+              @include font-style($font-family-2, 18px, 400);
+              @include breakpoint(0, 768px) {
+                @include font-style($font-family-2, 15px, 400);
+              }
+              color: $color-7;
+              line-height: 30px;
+            }
+
+            .name {
+              margin-left: 4px;
+              margin-right: 21px;
+            }
+
+            .time {
+              margin-left: 8px;
+            }
+          }
+        }
+
+        h5 {
+          color: $color-7;
+          @include font-style($font-family-2, 20px, 700);
+          line-height: 28px;
+        }
+
+        p {
+          color: $color-7;
+          @include font-style($font-family-2, 18px, 400);
+          line-height: 25px;
+        }
+
+        .read-more {
+          @include size(140px, 40px);
+          @include center-flex;
+          @include font-style($font-family-1, 14px, 400);
+          border-radius: 4px;
+          border: 1px solid $color-11;
+          background: $color-3;
+          color: $color-1;
+          &:hover {
+            background-color: $color-1;
+            color: $color-3;
+            svg {
+              path {
+                stroke: $color-11;
+              }
+            }
+          }
+        }
+      }
+    }
+    .blog {
+      margin-bottom: 70px;
+    }
+    .blog-end {
+      margin-bottom: 53px;
+    }
+  }
+
+  .pagination {
+    @include center-flex;
+    width: $full;
+    margin-bottom: 106px;
+    @include breakpoint(0, 768px) {
+      margin-bottom: 53px;
+    }
+
+    button {
+      border: none;
+    }
+
+    .page-numbers {
+      @include center-flex;
+      .btn-page {
+        @include font-style($font-family-2, 20px, 700);
+        border-radius: 50%;
+        background-color: $color-3;
+        border: 0px;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $color-12;
+        }
+      }
+    }
+
+    .btn-nav {
+      @include center-flex;
+      border-radius: 50%;
+      background-color: $color-6;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      &:hover {
+        background-color: $color-6;
+      }
+    }
+
+    .right-btn {
+      background-color: $color-13;
+      color: $color-3;
+    }
+  }
+
+  .footer {
+    @include size($full, 94px);
+    @include center-flex;
+    background: $color-5;
+
+    div {
+      @include font-style($font-family-1, 15px, 500);
+      color: $color-3;
+    }
+  }
+
+  .header-up {
+    animation-name: header-up;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+
+  .header-down {
+    animation-name: header-down;
+    animation-duration: 1.5s;
+  }
+
+  .logo {
+    @include center-flex;
+    div {
+      @include size(151px, 61px);
+      @include breakpoint(769px, 2500px) {
+        margin-top: 50px;
+        margin-bottom: 40px;
+      }
+
+      @include breakpoint(0px, 768px) {
+        margin-top: 130px;
+        margin-bottom: 40px;
+      }
+
+      a {
+        @include center-flex;
+        text-decoration: none;
+        img {
+          @include size(61px, 61px);
+        }
+        span {
+          color: $color-5;
+          @include font-style($font-family-1, 20px, 700);
+        }
+      }
+    }
+  }
+
+  .sign-up,
+  .sign-in {
+    @include breakpoint(769px, 2500px) {
+      @include center-flex;
+    }
+    @include breakpoint(0px, 768px) {
+      margin-left: 52px;
+      margin-right: 52px;
+    }
+    h4 {
+      @include font-style($font-family-1, 20px, 700);
+      color: $color-4;
+      margin: 0px 0px 16px 0px;
+    }
+
+    form {
+      label {
+        @include font-style($font-family-1, 15px, 400);
+        color: $color-4;
+        display: block;
+        span {
+          color: $color-14;
+        }
+      }
+
+      input {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 24px;
+        border: 2px solid $color-10;
+        border-radius: 2px;
+        outline: none;
+        @include breakpoint(769px, 2500px) {
+          @include size(570px, 40px);
+        }
+        @include breakpoint(0px, 768px) {
+          @include size(100%, 40px);
+        }
+      }
+
+      p {
+        margin: 0 0 10px 0;
+        color: $color-15;
+        @include font-style($font-family-1, 15px, 400);
+      }
+
+      div {
+        @include center-flex;
+        button {
+          color: $color-3;
+          @include breakpoint(769px, 2500px){
+            @include size(280px, 40px);
+          }
+
+          @include breakpoint(0px, 768px){
+            @include size(198px, 40px);
+          }
+
+          background-color: $color-17;
+          border: 2px solid $color-17;
+          border-radius: 5px;
+          display: block;
+          margin-bottom: 11px;
+        }
+
+        a {
+          color: $color-17;
+          text-decoration: none;
+          @include font-style($font-family-1, 15px, 400);
+        }
+      }
+    }
+  }
+}
