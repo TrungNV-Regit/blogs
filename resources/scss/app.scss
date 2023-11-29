@@ -16,6 +16,7 @@
     top: 0;
   }
 }
+
 body {
   width: $full;
   overflow-x: hidden;
@@ -23,18 +24,18 @@ body {
     position: relative;
     .image-banner {
       width: 100%;
-      @include breakpoint(0px, 768px) {
+      @include breakpoint($size-small) {
         height: 380px;
       }
-      @include breakpoint(769px, 2500px) {
+      @include breakpoint($size-big) {
         height: 520px;
       }
     }
     .nav {
-      @include breakpoint(0px, 769px) {
+      @include breakpoint($size-small) {
         display: none;
       }
-      @include breakpoint(769px, 2500px) {
+      @include breakpoint($size-big) {
         @include size($full, 122px);
         background: rgba(255, 255, 255, 0.65);
         box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.25);
@@ -111,10 +112,10 @@ body {
     }
   }
   .header-mobile {
-    @include breakpoint(769px, 2500px) {
+    @include breakpoint($size-big) {
       display: none;
     }
-    @include breakpoint(0px, 768px) {
+    @include breakpoint($size-small) {
       @include size($full, 69px);
       @include flex-relative;
       background: $color-3;
@@ -172,12 +173,12 @@ body {
   }
 
   .container {
-    @include breakpoint(0, 768px) {
+    @include breakpoint(0) {
       padding-right: 10%;
       padding-left: 10%;
     }
 
-    @include breakpoint(769px, 2500px) {
+    @include breakpoint($size-big) {
       max-width: 90%;
     }
 
@@ -213,7 +214,7 @@ body {
             @include center-flex;
             span {
               @include font-style($font-family-2, 18px, 400);
-              @include breakpoint(0, 768px) {
+              @include breakpoint($size-small) {
                 @include font-style($font-family-2, 15px, 400);
               }
               color: $color-7;
@@ -275,7 +276,7 @@ body {
     @include center-flex;
     width: $full;
     margin-bottom: 106px;
-    @include breakpoint(0, 768px) {
+    @include breakpoint(0) {
       margin-bottom: 53px;
     }
 
@@ -344,12 +345,12 @@ body {
     @include center-flex;
     div {
       @include size(151px, 61px);
-      @include breakpoint(769px, 2500px) {
+      @include breakpoint($size-big) {
         margin-top: 50px;
         margin-bottom: 40px;
       }
 
-      @include breakpoint(0px, 768px) {
+      @include breakpoint($size-small) {
         margin-top: 130px;
         margin-bottom: 40px;
       }
@@ -370,10 +371,10 @@ body {
 
   .sign-up,
   .sign-in {
-    @include breakpoint(769px, 2500px) {
+    @include breakpoint($size-big) {
       @include center-flex;
     }
-    @include breakpoint(0px, 768px) {
+    @include breakpoint($size-small) {
       margin-left: 52px;
       margin-right: 52px;
     }
@@ -400,16 +401,18 @@ body {
         border: 2px solid $color-10;
         border-radius: 2px;
         outline: none;
-        @include breakpoint(769px, 2500px) {
-          @include size(570px, 40px);
-        }
-        @include breakpoint(0px, 768px) {
+        @include breakpoint($size-small) {
           @include size(100%, 40px);
         }
+        
+        @include breakpoint($size-big) {
+          @include size(570px, 40px);
+        }
+        
       }
 
       p {
-        margin: 0 0 10px 0;
+        margin: 0;
         color: $color-15;
         @include font-style($font-family-1, 15px, 400);
       }
@@ -418,11 +421,11 @@ body {
         @include center-flex;
         button {
           color: $color-3;
-          @include breakpoint(769px, 2500px){
+          @include breakpoint($size-big) {
             @include size(280px, 40px);
           }
 
-          @include breakpoint(0px, 768px){
+          @include breakpoint($size-small) {
             @include size(198px, 40px);
           }
 
