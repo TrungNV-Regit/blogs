@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email', 255)->unique();
             $table->string('link_avatar', 255);
             $table->string('password', 255);
-            $table->boolean('role');
+            $table->boolean('role')->default(2);
             $table->string('token_verify_email', 255);
             $table->boolean('status');
             $table->timestamps();

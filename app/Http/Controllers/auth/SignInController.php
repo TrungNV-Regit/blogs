@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 
 class SignInController extends Controller
 {
+
     public function signInForm()
     {
         return view('auth.sign-in');
     }
+
 }
