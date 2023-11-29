@@ -345,13 +345,13 @@ body {
     @include center-flex;
     div {
       @include size(151px, 61px);
-      @include breakpoint($size-big) {
+      @include breakpoint($size-small) {
         margin-top: 50px;
         margin-bottom: 40px;
       }
 
-      @include breakpoint($size-small) {
-        margin-top: 130px;
+      @include breakpoint($size-big) {
+        margin-top: 50px;
         margin-bottom: 40px;
       }
 
@@ -371,13 +371,15 @@ body {
 
   .sign-up,
   .sign-in {
-    @include breakpoint($size-big) {
-      @include center-flex;
-    }
     @include breakpoint($size-small) {
       margin-left: 52px;
       margin-right: 52px;
     }
+
+    @include breakpoint($size-big) {
+      @include center-flex;
+    }
+    
     h4 {
       @include font-style($font-family-1, 20px, 700);
       color: $color-4;
@@ -397,7 +399,7 @@ body {
       input {
         display: block;
         margin-top: 10px;
-        margin-bottom: 24px;
+        margin-bottom: 16px;
         border: 2px solid $color-10;
         border-radius: 2px;
         outline: none;
@@ -412,7 +414,7 @@ body {
       }
 
       p {
-        margin: 0;
+        margin: 8px 0px 8px 0px ;
         color: $color-15;
         @include font-style($font-family-1, 15px, 400);
       }

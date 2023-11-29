@@ -4,13 +4,21 @@ namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SignUpRequest;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
-use App\Models\User;
+use App\Mail\SendEmail;
+use App\Services\User\MailService;
+use App\Services\User\UserService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 
 class SignUpController extends Controller
 {
+    private $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
 
     public function signUpForm()
     {
@@ -19,8 +27,7 @@ class SignUpController extends Controller
 
     public function signUp(SignUpRequest $request)
     {
-        $user = User::create($request->validated());
-        return redirect('home')->with('success', "Account successfully registered.");
-
+        $this->userService->createUser($request->validated());
+        return redirect()->back()->with('success', "Account successfully registered.");
     }
 }

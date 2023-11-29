@@ -12,6 +12,12 @@
 </head>
 
 <body>
+    @if (session('success'))
+    <div class='notification'>
+        {{ session('success') }}
+    </div>
+    @endif
+
     <div class="logo">
         <div>
             <a href="./index.html">
@@ -41,14 +47,14 @@
             @endif
 
             <label for="username">Password <span>*</span></label>
-            <input type="password" name="password" value="{{ old('password') }}">
+            <input type="password" name="password">
 
             @if($errors->has('password'))
             <p>{{ $errors->first('password') }}</p>
             @endif
 
             <label for="password">Password confirm <span>*</span></label>
-            <input type="password" name="passwordConfirm" value="{{ old('passwordConfirm') }}">
+            <input type="password" name="passwordConfirm">
 
             @if($errors->has('passwordConfirm'))
             <p>{{ $errors->first('passwordConfirm') }}</p>
@@ -64,5 +70,7 @@
 
         </form>
     </div>
+
 </body>
+
 </html>

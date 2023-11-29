@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Services\User\MailService;
+use App\Services\User\UserService;
 use Illuminate\Support\ServiceProvider;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -12,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
+
     }
 
     /**
@@ -19,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->app->bind(
+            UserService::class, function ($app) {
+                return new UserService();
+            }
+        );
     }
 }

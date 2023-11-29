@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\auth\SignUpController;
+use App\Http\Controllers\auth\VerificationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +19,10 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
    Route::get('/sign-up', [SignUpController::class, 'signupForm'])->name('sign-up');
    Route::post('/sign-up', [SignUpController::class, 'signUp'])->name('sign-up');
    Route::get('/sign-in', [SignUpController::class, 'signinForm'])->name('sign-in');
+   Route::get('/verify-email',[VerificationController::class,'verifyEmail'])->name('verify-email');
+});
+
+
+Route::get('/', function () {
+   return view('welcome');
 });
