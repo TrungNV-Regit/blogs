@@ -8,14 +8,9 @@
 </head>
 
 <body>
-    <div class="logo">
-        <div>
-            <a href="{{route('/home')}}">
-                <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="Logo">
-                <span>RT-Blogs</span>
-            </a>
-        </div>
-    </div>
+    
+    @include('component.logo')
+
     <div class='verify-token'>
 
         @if (isset($data['success']))
