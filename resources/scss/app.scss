@@ -405,7 +405,7 @@ body {
     @include center-flex;
     align-items: center;
     @include font-style($font-family-1, 20px, 700);
-   
+
     .success {
       p,
       a {
@@ -416,7 +416,7 @@ body {
     }
 
     .error {
-      color: $color-14
+      color: $color-14;
     }
   }
 
@@ -520,6 +520,39 @@ body {
           color: $color-17;
           text-decoration: none;
           @include font-style($font-family-1, 15px, 400);
+        }
+      }
+
+      .option {
+        justify-content: space-between;
+        margin-bottom: 40px;
+        div {
+          text-align: center;
+          input {
+            margin: 0 8px 0 0;
+            @include breakpoint($size-small) {
+              @include size(13px, 13px);
+            }
+
+            @include breakpoint($size-big) {
+              @include size(24px, 24px);
+            }
+          }
+
+          span,a {
+            @include breakpoint($size-small) {
+              @include font-style($font-family-1, 11px, 400);
+            }
+
+            @include breakpoint($size-big) {
+              @include font-style($font-family-1, 15px, 400);
+            }
+          }
+
+          a{
+            color: $color-17;
+            cursor: pointer;
+          }
         }
       }
     }
