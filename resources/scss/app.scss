@@ -78,27 +78,34 @@
 body {
   width: $full;
   overflow-x: hidden;
+
   .header {
     position: relative;
+
     .image-banner {
       width: 100%;
+
       @include breakpoint($size-small) {
         height: 380px;
       }
+
       @include breakpoint($size-big) {
         height: 520px;
       }
     }
+
     .nav {
       @include breakpoint($size-small) {
         display: none;
       }
+
       @include breakpoint($size-big) {
         @include size($full, 122px);
         background: rgba(255, 255, 255, 0.65);
         box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.25);
         position: fixed;
         z-index: 10;
+
         .nav-logo {
           position: relative;
           left: 5%;
@@ -159,6 +166,7 @@ body {
         .profile {
           @include position(46px, 87%);
           @include center-flex-absolute;
+
           span {
             @include font-style($font-family-1, 15px, 500);
             color: $color-4;
@@ -169,10 +177,12 @@ body {
       }
     }
   }
+
   .header-mobile {
     @include breakpoint($size-big) {
       display: none;
     }
+
     @include breakpoint($size-small) {
       @include size($full, 69px);
       @include flex-relative;
@@ -310,9 +320,11 @@ body {
           border: 1px solid $color-11;
           background: $color-3;
           color: $color-1;
+
           &:hover {
             background-color: $color-1;
             color: $color-3;
+
             svg {
               path {
                 stroke: $color-11;
@@ -322,9 +334,11 @@ body {
         }
       }
     }
+
     .blog {
       margin-bottom: 70px;
     }
+
     .blog-end {
       margin-bottom: 53px;
     }
@@ -334,6 +348,7 @@ body {
     @include center-flex;
     width: $full;
     margin-bottom: 106px;
+
     @include breakpoint(0) {
       margin-bottom: 53px;
     }
@@ -439,6 +454,7 @@ body {
     @include center-flex;
     div {
       @include size(151px, 61px);
+
       @include breakpoint($size-small) {
         margin-top: 50px;
         margin-bottom: 40px;
@@ -452,9 +468,11 @@ body {
       a {
         @include center-flex;
         text-decoration: none;
+
         img {
           @include size(61px, 61px);
         }
+
         span {
           color: $color-5;
           @include font-style($font-family-1, 20px, 700);
@@ -485,6 +503,7 @@ body {
         @include font-style($font-family-1, 15px, 400);
         color: $color-4;
         display: block;
+
         span {
           color: $color-14;
         }
@@ -574,6 +593,4 @@ body {
       }
     }
   }
-
-  
 }
