@@ -9,20 +9,22 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Headers;
 
-
-
 class SendEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $url;
-
+    public $subject;
+    protected $viewName;
+    protected $content;
+    
     /**
      * Create a new message instance.
      */
-    public function __construct($url)
+    public function __construct(string $subject,string $viewName, string $content)
     {
-        $this->url = $url;
+        $this->subject = $subject;
+        $this->viewName = $viewName;
+        $this->content = $content;
     }
 
     /**
@@ -31,8 +33,7 @@ class SendEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Verify Email || RT Blog',
-            // from: new Address('trungnv0801@gmail.com', 'Trung'),
+            subject: $this->subject,
         );
     }
 
@@ -51,9 +52,9 @@ class SendEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'auth.verify-email',
+            view: $this->viewName,
             with: [
-                'url' => $this->url,
+                'content' => $this->content,
             ],
         );
     }

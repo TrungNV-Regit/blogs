@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Auth\AuthenticationService;
 use App\Services\User\UserService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Model;
@@ -35,6 +36,13 @@ class AppServiceProvider extends ServiceProvider
             MailService::class,
             function ($app) {
                 return new MailService();
+            }
+        );
+
+        $this->app->bind(
+            AuthenticationService::class,
+            function ($app) {
+                return new AuthenticationService();
             }
         );
     }

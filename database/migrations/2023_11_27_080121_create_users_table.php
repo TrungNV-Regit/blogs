@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('token_verify_email', 255);
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('status')->default(config('app.constants.STATUS_ACTIVE'));
+            $table->rememberToken();
             $table->timestamps();
         });
     }

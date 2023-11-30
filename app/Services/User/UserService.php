@@ -4,17 +4,17 @@ namespace App\Services\User;
 
 use App\Mail\SendEmail;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class UserService
 {
-
     public function createUser(array $data): User
     {
         $token = base64_encode($data['email']);
         $url = config('app.constants.BASE_URL') . '/auth/verify-email?token=' . $token;
+        $subject='RT Blog Verify your email address';
+        $viewName='email.verify-email';
         $to = $data['email'];
         $user = User::create(
             [
@@ -25,7 +25,7 @@ class UserService
                 'link_avatar' => config('app.constants.AVATAR_DEFAULT'),
             ]
         );
-        Mail::to($to)->send(new SendEmail($url));
+        Mail::to($to)->send(new SendEmail($subject,$viewName,$url));
         return $user;
     }
 }

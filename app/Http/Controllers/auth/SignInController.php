@@ -4,9 +4,17 @@ namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SignInRequest;
+use App\Services\Auth\AuthenticationService;
 
 class SignInController extends Controller
 {
+    private $authenticationService;
+
+    public function __construct(AuthenticationService $authenticationService)
+    {
+        $this->authenticationService = $authenticationService;
+    }
+
     public function signInForm()
     {
         return view('auth.sign-in');;
@@ -14,8 +22,6 @@ class SignInController extends Controller
 
     public function signIn(SignInRequest $request)
     {
-        echo $request;
-        // $request->validated();
-        // return ;
+        return $this->authenticationService->signIn($request);
     }
 }

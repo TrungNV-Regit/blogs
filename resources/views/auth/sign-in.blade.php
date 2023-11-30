@@ -11,22 +11,19 @@
 </head>
 
 <body>
-    <div class="logo">
-        <div>
-            <a href="./index.html">
-                <img src="{{Vite::asset('resources/images/logo.png')}}" alt="Logo">
-                <span>RT-Blogs</span>
-            </a>
-        </div>
-    </div>
+
+    @include('component.notification')
+
+    @include('component.logo')
+
     <div class="sign-up">
         <form action="{{route('auth.sign-in')}}" method="post">
             {{ csrf_field() }}
 
             <h4>Sign up</h4>
 
-            <label for="eamil">Username or email <span>*</span></label>
-            <input type="text" name="email">
+            <label for="eamil">Email <span>*</span></label>
+            <input type="text" name="email" value="{{old('email')}}">
 
             @if($errors->has('email'))
             <p>{{ $errors->first('email') }}</p>
@@ -41,12 +38,12 @@
 
             <div class='option'>
                 <div>
-                    <input type="checkbox" name="remember" class="checkbox">
+                    <input type="checkbox" name="remember" id="remember" class="checkbox">
                     <span>Remember password</span>
                 </div>
 
                 <div>
-                    <a>Forgot your password?</a>
+                    <a href="{{route('auth.forgot-password')}}">Forgot your password?</a>
                 </div>
             </div>
 
@@ -61,5 +58,4 @@
         </form>
     </div>
 </body>
-
 </html>

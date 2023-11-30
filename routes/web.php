@@ -22,9 +22,12 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
    Route::get('/sign-in', [SignInController::class, 'signInForm'])->name('sign-in');
    Route::post('/sign-in', [SignInController::class, 'signIn'])->name('sign-in');
    Route::get('/verify-email',[VerificationController::class,'verifyEmail'])->name('verify-email');
+   Route::get('/forgot-password',[VerificationController::class,'forgotPasswordForm'])->name('forgot-password');
+   Route::post('/forgot-password',[VerificationController::class,'forgotPassword'])->name('forgot-password');
 });
 
 
-Route::get('/', function () {
+Route::get('/home', function () {
    return view('welcome');
 })->name('/home');
+
