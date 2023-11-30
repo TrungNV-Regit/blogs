@@ -28,7 +28,7 @@
             @endif
 
             @if (session('notification'))
-            <p>{{ $session('notification') }}</p>
+            <p>{{ session('notification') }}</p>
             @endif
 
             <div>

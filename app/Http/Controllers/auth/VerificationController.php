@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SignInRequest;
 use Illuminate\Http\Request;
 use App\Services\Mail\MailService;
 
@@ -36,7 +35,7 @@ class VerificationController extends Controller
         return view('auth.forgot-password');
     }
 
-    public function forgotPassword(SignInRequest $request)
+    public function forgotPassword(Request $request)
     {
         return $this->mailService->forgotPassword($request);
     }

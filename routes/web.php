@@ -26,8 +26,6 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
    Route::post('/forgot-password',[VerificationController::class,'forgotPassword'])->name('forgot-password');
 });
 
-
 Route::get('/home', function () {
    return view('welcome');
 })->name('/home');
-
