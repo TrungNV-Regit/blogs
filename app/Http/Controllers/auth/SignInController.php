@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class SignInController extends Controller
 {
     public function signInForm()
     {
-        return view('auth.sign-in');
+        return view('auth.sign-in');;
     }
-
 }

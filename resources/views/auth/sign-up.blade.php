@@ -14,24 +14,24 @@
 <body>
     @if (session('success'))
     <div class='notification'>
-        {{ session('success') }}
+        <span> {{ session('success') }}</span>
     </div>
-    @endif
+   @endif
 
     <div class="logo">
         <div>
-            <a href="./index.html">
+            <a href="{{route('/home')}}">
                 <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="Logo">
                 <span>RT-Blogs</span>
             </a>
         </div>
     </div>
     <div class="sign-up">
-        <form action="/auth/sign-up" method="post">
+        <form action="{{ route('auth.sign-up') }}" method="post">
             {{ csrf_field() }}
 
             <h4>Sign up</h4>
-
+            
             <label for="username">Username <span>*</span></label>
             <input type="text" name="username" value="{{ old('username') }}">
 
@@ -63,14 +63,11 @@
             <div>
                 <button type="submit">Sign up</button>
             </div>
-
             <div>
-                <a href="/auth/sign-in">Already have an account? Login</a>
+                <a href="{{ route('auth.sign-in') }}">Already have an account? Login</a>
             </div>
 
         </form>
     </div>
-
 </body>
-
 </html>

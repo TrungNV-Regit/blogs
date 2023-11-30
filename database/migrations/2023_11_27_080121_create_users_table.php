@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('username',255);
             $table->string('email', 255)->unique();
-            $table->string('link_avatar', 255)->default('https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg');
+            $table->string('link_avatar', 255);
             $table->string('password', 255);
-            $table->boolean('role')->default(2);
+            $table->boolean('role')->default(config('app.constants.ROLE_USER'));
             $table->string('token_verify_email', 255);
             $table->timestamp('email_verified_at')->nullable();
-            $table->boolean('status')->default(1);
+            $table->boolean('status')->default(config('app.constants.STATUS_ACTIVE'));
             $table->timestamps();
         });
     }

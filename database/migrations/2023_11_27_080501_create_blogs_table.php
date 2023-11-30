@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('link_image', 255);
             $table->integer('user_id');
             $table->integer('category_id');
-            $table->boolean('status');
+            $table->boolean('status')->default(config('app.constants.STATUS_ACTIVE'));
             $table->timestamps();
         });
     }
