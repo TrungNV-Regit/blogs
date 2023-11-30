@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Services\User\MailService;
 use App\Services\User\UserService;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Database\Eloquent\Model;
+use App\Services\Mail\MailService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,7 +15,6 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
-
     }
 
     /**
@@ -23,9 +22,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Model::preventLazyLoading();
+
         $this->app->bind(
-            UserService::class, function ($app) {
+            UserService::class,
+            function ($app) {
                 return new UserService();
+            }
+        );
+
+        $this->app->bind(
+            MailService::class,
+            function ($app) {
+                return new MailService();
             }
         );
     }

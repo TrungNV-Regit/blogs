@@ -16,7 +16,52 @@
     top: 0;
   }
 }
-
+@keyframes notification {
+  0% {
+    top: 20px;
+    right: -200px;
+  }
+  10% {
+    top: 20px;
+    right: 100px;
+  }
+  20% {
+    top: 20px;
+    right: 100px;
+  }
+  30% {
+    top: 20px;
+    right: 100px;
+  }
+  40% {
+    top: 20px;
+    right: 100px;
+  }
+  50% {
+    top: 20px;
+    right: 100px;
+  }
+  60% {
+    top: 20px;
+    right: 100px;
+  }
+  70% {
+    top: 20px;
+    right: 100px;
+  }
+  80% {
+    top: 20px;
+    right: 100px;
+  }
+  90% {
+    top: 20px;
+    right: 100px;
+  }
+  100% {
+    top: -100px;
+    right: 100px;
+  }
+}
 body {
   width: $full;
   overflow-x: hidden;
@@ -341,6 +386,40 @@ body {
     animation-duration: 1.5s;
   }
 
+  .notification {
+    span {
+      color: $color-18;
+    }
+    width: 250px;
+    position: absolute;
+    display: flex;
+    border: 1px solid $color-18;
+    border-radius: 5px;
+    animation-name: notification;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+  }
+
+  .verify-token {
+    @include center-flex;
+    align-items: center;
+    @include font-style($font-family-1, 20px, 700);
+   
+    .success {
+      p,
+      a {
+        @include center-flex;
+        color: $color-18;
+        text-decoration: none;
+      }
+    }
+
+    .error {
+      color: $color-14
+    }
+  }
+
   .logo {
     @include center-flex;
     div {
@@ -379,7 +458,7 @@ body {
     @include breakpoint($size-big) {
       @include center-flex;
     }
-    
+
     h4 {
       @include font-style($font-family-1, 20px, 700);
       color: $color-4;
@@ -406,15 +485,14 @@ body {
         @include breakpoint($size-small) {
           @include size(100%, 40px);
         }
-        
+
         @include breakpoint($size-big) {
           @include size(570px, 40px);
         }
-        
       }
 
       p {
-        margin: 8px 0px 8px 0px ;
+        margin: 8px 0px 8px 0px;
         color: $color-15;
         @include font-style($font-family-1, 15px, 400);
       }
