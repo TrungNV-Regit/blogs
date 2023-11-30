@@ -33,9 +33,11 @@ class MailService
         $regex = '/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,30}$/';
         $randomString = Str::random(8);
         $newPassword = Str::regexReplace($regex, $randomString, '');
-        User::where('email', $to)->update([
+        User::where('email', $to)->update(
+            [
             'password' => Hash::make($newPassword),
-        ]);
+            ]
+        );
         Mail::to($to)->send(new SendEmail($subject, $viewName, $newPassword));
         return back()->with("notification", 'Please check your email.');
     }

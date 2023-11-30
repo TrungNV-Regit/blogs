@@ -25,7 +25,7 @@ class UserService
                 'link_avatar' => config('app.constants.AVATAR_DEFAULT'),
             ]
         );
-        Mail::to($to)->send(new SendEmail($subject,$viewName,$url));
+        Mail::to($to)->send(new SendEmail($subject, $viewName, $url));
         return $user;
     }
 }

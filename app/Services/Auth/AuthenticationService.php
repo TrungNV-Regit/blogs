@@ -34,7 +34,7 @@ class AuthenticationService
             $request->session()->regenerate();
             $request->session()->put('user', $user);
 
-            if($user->role == config('app.constants.ROLE_ADMIN')){
+            if($user->role == config('app.constants.ROLE_ADMIN')) {
                 return redirect('/admin');
             }
 
