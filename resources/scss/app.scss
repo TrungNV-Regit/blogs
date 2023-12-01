@@ -69,18 +69,18 @@ body {
     position: relative;
     .image-banner {
       width: 100%;
-      @include breakpoint(0px,$size-big) {
+      @include breakpoint(0px, $size-big) {
         height: 380px;
       }
-      @include breakpoint($size-big,1600px) {
+      @include breakpoint($size-big, 1600px) {
         height: 520px;
       }
     }
     .nav {
-      @include breakpoint(0px,$size-big) {
+      @include breakpoint(0px, $size-big) {
         display: none;
       }
-      @include breakpoint($size-big,1600px) {
+      @include breakpoint($size-big, 1600px) {
         @include size($full, 122px);
         background: rgba(255, 255, 255, 0.65);
         box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.25);
@@ -157,10 +157,10 @@ body {
     }
   }
   .header-mobile {
-    @include breakpoint($size-big,1600px) {
+    @include breakpoint($size-big, 1600px) {
       display: none;
     }
-    @include breakpoint(0px,$size-big) {
+    @include breakpoint(0px, $size-big) {
       @include size($full, 69px);
       @include flex-relative;
       background: $color-3;
@@ -218,12 +218,12 @@ body {
   }
 
   .container {
-    @include breakpoint(0,$size-big) {
+    @include breakpoint(0, $size-big) {
       padding-right: 10%;
       padding-left: 10%;
     }
 
-    @include breakpoint($size-big,1600px) {
+    @include breakpoint($size-big, 1600px) {
       max-width: 90%;
     }
 
@@ -259,7 +259,7 @@ body {
             @include center-flex;
             span {
               @include font-style($font-family-2, 18px, 400);
-              @include breakpoint(0px,$size-big) {
+              @include breakpoint(0px, $size-big) {
                 @include font-style($font-family-2, 15px, 400);
               }
               color: $color-7;
@@ -321,7 +321,7 @@ body {
     @include center-flex;
     width: $full;
     margin-bottom: 106px;
-    @include breakpoint(0,$size-big) {
+    @include breakpoint(0, $size-big) {
       margin-bottom: 53px;
     }
 
@@ -420,141 +420,135 @@ body {
     }
   }
 
-  .logo {
-    @include center-flex;
-    div {
-      @include size(151px, 61px);
-      @include breakpoint(0px,$size-big) {
-        margin-top: 50px;
-        margin-bottom: 40px;
-      }
-
-      @include breakpoint($size-big,1600px) {
-        margin-top: 50px;
-        margin-bottom: 40px;
-      }
-
-      a {
-        @include center-flex;
-        text-decoration: none;
-        img {
-          @include size(61px, 61px);
-        }
-        span {
-          color: $color-5;
-          @include font-style($font-family-1, 20px, 700);
-        }
-      }
-    }
-  }
-
   .sign-up,
   .sign-in {
-
-    @include breakpoint($size-big,1600px) {
+    height: 100vh;
+    @include breakpoint(768px, 1600px) {
       @include center-flex;
     }
 
-    @include breakpoint(0px,$size-big) {
-      margin-left: 52px;
-      margin-right: 52px;
-    }
-
-    h4 {
-      @include font-style($font-family-1, 20px, 700);
-      color: $color-4;
-      margin: 0px 0px 16px 0px;
-    }
-
-    form {
-      label {
-        @include font-style($font-family-1, 15px, 400);
-        color: $color-4;
-        display: block;
-        span {
-          color: $color-14;
-        }
-      }
-
-      input {
-        display: block;
-        margin-top: 10px;
-        margin-bottom: 16px;
-        border: 2px solid $color-10;
-        border-radius: 2px;
-        outline: none;
-        @include breakpoint($size-big,1600px) {
-          @include size(570px, 40px);
-        }
-
-        @include breakpoint(0px,$size-big) {
-          @include size(100%, 40px);
-        }
-
-        
-      }
-
-      p {
-        margin: 8px 0px 8px 0px;
-        color: $color-15;
-        @include font-style($font-family-1, 15px, 400);
-      }
-
-      div {
+    div {
+      .logo {
         @include center-flex;
-        button {
-          color: $color-3;
-          @include breakpoint($size-big,1600px) {
-            @include size(280px, 40px);
+        margin-bottom: 75px;
+
+        div {
+          @include size(151px, 61px);
+
+          a {
+            @include center-flex;
+            text-decoration: none;
+
+            img {
+              @include size(61px, 61px);
+            }
+
+            span {
+              color: $color-5;
+              @include font-style($font-family-1, 20px, 700);
+            }
           }
-
-          @include breakpoint(0px,$size-big) {
-            @include size(198px, 40px);
-          }
-
-          background-color: $color-17;
-          border: 2px solid $color-17;
-          border-radius: 5px;
-          display: block;
-          margin-bottom: 11px;
-        }
-
-        a {
-          color: $color-17;
-          text-decoration: none;
-          @include font-style($font-family-1, 15px, 400);
         }
       }
 
-      .option {
-        justify-content: space-between;
-        margin-bottom: 40px;
-        div {
-          text-align: center;
-          input {
-            margin: 0 8px 0 0;
-            @include breakpoint(0px,$size-big) {
-              @include size(13px, 13px);
-            }
+      .content {
+        form {
+          h4 {
+            @include font-style($font-family-1, 20px, 700);
+            color: $color-4;
+            margin: 0px 0px 16px 0px;
+          }
 
-            @include breakpoint($size-big,1600px) {
-              @include size(24px, 24px);
+          label {
+            @include font-style($font-family-1, 15px, 400);
+            color: $color-4;
+            display: block;
+            span {
+              color: $color-14;
             }
           }
 
-          span,a {
-            @include breakpoint(0px,$size-big) {
-              @include font-style($font-family-1, 11px, 400);
+          input {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 16px;
+            border: 2px solid $color-10;
+            border-radius: 2px;
+            outline: none;
+            @include breakpoint($size-big, 1600px) {
+              @include size(570px, 40px);
             }
 
-            @include breakpoint($size-big,1600px) {
+            @include breakpoint(0px, $size-big) {
+              @include size(100%, 40px);
+            }
+          }
+
+          p {
+            margin: 8px 0px 8px 0px;
+            color: $color-15;
+            @include font-style($font-family-1, 15px, 400);
+          }
+
+          div {
+            @include center-flex;
+            button {
+              color: $color-3;
+              margin-top: 25px;
+              @include breakpoint($size-big, 1600px) {
+                @include size(280px, 40px);
+              }
+
+              @include breakpoint(0px, $size-big) {
+                @include size(198px, 40px);
+              }
+
+              background-color: $color-17;
+              border: 2px solid $color-17;
+              border-radius: 5px;
+              display: block;
+              margin-bottom: 11px;
+            }
+
+            a {
+              color: $color-17;
+              text-decoration: none;
               @include font-style($font-family-1, 15px, 400);
             }
           }
 
-          a{
-            color: $color-17;
-            cursor: pointer;
+          .option {
+            justify-content: space-between;
+            margin-bottom: 40px;
+            div {
+              text-align: center;
+              input {
+                margin: 0 8px 0 0;
+                @include breakpoint(0px, $size-big) {
+                  @include size(13px, 13px);
+                }
+
+                @include breakpoint($size-big, 1600px) {
+                  @include size(24px, 24px);
+                }
+              }
+
+              span,
+              a {
+                @include breakpoint(0px, $size-big) {
+                  @include font-style($font-family-1, 11px, 400);
+                }
+
+                @include breakpoint($size-big, 1600px) {
+                  @include font-style($font-family-1, 15px, 400);
+                }
+              }
+
+              a {
+                color: $color-17;
+                cursor: pointer;
+              }
+            }
           }
         }
       }
