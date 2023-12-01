@@ -14,8 +14,8 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens, HasFactory, Notifiable;
     const ROLE_ADMIN = 1;
     const ROLE_USER = 2;
-    const STATUS_ACTIVE=1;
-    const STATUS_BLOCKED=2;
+    const STATUS_ACTIVE = 1;
+    const STATUS_BLOCKED = 2;
 
     /**
      * The attributes that are mass assignable.
@@ -42,7 +42,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array<int, string>
      */
-    
+
     protected $hidden = [
         'password',
         'token_verify_email',

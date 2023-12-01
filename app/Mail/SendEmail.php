@@ -12,7 +12,6 @@ use Illuminate\Mail\Mailables\Headers;
 class SendEmail extends Mailable
 {
     use Queueable, SerializesModels;
-
     public $subject;
     protected $viewName;
     protected $content;
