@@ -17,10 +17,11 @@ class VerificationController extends Controller
 
     public function verifyEmail(Request $request)
     {
-        return $this->mailService->verifyEmail( $request->input('token'));
+        return $this->mailService->verifyEmail($request->input('token'));
     }
 
-    public function resendToken(Request $request){
-        return $this->mailService->resendToken( $request->input('token'));
+    public function resendToken(Request $request)
+    {
+        return $this->mailService->resendToken($request->input('token'));
     }
 }
