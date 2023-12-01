@@ -12,7 +12,6 @@ class UserService
     public function createUser(array $data): User
     {
         $token = base64_encode($data['email']);
-        $to = $data['email'];
         $user = User::create(
             [
                 'username' => $data['username'],
@@ -23,7 +22,7 @@ class UserService
                 'link_avatar' => config('app.constants.AVATAR_DEFAULT'),
             ]
         );
-        Mail::to($to)->send(new SendEmail('RT Blog Verify your email address', 'mail.verify-email', $token));
+        Mail::to($data['email'])->send(new SendEmail('RT Blog Verify your email address', 'mail.verify-email', $token));
         return $user;
     }
 }
