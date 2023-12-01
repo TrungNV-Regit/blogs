@@ -22,9 +22,10 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
    Route::get('/sign-in', [SignInController::class, 'signInForm'])->name('sign-in');
    Route::post('/sign-in', [SignInController::class, 'signIn'])->name('sign-in');
    Route::get('/verify-email',[VerificationController::class,'verifyEmail'])->name('verify-email');
+   Route::get('/resend-token',[VerificationController::class,'resendToken'])->name('resend-token');
 });
 
 
 Route::get('/', function () {
-   return view('welcome');
+   return view('mail.verify-email');
 })->name('/home');

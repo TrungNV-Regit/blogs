@@ -19,10 +19,12 @@ class UserService
                 'password' => Hash::make($data['password']),
                 'token_verify_email' => $token,
                 'role' => User::ROLE_USER,
+                'status' => User::STATUS_ACTIVE,
                 'link_avatar' => config('app.constants.AVATAR_DEFAULT'),
+                'token_created_at' => now(),
             ]
         );
-        Mail::to($data['email'])->send(new SendEmail('RT Blog Verify your email address', 'mail.verify-email', $token));
+        Mail::to($data['email'])->send(new SendEmail(__('en.subject_verify_email'), 'mail.verify_email', $token));
         return $user;
     }
 }

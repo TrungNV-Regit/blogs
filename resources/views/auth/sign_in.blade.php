@@ -15,14 +15,14 @@
 
                 <h4>Sign up</h4>
 
-                <label for="eamil">Username or email <span>*</span></label>
+                <label for="eamil">{{trans('message.username_or_email')}}<span>*</span></label>
                 <input type="text" name="email">
 
                 @if($errors->has('email'))
                 <p>{{ $errors->first('email') }}</p>
                 @endif
 
-                <label for="username">Password <span>*</span></label>
+                <label for="username">{{trans('message.password')}} <span>*</span></label>
                 <input type="password" name="password">
 
                 @if($errors->has('password'))
@@ -32,17 +32,17 @@
                 <div class='option'>
                     <div>
                         <input type="checkbox" name="remember" class="checkbox">
-                        <span>Remember password</span>
+                        <span>{{trans('message.remember_password')}}</span>
                     </div>
                     <div>
-                        <a>Forgot your password?</a>
+                        <a>{{trans('message.forgot_password')}}</a>
                     </div>
                 </div>
                 <div>
-                    <button type="submit">Login</button>
+                    <button type="submit">{{trans('message.login')}}</button>
                 </div>
                 <div>
-                    <a href="{{route('auth.sign-up')}}">Don’t have an account? Sign up here</a>
+                    <a href="{{route('auth.sign-up')}}">{{trans('message.not_exist_account')}}</a>
                 </div>
             </form>
         </div>

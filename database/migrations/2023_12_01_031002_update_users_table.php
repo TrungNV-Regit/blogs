@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('status')->default(config('app.constants.STATUS_ACTIVE'));
+            $table->timestamp('token_created_at');
         });
     }
 
@@ -23,7 +24,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn('email_verified_at');
+            $table->dropColumn('status');
+            $table->dropColumn('token_created_at');
         });
     }
 };

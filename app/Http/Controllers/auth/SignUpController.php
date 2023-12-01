@@ -17,12 +17,12 @@ class SignUpController extends Controller
 
     public function signUpForm()
     {
-        return view('auth.sign-up');
+        return view('auth.sign_up');
     }
 
     public function signUp(SignUpRequest $request)
     {
         $this->userService->createUser($request->validated());
-        return redirect()->back()->with('success', "Sign up success. Please check your email to verify your account");
+        return redirect()->back()->with('success', trans('message.sign_up_success'));
     }
 }
