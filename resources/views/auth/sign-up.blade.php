@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'RT Blogs | Sign up')
+@section('title', 'Sign up')
 
 @section('content')
     @if (session('success'))
