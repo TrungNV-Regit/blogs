@@ -22,6 +22,8 @@ class User extends Authenticatable implements MustVerifyEmail
      */
 
     protected $table = 'users';
+    const ROLE_ADMIN = 1;
+    const ROLE_USER = 2;
 
     protected $fillable = [
         'username',
@@ -59,5 +61,4 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Blog::class);
     }
-
 }

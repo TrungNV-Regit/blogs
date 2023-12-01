@@ -30,8 +30,6 @@ class SignInRequest extends FormRequest
             ],
             'password' => [
                 'required',
-                'min:6',
-                'max:30',
                 'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,30}$/',
             ],
         ];
