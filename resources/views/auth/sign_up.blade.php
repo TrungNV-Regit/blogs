@@ -18,7 +18,7 @@
             <form action="{{ route('auth.sign-up') }}" method="post">
                 {{ csrf_field() }}
 
-                <h4>Sign up</h4>
+                <h4>{{trans('message.sign_up')}}</h4>
 
                 <label for="username">{{ trans('message.username') }} <span>*</span></label>
                 <input type="text" name="username" id='username' value="{{ old('username') }}">

@@ -11,6 +11,7 @@ return [
     'password' => 'Password',
     'password_confirmation' => 'Password confirm',
     'sign_up' => 'Sign up',
+    'sign_in' => 'Sign in',
     'exist_account' => 'Already have an account? Login.',
     'remember_password' => 'Remember password',
     'forgot_password' => 'Forgot your password?',
