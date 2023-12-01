@@ -13,7 +13,7 @@
             <form action="{{route('auth.sign-in')}}" method="post">
                 {{ csrf_field() }}
 
-                <h4>Sign up</h4>
+                <h4>{{trans('message.sign_in')}}</h4>
 
                 <label for="eamil">{{trans('message.username_or_email')}}<span>*</span></label>
                 <input type="text" name="email">
