@@ -187,12 +187,9 @@ return [
 
 
     'constants' => [
-        'BASE_URL' => 'http://localhost:8000',
-        'ROLE_ADMIN' => 1,
-        'ROLE_USER' =>2,
-        'STATUS_PENDING' =>1,
-        'STATUS_ACTIVE' =>2,
-        'STATUS_BLOCKED'=>3,
-        'AVATAR_DEFAULT' =>'https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg'
+        'STATUS_PENDING' => 1,
+        'STATUS_ACTIVE' => 2,
+        'STATUS_BLOCKED' => 3,
+        'AVATAR_DEFAULT' => 'https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg'
     ],
 ];

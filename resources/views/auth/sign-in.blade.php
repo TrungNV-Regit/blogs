@@ -63,3 +63,5 @@
 </body>
 
 </html>
+
+@extends('layouts.master')

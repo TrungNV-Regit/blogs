@@ -21,7 +21,7 @@ class SignUpRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    
+
     public function rules(): array
     {
         return [
@@ -29,19 +29,12 @@ class SignUpRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
-                Rule::unique('users', 'email'),
+                'unique:users,email',
             ],
             'password' => [
                 'required',
-                'min:6',
-                'max:30',
                 'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,30}$/',
-            ],
-            'passwordConfirm' => [
-                'required',
-                'min:6',
-                'max:30',
-                'same:password',
+                'confirmed',
             ],
         ];
     }

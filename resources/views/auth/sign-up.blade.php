@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.master')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RT Blogs | Sign up</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/svn-gilroy" rel="stylesheet">
-    @vite(['resources/scss/app.scss'])
-</head>
+@section('title', 'RT Blogs | Sign up')
 
-<body>
+@section('content')
     @if (session('success'))
     <div class='notification'>
         <span> {{ session('success') }}</span>
     </div>
-   @endif
+    @endif
 
     <div class="logo">
         <div>
@@ -31,7 +22,7 @@
             {{ csrf_field() }}
 
             <h4>Sign up</h4>
-            
+
             <label for="username">Username <span>*</span></label>
             <input type="text" name="username" value="{{ old('username') }}">
 
@@ -54,7 +45,7 @@
             @endif
 
             <label for="password">Password confirm <span>*</span></label>
-            <input type="password" name="passwordConfirm">
+            <input type="password" name="password_confirmation">
 
             @if($errors->has('passwordConfirm'))
             <p>{{ $errors->first('passwordConfirm') }}</p>
@@ -69,5 +60,4 @@
 
         </form>
     </div>
-</body>
-</html>
+@endsection
