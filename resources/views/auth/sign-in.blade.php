@@ -3,14 +3,9 @@
 @section('title', 'Sign in')
 
 @section('content')
-<div class="logo">
-    <div>
-        <a href="./index.html">
-            <img src="{{Vite::asset('resources/images/logo.png')}}" alt="Logo">
-            <span>RT-Blogs</span>
-        </a>
-    </div>
-</div>
+
+@include('layouts.logo')
+
 <div class="sign-up">
     <form action="{{route('auth.sign-in')}}" method="post">
         {{ csrf_field() }}

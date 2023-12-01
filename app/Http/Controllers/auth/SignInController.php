@@ -9,12 +9,6 @@ class SignInController extends Controller
 {
     public function signInForm()
     {
-        return view('auth.sign-in');;
-    }
-
-    public function signIn(SignInRequest $request)
-    {
-        $request->validated();
-        return ;
+        return view('auth.sign-in');
     }
 }

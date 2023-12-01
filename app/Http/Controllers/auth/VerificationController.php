@@ -23,11 +23,10 @@ class VerificationController extends Controller
                 'success' => 'Email verification successful'
             ];
             return view('auth.verify-token', compact('data'));
-        } else {
-            $data = [
-                'error' => 'Email verification error'
-            ];
-            return view('auth.verify-token', compact('data'));
         }
+        $data = [
+            'error' => 'Email verification error'
+        ];
+        return view('auth.verify-token', compact('data'));
     }
 }
