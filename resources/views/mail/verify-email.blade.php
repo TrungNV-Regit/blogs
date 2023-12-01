@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Verify Email</title>
-</head>
+@extends('layouts.master')
 
-<body>
+@section('title', 'Verify Email')
+@section('content')
+<div>
 	<a href="{{route('auth.verify-email').'?token='.$content }}">Verify</a>
 	<p>Hello,</p>
 	<p>This is a verify mail</p>
 	<strong>Thanks.</strong>
-</body>
-</html>
+</div>
+@endsection

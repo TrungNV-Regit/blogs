@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Mail;
 
 class UserService
 {
-
     public function createUser(array $data): User
     {
         $token = base64_encode($data['email']);

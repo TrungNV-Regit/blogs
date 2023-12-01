@@ -14,8 +14,7 @@ class SignInController extends Controller
 
     public function signIn(SignInRequest $request)
     {
-        echo $request;
-        // $request->validated();
-        // return ;
+        $request->validated();
+        return ;
     }
 }
