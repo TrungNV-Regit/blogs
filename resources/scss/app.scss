@@ -421,7 +421,8 @@ body {
   }
 
   .sign-up,
-  .sign-in {
+  .sign-in,
+  .verify {
     height: 100vh;
     @include breakpoint(768px, 1600px) {
       @include center-flex;

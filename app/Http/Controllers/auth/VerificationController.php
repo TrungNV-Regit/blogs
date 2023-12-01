@@ -17,16 +17,10 @@ class VerificationController extends Controller
 
     public function verifyEmail(Request $request)
     {
-        $token = $request->input('token');
-        if ($this->mailService->verifyEmail($token)) {
-            $data = [
-                'success' => 'Email verification successful'
-            ];
-            return view('auth.verify-token', compact('data'));
-        }
-        $data = [
-            'error' => 'Email verification error'
-        ];
-        return view('auth.verify-token', compact('data'));
+        return $this->mailService->verifyEmail( $request->input('token'));
+    }
+
+    public function resendToken(Request $request){
+        return $this->mailService->resendToken( $request->input('token'));
     }
 }

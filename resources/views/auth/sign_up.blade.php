@@ -20,28 +20,28 @@
 
                 <h4>Sign up</h4>
 
-                <label for="username">Username <span>*</span></label>
+                <label for="username">{{ trans('message.username') }} <span>*</span></label>
                 <input type="text" name="username" id='username' value="{{ old('username') }}">
 
                 @if($errors->has('username'))
                 <p>{{ $errors->first('username') }}</p>
                 @endif
 
-                <label for="username">Email <span>*</span></label>
-                <input type="email" name="email" id=email value="{{ old('email') }}">
+                <label for="username">{{ trans('message.email') }}<span>*</span></label>
+                <input type="email" name="email" id="email" value="{{ old('email') }}">
 
                 @if($errors->has('email'))
                 <p>{{ $errors->first('email') }}</p>
                 @endif
 
-                <label for="username">Password <span>*</span></label>
+                <label for="username">{{ trans('message.password') }}<span>*</span></label>
                 <input type="password" id='password' name="password">
 
                 @if($errors->has('password'))
                 <p>{{ $errors->first('password') }}</p>
                 @endif
-
-                <label for="password">Password confirm <span>*</span></label>
+                
+                <label for="password">{{ trans('message.password_confirmation') }}<span>*</span></label>
                 <input type="password" name="password_confirmation" id='password_confirmation'>
 
                 @if($errors->has('password'))
@@ -49,10 +49,10 @@
                 @endif
 
                 <div>
-                    <button type="submit">Sign up</button>
+                    <button type="submit">{{trans('message.sign_up')}}</button>
                 </div>
                 <div>
-                    <a href="{{ route('auth.sign-in') }}">Already have an account? Login</a>
+                    <a href="{{ route('auth.sign-in') }}">{{trans('message.exist_account')}}</a>
                 </div>
 
             </form>
