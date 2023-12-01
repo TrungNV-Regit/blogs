@@ -1,7 +1,11 @@
 @extends('layouts.master')
 
 @section('title', 'Verify Email')
+
 @section('content')
+
+@include('layouts.logo')
+
 <div>
 	<a href="{{route('auth.verify-email').'?token='.$content }}">Verify</a>
 	<p>Hello,</p>
