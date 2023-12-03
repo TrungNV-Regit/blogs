@@ -5,6 +5,8 @@ namespace App\Http\Controllers\auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SignUpRequest;
 use App\Services\User\UserService;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class SignUpController extends Controller
 {
@@ -15,14 +17,13 @@ class SignUpController extends Controller
         $this->userService = $userService;
     }
 
-    public function signUpForm()
+    public function signUpForm(): View
     {
         return view('auth.sign_up');
     }
 
-    public function signUp(SignUpRequest $request)
+    public function signUp(SignUpRequest $request): RedirectResponse
     {
-        $this->userService->createUser($request->validated());
-        return redirect()->back()->with('success', trans('message.sign_up_success'));
+        return $this->userService->createUser($request->only(['username', 'email', 'password']));
     }
 }

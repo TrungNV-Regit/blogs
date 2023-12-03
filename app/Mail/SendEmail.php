@@ -8,18 +8,20 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Headers;
+use Illuminate\Mail\Mailables\Address;
 
 class SendEmail extends Mailable
 {
     use Queueable, SerializesModels;
+
     public $subject;
     protected $viewName;
     protected $content;
-    
+
     /**
      * Create a new message instance.
      */
-    public function __construct(string $subject,string $viewName, string $content)
+    public function __construct(string $subject, string $viewName, string $content)
     {
         $this->subject = $subject;
         $this->viewName = $viewName;
@@ -33,16 +35,16 @@ class SendEmail extends Mailable
     {
         return new Envelope(
             subject: $this->subject,
+            from: new Address('trungnv0801@gmail.com', 'Trung'),
         );
     }
 
-     /**
-      * Get the message headers.
-      */
+    /**
+     * Get the message headers.
+     */
     public function headers(): Headers
     {
-        return new Headers(
-        );
+        return new Headers();
     }
 
     /**
