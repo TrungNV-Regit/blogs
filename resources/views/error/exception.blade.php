@@ -4,7 +4,7 @@
 </div>
 @endif
 
-@if($error)
+@if(isset($error))
 <div>
     <h3>{{ $error }}</h3>
 </div>
