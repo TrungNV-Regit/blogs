@@ -12,6 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
+
     const ROLE_ADMIN = 1;
     const ROLE_USER = 2;
     const STATUS_ACTIVE = 1;
@@ -33,7 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'role',
         'email_verified_at',
         'token_verify_email',
-        'status',
+        'status',   
         'token_created_at',
     ];
 
