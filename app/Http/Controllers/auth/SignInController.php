@@ -28,6 +28,6 @@ class SignInController extends Controller
 
     public function logout(): RedirectResponse
     {
-      return  $this->authenticationService->logout();
+        return  $this->authenticationService->logout();
     }
 }

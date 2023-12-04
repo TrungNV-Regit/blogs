@@ -24,14 +24,8 @@ class SignInRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username_or_email' => [
+            'usernameOrEmail' => [
                 'required',
-                function ($attribute, $value, $fail) {
-                    $user = User::where('email', $value)->orWhere('username', $value)->first();
-                    if (!$user) {
-                        $fail(trans('message.username_or_email_not_found'));
-                    }
-                }
             ],
             'password' => [
                 'required',

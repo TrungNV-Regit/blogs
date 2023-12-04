@@ -2,7 +2,6 @@
 
 namespace App\Services\Mail;
 
-use App\Http\Requests\ForgotPasswordRequest;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
@@ -66,15 +65,19 @@ class MailService
     public function forgotPassword(array $data): RedirectResponse
     {
         try {
-            $to = $data['email'];
-            $newPassword = Str::password(16, true, true, false, false);
-            User::where('email', $to)->update(
-                [
-                    'password' => Hash::make($newPassword),
-                ]
-            );
-            Mail::to($to)->send(new SendEmail('RT Blog New Password', 'mail.email_forgot_password', $newPassword));
-            return back()->with("notification", trans("message.forgot_password_success"));
+            $user = User::where('email', $data['email'])->first();
+            if ($user) {
+                $to = $user->email;
+                $newPassword = Str::password(16, true, true, false, false);
+                User::where('email', $to)->update(
+                    [
+                        'password' => Hash::make($newPassword),
+                    ]
+                );
+                Mail::to($to)->send(new SendEmail(__('message.new_password'), 'mail.email_forgot_password', $newPassword));
+                return back()->with("notification", trans("message.forgot_password_success"));
+            }
+            return back()->with("error", trans('message.email_not_found'));
         } catch (Exception $ex) {
             return redirect()->route('exception')->with('error', $ex->getMessage());
         }

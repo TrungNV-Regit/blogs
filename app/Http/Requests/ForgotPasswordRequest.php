@@ -26,11 +26,6 @@ class ForgotPasswordRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
-                Rule::exists('users')->where(
-                    function ($query) {
-                        $query->where('email', $this->input('email'));
-                    }
-                ),
             ],
         ];
     }

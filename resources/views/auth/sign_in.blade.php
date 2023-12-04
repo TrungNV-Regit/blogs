@@ -21,11 +21,11 @@
 
                 <h4>{{trans('message.sign_in')}}</h4>
 
-                <label for="email">{{trans('message.username_or_email')}}<span>*</span></label>
-                <input type="text" name="username_or_email" value="{{old('username_or_email')}}">
+                <label for="email">{{trans('message.username_or_email')}} <span>*</span></label>
+                <input type="text" name="usernameOrEmail" value="{{old('usernameOrEmail')}}">
 
-                @if($errors->has('username_or_email'))
-                <p>{{ $errors->first('username_or_email') }}</p>
+                @if($errors->has('usernameOrEmail'))
+                <p>{{ $errors->first('usernameOrEmail') }}</p>
                 @endif
 
                 <label for="username">{{trans('message.password')}} <span>*</span></label>
@@ -33,6 +33,10 @@
 
                 @if($errors->has('password'))
                 <p>{{ $errors->first('password') }}</p>
+                @endif
+
+                @if(session('error'))
+                <p>{{ session('error') }}</p>
                 @endif
 
                 <div class='option'>
