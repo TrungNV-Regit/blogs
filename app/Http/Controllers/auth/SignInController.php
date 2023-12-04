@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SignInRequest;
 use Illuminate\View\View;
 use App\Services\Auth\AuthenticationService;
-
+use Illuminate\Http\RedirectResponse;
 
 class SignInController extends Controller
 {
@@ -21,8 +21,13 @@ class SignInController extends Controller
         return view('auth.sign_in');
     }
 
-    public function signIn(SignInRequest $request)
+    public function signIn(SignInRequest $request): RedirectResponse
     {
         return $this->authenticationService->signIn($request);
+    }
+
+    public function logout(): RedirectResponse
+    {
+      return  $this->authenticationService->logout();
     }
 }

@@ -18,8 +18,10 @@ class AuthenticationService
     {
         try {
             $data = $request->only(['username_or_email', 'password']);
-            $user = User::where('email', $data['username_or_email'])->orWhere('username', $data['username_or_email'])->first();
+            $username_or_email = $data['username_or_email'];
+            $user = User::where('email', $username_or_email)->orWhere('username', $username_or_email)->first();
             $password = $data['password'];
+
             if (Hash::check($password, $user->password)) {
 
                 if ($user->email_verified_at === null) {
@@ -33,14 +35,15 @@ class AuthenticationService
                 if ($request->has('remember')) {
                     Auth::login($user, true);
                 }
-                $request->session()->regenerate();
-                $request->session()->put('user', $user);
+
+                session()->regenerate();
+                Auth::login($user);
 
                 if ($user->role == User::ROLE_ADMIN) {
                     return redirect('/admin/home');
                 }
 
-                return redirect('/user/home');
+                return redirect('/home');
             }
             return back()->withErrors(
                 [
@@ -50,5 +53,11 @@ class AuthenticationService
         } catch (Exception $ex) {
             return redirect()->route('exception')->with('error', $ex->getMessage());
         }
+    }
+
+    public function logout(): RedirectResponse
+    {
+        Auth::logout();
+        return redirect()->route('auth.sign-in');
     }
 }

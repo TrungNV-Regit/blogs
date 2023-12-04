@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\View\View;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function home(): View
+    public function home()
     {
         return view('user.home');
     }
-
 }
