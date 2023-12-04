@@ -1,6 +1,6 @@
 <div class="logo">
     <div>
-        <a href="{{route('user.home')}}">
+        <a href="{{route('home')}}">
             <img src="{{Vite::asset('resources/images/logo.png')}}" alt="Logo">
             <span>RT-Blogs</span>
         </a>
