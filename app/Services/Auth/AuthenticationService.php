@@ -57,7 +57,11 @@ class AuthenticationService
 
     public function logout(): RedirectResponse
     {
-        Auth::logout();
-        return redirect()->route('auth.sign-in');
+        try {
+            Auth::logout();
+            return redirect()->route('auth.sign-in');
+        } catch (Exception $ex) {
+            return redirect()->route('exception')->with('error', $ex->getMessage());
+        }
     }
 }
