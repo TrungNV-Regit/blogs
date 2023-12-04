@@ -18,7 +18,8 @@ class UserMiddleware
     {
         if (!auth()->check()) {
             return redirect()->route('auth.sign-in');
-        } else if (auth()->user()->role == User::ROLE_USER) {
+        }
+        if (auth()->user()->role == User::ROLE_USER) {
             return $next($request);
         }
         return abort(403, 'Unauthorized');

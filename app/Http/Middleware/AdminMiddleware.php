@@ -18,7 +18,8 @@ class AdminMiddleware
     {
         if (!auth()->check()) {
             return redirect()->route('auth.sign-in');
-        } else if (auth()->user()->role == User::ROLE_ADMIN) {
+        }
+        if (auth()->user()->role == User::ROLE_ADMIN) {
             return $next($request);
         }
         return abort(403, 'Unauthorized');
