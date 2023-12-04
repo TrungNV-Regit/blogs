@@ -17,39 +17,37 @@ class AuthenticationService
     public function signIn(SignInRequest $request): RedirectResponse
     {
         try {
-            $data = $request->only(['username_or_email', 'password']);
-            $username_or_email = $data['username_or_email'];
-            $user = User::where('email', $username_or_email)->orWhere('username', $username_or_email)->first();
+            $data = $request->only(['usernameOrEmail', 'password']);
+            $usernameOrEmail = $data['usernameOrEmail'];
+            $user = User::where('email', $usernameOrEmail)->orWhere('username', $usernameOrEmail)->first();
             $password = $data['password'];
 
-            if (Hash::check($password, $user->password)) {
+            if ($user) {
+                if (Hash::check($password, $user->password)) {
 
-                if ($user->email_verified_at === null) {
-                    return back()->with('notification', trans('message.notVerified'));
+                    if ($user->email_verified_at === null) {
+                        return back()->with('notification', trans('message.notVerified'));
+                    }
+
+                    if ($user->status == User::STATUS_BLOCKED) {
+                        return back()->with('notification', trans('message.account_blocked'));
+                    }
+
+                    if ($request->has('remember')) {
+                        Auth::login($user, true);
+                    }
+
+                    Auth::login($user);
+
+                    if ($user->role == User::ROLE_ADMIN) {
+                        return redirect()->route('admin.home');
+                    }
+
+                    return redirect()->route('home');
                 }
-
-                if ($user->status == User::STATUS_BLOCKED) {
-                    return back()->with('notification', trans('message.account_blocked'));
-                }
-
-                if ($request->has('remember')) {
-                    Auth::login($user, true);
-                }
-
-                session()->regenerate();
-                Auth::login($user);
-
-                if ($user->role == User::ROLE_ADMIN) {
-                    return redirect('/admin/home');
-                }
-
-                return redirect('/home');
             }
-            return back()->withErrors(
-                [
-                    'password' => 'Incorrect password.',
-                ]
-            )->onlyInput('username_or_email');
+
+            return back()->with('error', trans('message.account_not_found'))->onlyInput('usernameOrEmail');
         } catch (Exception $ex) {
             return redirect()->route('exception')->with('error', $ex->getMessage());
         }

@@ -22,6 +22,10 @@
                 <p>{{ $errors->first('email') }}</p>
                 @endif
 
+                @if (session('error'))
+                <p>{{ session('error') }}</p>
+                @endif
+
                 @if (session('notification'))
                 <p>{{ session('notification') }}</p>
                 @endif

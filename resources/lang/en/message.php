@@ -22,7 +22,10 @@ return [
     'title_forgot_password' => 'Forgot password',
     'submit' => 'Submit',
     'forgot_password_success' => 'Please check your email.',
-    'username_or_email_not_found' => 'The username or email not found',
     'notVerified' => 'Email has not been verified.',
-    'account_blocked' => 'Your account has been locked.'
+    'account_blocked' => 'Your account has been locked.',
+    'auth' => 'Unauthorized',
+    'account_not_found' => 'Account not found.',
+    'new_password' => 'RT Blog New Password.',
+    'email_not_found' => 'Email address not found.',
 ];

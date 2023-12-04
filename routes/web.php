@@ -6,6 +6,7 @@ use App\Http\Controllers\auth\VerificationController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
 use App\Http\Controllers\User\BlogController as UserBlogController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,19 +32,19 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
    Route::post('/forgot-password', [VerificationController::class, 'forgotPassword'])->name('forgot-password');
 });
 
-Route::middleware(['admin'])->group(function () {
-   Route::group(['prefix'=>'admin','as'=>'admin.'],function () {
-      Route::get('/home', [AdminHomeController::class, 'myBlogs'])->name('home');
+Route::middleware(['role:' . User::ROLE_ADMIN])->group(function () {
+   Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+      Route::get('/home', [AdminHomeController::class, 'home'])->name('home');
    });
 });
 
-Route::middleware(['user'])->group(function () {
-   Route::group(['prefix'=>'user','as'=>'user.'],function () {
+Route::middleware(['role:' . User::ROLE_USER])->group(function () {
+   Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
       Route::get('/my-blogs', [UserBlogController::class, 'myBlogs'])->name('my-blogs');
    });
 });
 
-Route::get('/home', [UserHomeController::class,'home'])->name('home');
+Route::get('/home', [UserHomeController::class, 'home'])->name('home');
 
 Route::get('exception', function () {
    return view('error.exception');
