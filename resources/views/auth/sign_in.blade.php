@@ -7,6 +7,12 @@
 <div class="sign-up">
     <div>
 
+        @if (session('notification'))
+        <div class='notification'>
+            <span> {{ session('notification') }}</span>
+        </div>
+        @endif
+
         @include('layouts.logo')
 
         <div class="content">
@@ -15,11 +21,11 @@
 
                 <h4>{{trans('message.sign_in')}}</h4>
 
-                <label for="eamil">{{trans('message.username_or_email')}}<span>*</span></label>
-                <input type="text" name="email">
+                <label for="email">{{trans('message.username_or_email')}}<span>*</span></label>
+                <input type="text" name="username_or_email" value="{{old('username_or_email')}}">
 
-                @if($errors->has('email'))
-                <p>{{ $errors->first('email') }}</p>
+                @if($errors->has('username_or_email'))
+                <p>{{ $errors->first('username_or_email') }}</p>
                 @endif
 
                 <label for="username">{{trans('message.password')}} <span>*</span></label>
@@ -35,7 +41,7 @@
                         <span>{{trans('message.remember_password')}}</span>
                     </div>
                     <div>
-                        <a>{{trans('message.forgot_password')}}</a>
+                        <a href="{{route('auth.forgot-password')}}">{{trans('message.forgot_password')}}</a>
                     </div>
                 </div>
                 <div>

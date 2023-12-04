@@ -19,4 +19,10 @@ return [
     'login' => 'Login',
     'token_out_time' => 'Verify failed because token out time',
     'resend_token_success' => 'Resend token successfully. Please check your email',
+    'title_forgot_password' => 'Forgot password',
+    'submit' => 'Submit',
+    'forgot_password_success' => 'Please check your email.',
+    'username_or_email_not_found' => 'The username or email not found',
+    'notVerified' => 'Email has not been verified.',
+    'account_blocked' => 'Your account has been locked.'
 ];
