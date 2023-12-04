@@ -2,12 +2,17 @@
 
 namespace App\Services\Mail;
 
+use App\Http\Requests\ForgotPasswordRequest;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmail;
 use Exception;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
+
 
 class MailService
 {
@@ -55,6 +60,23 @@ class MailService
             return view('auth.verify_token', compact('data'));
         } catch (Exception $ex) {
             return view('error.exception')->with('error', $ex->getMessage());
+        }
+    }
+
+    public function forgotPassword(array $data): RedirectResponse
+    {
+        try {
+            $to = $data['email'];
+            $newPassword = Str::password(16, true, true, false, false);
+            User::where('email', $to)->update(
+                [
+                    'password' => Hash::make($newPassword),
+                ]
+            );
+            Mail::to($to)->send(new SendEmail('RT Blog New Password', 'mail.email_forgot_password', $newPassword));
+            return back()->with("notification", trans("message.forgot_password_success"));
+        } catch (Exception $ex) {
+            return redirect()->route('exception')->with('error', $ex->getMessage());
         }
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SignInRequest extends FormRequest
@@ -22,9 +24,16 @@ class SignInRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => [
+            'username_or_email' => [
                 'required',
-                'email',
+                function ($attribute, $value, $fail) {
+                    $user = User::where('email', $value)
+                        ->orWhere('username', $value)
+                        ->first();
+                    if (!$user) {
+                        $fail(trans('message.username_or_email_not_found'));
+                    }
+                }
             ],
             'password' => [
                 'required',

@@ -27,7 +27,7 @@
                 <p>{{ $errors->first('username') }}</p>
                 @endif
 
-                <label for="username">{{ trans('message.email') }}<span>*</span></label>
+                <label for="email">{{ trans('message.email') }}<span>*</span></label>
                 <input type="email" name="email" id="email" value="{{ old('email') }}">
 
                 @if($errors->has('email'))

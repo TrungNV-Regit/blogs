@@ -3,6 +3,8 @@
 use App\Http\Controllers\auth\SignInController;
 use App\Http\Controllers\auth\SignUpController;
 use App\Http\Controllers\auth\VerificationController;
+use App\Http\Controllers\User\HomeController as UserHomeController;
+use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,8 +25,18 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
    Route::post('/sign-in', [SignInController::class, 'signIn'])->name('sign-in');
    Route::get('/verify-email', [VerificationController::class, 'verifyEmail'])->name('verify-email');
    Route::get('/resend-token', [VerificationController::class, 'resendToken'])->name('resend-token');
+   Route::get('/forgot-password', [VerificationController::class, 'forgotPasswordForm'])->name('forgot-password');
+   Route::post('/forgot-password', [VerificationController::class, 'forgotPassword'])->name('forgot-password');
 });
 
 Route::get('exception', function () {
    return view('error.exception');
 })->name('exception');
+
+Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+   Route::get('/home', [UserHomeController::class, 'home'])->name('home');
+});
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+   Route::get('/home', [AdminHomeController::class, 'home'])->name('home');
+});
