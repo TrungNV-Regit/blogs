@@ -9,7 +9,7 @@
         </div>
         <div class="logo-mobile">
             <img src="{{Vite::asset('resources/images/logo-mobile.png')}}" alt="Logo Mobile">
-            <span>RT-Blogs</span>
+            <span>{{__('message.made')}}</span>
         </div>
         <div class="logo-search-mobile">
             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
@@ -17,23 +17,25 @@
             </svg>
         </div>
     </div>
-    <div class="nav" id="headerScroll">
+    <div class="nav-home @yield('class')" id="headerScroll">
         <div class="nav-logo col-md-7">
-            <img src="{{Vite::asset('resources/images/logo.png')}}" alt="Logo" />
-            <span>RT-Blogs</span>
-            <input type="text" placeholder="Search blog">
-            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.13101 0C14.1659 0 18.2613 4.00508 18.2613 8.9289C18.2613 11.2519 17.3497 13.3707 15.8579 14.9608L18.7933 17.8254C19.068 18.0941 19.0689 18.5287 18.7942 18.7974C18.6573 18.9331 18.4764 19 18.2964 19C18.1173 19 17.9373 18.9331 17.7994 18.7992L14.8286 15.902C13.2659 17.126 11.2844 17.8587 9.13101 17.8587C4.09613 17.8587 -0.000213623 13.8527 -0.000213623 8.9289C-0.000213623 4.00508 4.09613 0 9.13101 0ZM9.13101 1.37537C4.87152 1.37537 1.40618 4.76336 1.40618 8.9289C1.40618 13.0944 4.87152 16.4833 9.13101 16.4833C13.3896 16.4833 16.8549 13.0944 16.8549 8.9289C16.8549 4.76336 13.3896 1.37537 9.13101 1.37537Z" fill="#A7A7A7" />
-            </svg>
+            <a href="{{route('/')}}">
+                <img src="{{Vite::asset('resources/images/logo.png')}}" alt="Logo" />
+                <span>{{__('message.made')}}</span>
+                <input type="text" placeholder="{{__('message.search')}}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.13101 0C14.1659 0 18.2613 4.00508 18.2613 8.9289C18.2613 11.2519 17.3497 13.3707 15.8579 14.9608L18.7933 17.8254C19.068 18.0941 19.0689 18.5287 18.7942 18.7974C18.6573 18.9331 18.4764 19 18.2964 19C18.1173 19 17.9373 18.9331 17.7994 18.7992L14.8286 15.902C13.2659 17.126 11.2844 17.8587 9.13101 17.8587C4.09613 17.8587 -0.000213623 13.8527 -0.000213623 8.9289C-0.000213623 4.00508 4.09613 0 9.13101 0ZM9.13101 1.37537C4.87152 1.37537 1.40618 4.76336 1.40618 8.9289C1.40618 13.0944 4.87152 16.4833 9.13101 16.4833C13.3896 16.4833 16.8549 13.0944 16.8549 8.9289C16.8549 4.76336 13.3896 1.37537 9.13101 1.37537Z" fill="#A7A7A7" />
+                </svg>
+            </a>
         </div>
 
-        <a href="{{route('/top-blog')}}" class="top-blog">
+        <a href="{{route('/')}}" class="top-blog @yield('backgroundTopBlog')">
             <span>Top</span>
         </a>
 
         @if (Auth::check())
-        <a href="{{route('user.create-blog')}}" class="create-blog">
-            <span> Create Blog</span>
+        <a href="{{route('user.create-blog')}}" class="create-blog @yield('backgroundCreateBlog')">
+            <span>{{__('message.create')}}</span>
         </a>
         <div class="profile">
             <span>{{ Auth::user()->username }}</span>
@@ -44,7 +46,7 @@
                     <path d="M15.3333 28.6667C22.6971 28.6667 28.6667 22.6971 28.6667 15.3333C28.6667 7.96954 22.6971 2 15.3333 2C7.96954 2 2 7.96954 2 15.3333C2 22.6971 7.96954 28.6667 15.3333 28.6667Z" stroke="#212121" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{route('user.my-blogs')}}">My Blog</a></li>
+                    <li><a class="dropdown-item" href="{{route('user.my-blogs')}}">{{__('message.my_blog')}}</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
@@ -52,7 +54,7 @@
                         <form action="{{ route('auth.logout') }}" method="POST">
                             @csrf
                             @method('POST')
-                            <button type="submit">Logout</button>
+                            <button type="submit">{{__('message.logout')}}</button>
                         </form>
                     </li>
                 </ul>
@@ -69,5 +71,7 @@
         </div>
         @endif
     </div>
-    <img src="{{Vite::asset('resources/images/banner.png')}}" class="image-banner" alt="Image banner">
+
+    @yield('banner')
+
 </div>

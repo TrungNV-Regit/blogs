@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\CategoryService;
 use App\Services\User\UserService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Model;
@@ -22,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Model::preventLazyLoading(! app()->isProduction());
+        Model::preventLazyLoading(!app()->isProduction());
 
         $this->app->bind(
             UserService::class,
@@ -35,6 +36,13 @@ class AppServiceProvider extends ServiceProvider
             MailService::class,
             function ($app) {
                 return new MailService();
+            }
+        );
+
+        $this->app->bind(
+            CategoryService::class,
+            function ($app) {
+                return new CategoryService();
             }
         );
     }

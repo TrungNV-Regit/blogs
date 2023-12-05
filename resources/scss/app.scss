@@ -79,7 +79,7 @@ body {
         height: 520px;
       }
     }
-    .nav {
+    .nav-home {
       @include breakpoint(0px, $size-big) {
         display: none;
       }
@@ -132,9 +132,7 @@ body {
           @include font-style($font-family-1, 15px, 500);
           @include size(51px, 31px);
           @include position(47px, 68%);
-          background-color: $color-9;
-          color: $color-3;
-          border-radius: 4px;
+          color: $color-4;
           position: $position-absolute;
           border: none;
         }
@@ -142,14 +140,21 @@ body {
         .create-blog {
           @include font-style($font-family-1, 15px, 500);
           @include center-flex-absolute;
-          @include position(50px, 73%);
+          @include position(48px, 73%);
+          @include size(104px, 31px);
           color: $color-4;
           border: none;
-          background-color: transparent;
+        }
+
+        .background {
+          background-color: $color-9;
+          color: $color-3;
+          border-radius: 4px;
+          border: none;
         }
 
         .profile {
-          @include position(46px, 87%);
+          @include position(46px, 88.5%);
           @include center-flex-absolute;
           span {
             @include font-style($font-family-1, 15px, 500);
@@ -164,13 +169,14 @@ body {
 
           .dropdown-menu {
             li {
-              a{
+              a {
                 color: $color-19;
               }
               .dropdown-item {
                 background-color: transparent !important;
               }
               form {
+                margin: 0;
                 button {
                   background: none;
                   border: none;
@@ -193,6 +199,10 @@ body {
           }
         }
       }
+    }
+
+    .header-create-blog {
+      position: static;
     }
   }
   .header-mobile {
@@ -251,9 +261,9 @@ body {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("../image/arrow.png");
+    background-image: url("../images/arrow.png");
     background-repeat: no-repeat;
-    background-position: 113px center;
+    background-position: calc(100% - 10px) center;
   }
 
   .container {
@@ -589,6 +599,134 @@ body {
                 cursor: pointer;
               }
             }
+          }
+        }
+      }
+    }
+  }
+
+  .page-create-blog {
+    margin: 39px 0 40px;
+    @include breakpoint(0px, 768px) {
+      margin-left: 2%;
+      margin-right: 2%;
+    }
+    @include breakpoint(769px, 1600px) {
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+    .breadcrumb {
+      a {
+        color: $color-22;
+        @include font-style($font-family-1, 16px, 400);
+        span {
+          color: $color-4;
+          @include font-style($font-family-1, 16px, 700);
+        }
+      }
+    }
+    .content {
+      background-color: $color-20;
+      div {
+        form {
+          @include breakpoint(0px, 768px) {
+            margin: 26px 11px 0;
+          }
+          @include breakpoint(769px, 1600px) {
+            margin: 31px 30px 0;
+          }
+
+          h3 {
+            @include font-style($font-family-1, 20px, 700);
+            margin-bottom: 0px;
+            padding-top: 31px;
+          }
+          p {
+            margin-top: 16px;
+            margin-bottom: 10px;
+            @include font-style($font-family-1, 15px, 400);
+            span {
+              color: $color-14;
+            }
+          }
+
+          .category {
+            color: $color-8;
+            @include font-style($font-family-1, 15px, 400);
+            @include breakpoint(769px, 1600px) {
+              padding: 10px 200px 15px 14px;
+              margin-bottom: 18px;
+            }
+
+            @include breakpoint(0px, 768px) {
+              padding: 10px 100px 15px 2px;
+              margin-bottom: 18px;
+            }
+          }
+
+          input {
+            width: 100%;
+            outline: none;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            border: 2px solid $color-10;
+            border-radius: 2px;
+            height: 40px;
+            padding: 13px 50px 13px 20px;
+            &::placeholder {
+              color: $color-8;
+              @include font-style($font-family-1, 15px, 400);
+            }
+          }
+
+          label,
+          button {
+            border: 1px solid $color-17;
+            background: $color-3;
+            margin: 20px 0px 10px 0px;
+            color: $color-21;
+            border-radius: 4px;
+            display: block;
+            @include center-flex;
+            @include font-style($font-family-1, 15px, 400);
+            @include breakpoint(0, 768px) {
+              @include size(130px, 40px);
+            }
+            @include breakpoint(769px, 1600px) {
+              @include size(133px, 40px);
+            }
+          }
+
+          .upload-image {
+            display: none;
+          }
+
+          img {
+            height: 170px;
+            margin-bottom: 11px;
+            display: none;
+            @include breakpoint(0px, 768px) {
+              width: 207px;
+            }
+            @include breakpoint(769px, 1600px) {
+              width: 269px;
+            }
+          }
+
+          textarea {
+            @include size($full, 459px);
+            outline: none;
+            border-radius: 4px;
+            border: 1px solid $color-10;
+            background: $color-3;
+          }
+
+          button {
+            color: $color-17;
+          }
+
+          .error {
+            color: $color-1;
           }
         }
       }
