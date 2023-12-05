@@ -6,7 +6,6 @@ use App\Models\Blog;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Mockery\Undefined;
 
 class BlogService
 {
@@ -28,7 +27,7 @@ class BlogService
             if (array_key_exists('image', $blog)) {
                 $file = $blog['image'];
                 $filename = date('YmdHi') . $file->getClientOriginalName();
-                $file->move(resource_path('images'), $filename);
+                $file->move(public_path('images'), $filename);
                 $data['link_image'] = $filename;
             }
 
