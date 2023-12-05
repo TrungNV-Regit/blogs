@@ -19,6 +19,7 @@ class BlogController extends Controller
         $this->categoryService = $categoryService;
         $this->blogService = $blogService;
     }
+    
     public function myBlogs(): View
     {
         return view('user.my_blogs');
