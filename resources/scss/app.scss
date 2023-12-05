@@ -65,6 +65,9 @@
 body {
   width: $full;
   overflow-x: hidden;
+  a {
+    text-decoration: none;
+  }
   .header {
     position: relative;
     .image-banner {
@@ -110,6 +113,7 @@ body {
             background: $color-3;
             margin-left: 3%;
             padding: 13px 50px 13px 20px;
+            outline: none;
             &::placeholder {
               color: $color-8;
               @include font-style($font-family-1, 15px, 500);
@@ -124,6 +128,7 @@ body {
         }
 
         .top-blog {
+          @include center-flex;
           @include font-style($font-family-1, 15px, 500);
           @include size(51px, 31px);
           @include position(47px, 68%);
@@ -151,6 +156,40 @@ body {
             color: $color-4;
             padding-right: 17px;
             white-space: nowrap;
+          }
+
+          .dropdown {
+            cursor: pointer;
+          }
+
+          .dropdown-menu {
+            li {
+              a{
+                color: $color-19;
+              }
+              .dropdown-item {
+                background-color: transparent !important;
+              }
+              form {
+                button {
+                  background: none;
+                  border: none;
+                }
+              }
+            }
+          }
+        }
+
+        .no-login {
+          @include center-flex-absolute;
+          @include position(46px, 84%);
+          a {
+            span {
+              @include font-style($font-family-1, 15px, 500);
+              color: $color-4;
+              padding-right: 17px;
+              white-space: nowrap;
+            }
           }
         }
       }

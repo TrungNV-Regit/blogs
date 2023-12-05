@@ -40,10 +40,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::middleware(['auth', 'user'])->group(function () {
    Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
       Route::get('/my-blogs', [UserBlogController::class, 'myBlogs'])->name('my-blogs');
+      Route::get('/create-blog', [UserBlogController::class, 'createBlog'])->name('create-blog');
    });
 });
 
-Route::get('/home', [UserHomeController::class, 'home'])->name('home');
+Route::get('/', [UserHomeController::class, 'home'])->name('/');
+Route::get('/top-blog', function () {
+   return view('top_blog');
+})->name('/top-blog');   
 
 Route::get('exception', function () {
    return view('error.exception');
