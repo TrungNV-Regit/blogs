@@ -18,7 +18,7 @@
     {{ session('notification') }}
     @endsection
     @endif
-    
+
     <div class='breadcrumb'>
         <a href="{{route('/')}}">{{__('message.home')}} > <span>{{__('message.create')}}</span> </a>
     </div>
