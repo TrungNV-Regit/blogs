@@ -108,19 +108,19 @@ body {
     position: relative;
     .image-banner {
       width: 100%;
-      @include breakpoint(0px, $size-big) {
+      @include breakpoint(0px, 768px) {
         height: 380px;
       }
-      @include breakpoint($size-big, 1600px) {
+      @include breakpoint(769px, 1600px) {
         height: 520px;
       }
     }
 
     .nav-home {
-      @include breakpoint(0px, $size-big) {
+      @include breakpoint(0px, 768px) {
         display: none;
       }
-      @include breakpoint($size-big, 1600px) {
+      @include breakpoint(769px, 1600px) {
         @include size($full, 122px);
         background: rgba(255, 255, 255, 0.65);
         box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.25);
@@ -220,11 +220,11 @@ body {
   }
 
   .header-mobile {
-    @include breakpoint($size-big, 1600px) {
+    @include breakpoint(769px, 1600px) {
       display: none;
     }
 
-    @include breakpoint(0px, $size-big) {
+    @include breakpoint(0px, 768px) {
       @include size($full, 69px);
       @include flex-relative;
       background: $color-3;
@@ -282,11 +282,11 @@ body {
   }
 
   .container {
-    @include breakpoint(0, $size-big) {
+    @include breakpoint(0, 768px) {
       padding: 0 10%;
     }
 
-    @include breakpoint($size-big, 1600px) {
+    @include breakpoint(769px, 1600px) {
       max-width: 90%;
     }
 
@@ -322,7 +322,7 @@ body {
             @include center-flex;
             span {
               @include font-style($font-family-2, 18px, 400);
-              @include breakpoint(0px, $size-big) {
+              @include breakpoint(0px, 768px) {
                 @include font-style($font-family-2, 15px, 400);
               }
               color: $color-7;
@@ -383,7 +383,7 @@ body {
     @include center-flex;
     width: $full;
     margin-bottom: 106px;
-    @include breakpoint(0, $size-big) {
+    @include breakpoint(0, 768px) {
       margin-bottom: 53px;
     }
 
@@ -486,8 +486,12 @@ body {
   .sign-in,
   .verify {
     height: 100vh;
-    @include breakpoint(768px, 1600px) {
+    @include breakpoint(769px, 1600px) {
       @include center-flex;
+    }
+
+    @include breakpoint(0px, 768px) {
+      margin-top: 100px;
     }
 
     div {
@@ -515,6 +519,11 @@ body {
       }
 
       .content {
+        @include breakpoint(0px, 768px) {
+          margin-left: 52px;
+          margin-right: 52px;
+        }
+
         form {
           h4 {
             @include font-style($font-family-1, 20px, 700);
@@ -538,11 +547,11 @@ body {
             border: 2px solid $color-10;
             border-radius: 2px;
             outline: none;
-            @include breakpoint($size-big, 1600px) {
+            @include breakpoint(769px, 1600px) {
               @include size(570px, 40px);
             }
 
-            @include breakpoint(0px, $size-big) {
+            @include breakpoint(0px, 768px) {
               @include size(100%, 40px);
             }
           }
@@ -562,11 +571,11 @@ body {
               border: 2px solid $color-17;
               border-radius: 5px;
               display: block;
-              @include breakpoint($size-big, 1600px) {
+              @include breakpoint(769px, 1600px) {
                 @include size(280px, 40px);
               }
 
-              @include breakpoint(0px, $size-big) {
+              @include breakpoint(0px, 768px) {
                 @include size(198px, 40px);
               }
             }
@@ -586,22 +595,22 @@ body {
               text-align: center;
               input {
                 margin: 0 8px 0 0;
-                @include breakpoint(0px, $size-big) {
+                @include breakpoint(0px, 768px) {
                   @include size(13px, 13px);
                 }
 
-                @include breakpoint($size-big, 1600px) {
+                @include breakpoint(769px, 1600px) {
                   @include size(24px, 24px);
                 }
               }
 
               span,
               a {
-                @include breakpoint(0px, $size-big) {
+                @include breakpoint(0px, 768px) {
                   @include font-style($font-family-1, 11px, 400);
                 }
 
-                @include breakpoint($size-big, 1600px) {
+                @include breakpoint(769px, 1600px) {
                   @include font-style($font-family-1, 15px, 400);
                 }
               }
