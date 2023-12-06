@@ -14,9 +14,9 @@
 <div class="page-create-blog">
 
     @if (session('notification'))
-    @section('notification')
-    {{ session('notification') }}
-    @endsection
+        @section('notification')
+            {{ session('notification') }}
+        @endsection
     @endif
 
     <div class='breadcrumb'>
