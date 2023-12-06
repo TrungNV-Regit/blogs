@@ -4,7 +4,7 @@ use App\Models\User;
 
 <ul class="dropdown-menu">
     @if (Auth::user()->role == User::ROLE_USER)
-    <li><a class="dropdown-item" href="{{route('blog.my')}}">{{__('message.my_blog')}}</a></li>
+    <li><a class="dropdown-item" href="{{route('blog.my-blogs')}}">{{__('message.my_blog')}}</a></li>
     <li>
         <hr class="dropdown-divider">
     </li>
@@ -27,10 +27,10 @@ use App\Models\User;
     </li>
     @endif
     <li>
-        <a class="dropdown-item" onclick="document.getElementById('logout-form').submit();">
+        <a class="dropdown-item" onclick="document.getElementById('logoutForm').submit();">
             {{ __('message.logout') }}
         </a>
-        <form id="logout-form" action="{{ route('auth.logout') }}" method="POST">
+        <form id="logoutForm" action="{{ route('auth.logout') }}" method="POST">
             @csrf
             @method('POST')
         </form>

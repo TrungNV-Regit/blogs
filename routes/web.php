@@ -6,6 +6,7 @@ use App\Http\Controllers\auth\VerificationController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
 use App\Http\Controllers\User\BlogController as UserBlogController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,7 +43,10 @@ Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
    Route::middleware(['auth', 'user'])->group(function () {
       Route::get('/create', [UserBlogController::class, 'createBlogForm'])->name('create');
       Route::post('/create', [UserBlogController::class, 'createBlog'])->name('create');
-      Route::get('/my', [UserBlogController::class, 'myBlogs'])->name('my');
+      Route::get('/my-blogs', [UserBlogController::class, 'myBlogs'])->name('my-blogs');
+   });
+   Route::middleware(['auth', 'admin'])->group(function () {
+      Route::get('/approve', [AdminBlogController::class, 'approveForm'])->name('approve');
    });
 });
 

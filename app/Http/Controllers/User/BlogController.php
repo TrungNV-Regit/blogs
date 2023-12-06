@@ -19,7 +19,7 @@ class BlogController extends Controller
         $this->categoryService = $categoryService;
         $this->blogService = $blogService;
     }
-    
+
     public function myBlogs(): View
     {
         return view('user.my_blogs');
@@ -27,8 +27,8 @@ class BlogController extends Controller
 
     public function createBlogForm(): View
     {
-        $categories= $this->categoryService->getAllCategory();
-        return view('user.create_blog')->with('categories',$categories);
+        $categories = $this->categoryService->getAllCategory();
+        return view('user.create_blog')->with('categories', $categories);
     }
 
     public function createBlog(CreateBlogRequest $request): RedirectResponse
