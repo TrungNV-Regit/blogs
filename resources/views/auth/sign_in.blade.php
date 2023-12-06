@@ -6,11 +6,10 @@
 
 <div class="sign-up">
     <div>
-
         @if (session('notification'))
-        <div class='notification'>
-            <span> {{ session('notification') }}</span>
-        </div>
+            @section('notification')
+                {{ session('notification') }}
+            @endsection
         @endif
 
         @include('layouts.logo')

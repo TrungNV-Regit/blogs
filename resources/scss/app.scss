@@ -58,10 +58,11 @@
     right: 100px;
   }
   100% {
-    top: 100px;
+    top: -200px;
     right: 100px;
   }
 }
+
 body {
   width: $full;
   overflow-x: hidden;
@@ -393,7 +394,7 @@ body {
     .page-numbers {
       @include center-flex;
       .btn-page {
-        @include size(36px,36px);
+        @include size(36px, 36px);
         @include font-style($font-family-2, 20px, 700);
         border-radius: 50%;
         background-color: $color-3;
@@ -407,7 +408,7 @@ body {
     }
 
     .btn-nav {
-      @include size(36px,36px);
+      @include size(36px, 36px);
       @include center-flex;
       border-radius: 50%;
       background-color: $color-6;
@@ -446,20 +447,20 @@ body {
     animation-duration: 1.5s;
   }
 
-  .notification {
-    span {
-      color: $color-18;
-    }
-    background-color: $color-12;
-    width: 250px;
-    position: absolute;
-    display: flex;
-    border: 1px solid $color-18;
+  .notification-success {
+    @include center-flex;
+    max-width: 250px;
+    background-color: $color-18;
     border-radius: 5px;
     animation-name: notification;
     animation-duration: 4s;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
+    position: absolute;
+    z-index: 100;
+    strong {
+      margin-left: 10px;
+    }
   }
 
   .verify-token {
@@ -650,15 +651,14 @@ body {
 
           .category {
             color: $color-8;
+            margin-bottom: 18px;
             @include font-style($font-family-1, 15px, 400);
             @include breakpoint(769px, 1600px) {
               padding: 10px 200px 15px 14px;
-              margin-bottom: 18px;
             }
 
             @include breakpoint(0px, 768px) {
               padding: 10px 100px 15px 2px;
-              margin-bottom: 18px;
             }
           }
 

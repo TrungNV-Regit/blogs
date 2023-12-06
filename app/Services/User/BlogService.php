@@ -34,7 +34,7 @@ class BlogService
 
             Blog::create($blog);
 
-            return back()->with('success', trans('message.create_blog_success'));
+            return back()->with('notification', trans('message.create_blog_success'));
         } catch (Exception $ex) {
             return redirect()->route('exception')->with('error', $ex->getMessage());
         }

@@ -10,17 +10,20 @@
 
 @section('backgroundCreateBlog', 'background')
 
-@if (session('success'))
-<div class='notification'>
-    <span> {{ session('success') }}</span>
-</div>
-@endif
 
 <div class="page-create-blog">
+
+    @if (session('notification'))
+    @section('notification')
+    {{ session('notification') }}
+    @endsection
+    @endif
+    
     <div class='breadcrumb'>
         <a href="{{route('/')}}">{{__('message.home')}} > <span>{{__('message.create')}}</span> </a>
     </div>
     <div class='content'>
+
         <div>
             <form action="{{route('blog.create')}}" method="post" enctype="multipart/form-data">
                 @csrf

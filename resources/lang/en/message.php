@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'sign_up_success' => 'Sign up success. Please check your email to verify your account',
+    'sign_up_success' => 'Thank you for sign up. Please check your email to verify your account',
     'email_verification_success' => 'Email verification successful',
     'email_verification_error' => 'Email verification error',
     'subject_verify_email' => 'RT Blog Verify your email address',
