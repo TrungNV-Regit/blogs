@@ -4,6 +4,7 @@ namespace App\Services\User;
 
 use App\Models\Blog;
 use Exception;
+use Faker\Core\Blood;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -12,7 +13,7 @@ use Intervention\Image\Facades\Image;
 class BlogService
 {
 
-    public function createBlog(array $blog): RedirectResponse
+    public function createBlog(array $blog, bool $hasFile): RedirectResponse
     {
         try {
             $user = Auth::user();
@@ -24,7 +25,7 @@ class BlogService
                 'link_image' => null,
             ];
 
-            if (array_key_exists('image', $blog)) {
+            if ($hasFile) {
                 $file = $blog['image'];
                 $fileName = time() . '.' . $file->extension();
                 $imagePath = $file->storeAs('public/images', $fileName);

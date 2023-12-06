@@ -33,6 +33,6 @@ class BlogController extends Controller
 
     public function createBlog(CreateBlogRequest $request): RedirectResponse
     {
-        return $this->blogService->createBlog($request->only('title', 'content', 'category_id', 'image'));
+        return $this->blogService->createBlog($request->only('title', 'content', 'category_id', 'image'), $request->hasFile('image') ? true:false);
     }
 }
