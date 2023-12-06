@@ -6,10 +6,11 @@
 
 <div class='sign-up'>
     <div>
-        @if (session('success'))
-        <div class='notification'>
-            <span> {{ session('success') }}</span>
-        </div>
+
+        @if (session('notification'))
+            @section('notification')
+                {{ session('notification') }}
+            @endsection
         @endif
 
         @include('layouts.logo')
@@ -40,9 +41,9 @@
                 @if($errors->has('password'))
                 <p>{{ $errors->first('password') }}</p>
                 @endif
-                
-                <label for="password">{{ trans('message.password_confirmation') }}<span>*</span></label>
-                <input type="password" name="password_confirmation" id='password_confirmation'>
+
+                <label for="passwordConfirmation">{{ trans('message.password_confirmation') }}<span>*</span></label>
+                <input type="password" name="passwordConfirmation" id='passwordConfirmation'>
 
                 @if($errors->has('password'))
                 <p>{{ $errors->first('password') }}</p>

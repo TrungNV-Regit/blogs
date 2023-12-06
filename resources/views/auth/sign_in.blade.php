@@ -6,11 +6,10 @@
 
 <div class="sign-up">
     <div>
-
         @if (session('notification'))
-        <div class='notification'>
-            <span> {{ session('notification') }}</span>
-        </div>
+            @section('notification')
+                {{ session('notification') }}
+            @endsection
         @endif
 
         @include('layouts.logo')
@@ -21,15 +20,15 @@
 
                 <h4>{{trans('message.sign_in')}}</h4>
 
-                <label for="email">{{trans('message.username_or_email')}} <span>*</span></label>
-                <input type="text" name="usernameOrEmail" value="{{old('usernameOrEmail')}}">
+                <label for="usernameOrEmail">{{trans('message.username_or_email')}} <span>*</span></label>
+                <input type="text" name="usernameOrEmail" id="usernameOrEmail" value="{{old('usernameOrEmail')}}">
 
                 @if($errors->has('usernameOrEmail'))
                 <p>{{ $errors->first('usernameOrEmail') }}</p>
                 @endif
 
-                <label for="username">{{trans('message.password')}} <span>*</span></label>
-                <input type="password" name="password">
+                <label for="password">{{trans('message.password')}} <span>*</span></label>
+                <input type="password" name="password" id="password">
 
                 @if($errors->has('password'))
                 <p>{{ $errors->first('password') }}</p>

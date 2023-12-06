@@ -28,7 +28,7 @@ class UserService
                 ]
             );
             Mail::to($data['email'])->send(new SendEmail(trans('message.subject_verify_email'), 'mail.verify_email', $token));
-            return back()->with('success', trans('message.sign_up_success'));
+            return back()->with('notification', trans('message.sign_up_success'));
         } catch (Exception $ex) {
             return redirect()->route('exception')->with('error', $ex->getMessage());
         }

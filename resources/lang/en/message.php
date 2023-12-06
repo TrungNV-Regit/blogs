@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'sign_up_success' => 'Sign up success. Please check your email to verify your account',
+    'sign_up_success' => 'Thank you for sign up. Please check your email to verify your account',
     'email_verification_success' => 'Email verification successful',
     'email_verification_error' => 'Email verification error',
     'subject_verify_email' => 'RT Blog Verify your email address',
@@ -28,4 +28,21 @@ return [
     'account_not_found' => 'Account not found.',
     'new_password' => 'RT Blog New Password.',
     'email_not_found' => 'Email address not found.',
+    'home' => 'Home',
+    'create' => 'Create Blog',
+    'category' => 'Category',
+    'select_category' => 'Select Category',
+    'title' => 'Title',
+    'upload_image' => 'Upload image',
+    'description' => 'Description',
+    'copyright' => 'Copyright 2022. Made by Regit JSC',
+    'made' => 'RT-Blogs',
+    'my_blog' => 'My Blog',
+    'logout' => 'Logout',
+    'search' => 'Search blog',
+    'create_blog_success' => 'Create Blog Success',
+    'profile' => 'My Profile',
+    'reset_password' => 'Reset Password',
+    'blog_management' => 'Blogs Management',
+    'user_management' => 'Users Management',
 ];

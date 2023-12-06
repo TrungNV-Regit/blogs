@@ -58,32 +58,69 @@
     right: 100px;
   }
   100% {
-    top: -100px;
+    top: -200px;
     right: 100px;
   }
 }
+
 body {
   width: $full;
   overflow-x: hidden;
   a {
     text-decoration: none;
   }
+
+  .dropdown {
+    cursor: pointer;
+    img {
+      @include size(30px, 30px);
+      border-radius: 50%;
+    }
+  }
+
+  .dropdown-menu {
+    li {
+      a {
+        color: $color-19;
+      }
+      .dropdown-item {
+        background-color: transparent !important;
+      }
+      form {
+        display: none;
+      }
+    }
+  }
+
+  .breadcrumb {
+    margin-top: 34px;
+    a {
+      color: $color-22;
+      @include font-style($font-family-1, 16px, 400);
+      span {
+        color: $color-4;
+        @include font-style($font-family-1, 16px, 700);
+      }
+    }
+  }
+
   .header {
     position: relative;
     .image-banner {
       width: 100%;
-      @include breakpoint(0px, $size-big) {
+      @include breakpoint(0px, 768px) {
         height: 380px;
       }
-      @include breakpoint($size-big, 1600px) {
+      @include breakpoint(769px, 1600px) {
         height: 520px;
       }
     }
-    .nav {
-      @include breakpoint(0px, $size-big) {
+
+    .nav-home {
+      @include breakpoint(0px, 768px) {
         display: none;
       }
-      @include breakpoint($size-big, 1600px) {
+      @include breakpoint(769px, 1600px) {
         @include size($full, 122px);
         background: rgba(255, 255, 255, 0.65);
         box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.25);
@@ -132,51 +169,33 @@ body {
           @include font-style($font-family-1, 15px, 500);
           @include size(51px, 31px);
           @include position(47px, 68%);
-          background-color: $color-9;
-          color: $color-3;
-          border-radius: 4px;
+          color: $color-4;
           position: $position-absolute;
-          border: none;
         }
 
         .create-blog {
           @include font-style($font-family-1, 15px, 500);
           @include center-flex-absolute;
-          @include position(50px, 73%);
+          @include position(48px, 73%);
+          @include size(104px, 31px);
           color: $color-4;
+        }
+
+        .background {
+          background-color: $color-9;
+          color: $color-3;
+          border-radius: 4px;
           border: none;
-          background-color: transparent;
         }
 
         .profile {
-          @include position(46px, 87%);
+          @include position(46px, 88.5%);
           @include center-flex-absolute;
           span {
             @include font-style($font-family-1, 15px, 500);
             color: $color-4;
             padding-right: 17px;
             white-space: nowrap;
-          }
-
-          .dropdown {
-            cursor: pointer;
-          }
-
-          .dropdown-menu {
-            li {
-              a{
-                color: $color-19;
-              }
-              .dropdown-item {
-                background-color: transparent !important;
-              }
-              form {
-                button {
-                  background: none;
-                  border: none;
-                }
-              }
-            }
           }
         }
 
@@ -194,12 +213,18 @@ body {
         }
       }
     }
+
+    .header-create-blog {
+      position: static;
+    }
   }
+
   .header-mobile {
-    @include breakpoint($size-big, 1600px) {
+    @include breakpoint(769px, 1600px) {
       display: none;
     }
-    @include breakpoint(0px, $size-big) {
+
+    @include breakpoint(0px, 768px) {
       @include size($full, 69px);
       @include flex-relative;
       background: $color-3;
@@ -251,18 +276,17 @@ body {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("../image/arrow.png");
+    background-image: url("../images/arrow.png");
     background-repeat: no-repeat;
-    background-position: 113px center;
+    background-position: calc(100% - 10px) center;
   }
 
   .container {
-    @include breakpoint(0, $size-big) {
-      padding-right: 10%;
-      padding-left: 10%;
+    @include breakpoint(0, 768px) {
+      padding: 0 10%;
     }
 
-    @include breakpoint($size-big, 1600px) {
+    @include breakpoint(769px, 1600px) {
       max-width: 90%;
     }
 
@@ -298,7 +322,7 @@ body {
             @include center-flex;
             span {
               @include font-style($font-family-2, 18px, 400);
-              @include breakpoint(0px, $size-big) {
+              @include breakpoint(0px, 768px) {
                 @include font-style($font-family-2, 15px, 400);
               }
               color: $color-7;
@@ -306,8 +330,7 @@ body {
             }
 
             .name {
-              margin-left: 4px;
-              margin-right: 21px;
+              margin: 0 21px 0 4px;
             }
 
             .time {
@@ -360,7 +383,7 @@ body {
     @include center-flex;
     width: $full;
     margin-bottom: 106px;
-    @include breakpoint(0, $size-big) {
+    @include breakpoint(0, 768px) {
       margin-bottom: 53px;
     }
 
@@ -371,12 +394,11 @@ body {
     .page-numbers {
       @include center-flex;
       .btn-page {
+        @include size(36px, 36px);
         @include font-style($font-family-2, 20px, 700);
         border-radius: 50%;
         background-color: $color-3;
         border: 0px;
-        width: 36px;
-        height: 36px;
         cursor: pointer;
 
         &:hover {
@@ -386,12 +408,12 @@ body {
     }
 
     .btn-nav {
+      @include size(36px, 36px);
       @include center-flex;
       border-radius: 50%;
       background-color: $color-6;
       cursor: pointer;
-      width: 36px;
-      height: 36px;
+
       &:hover {
         background-color: $color-6;
       }
@@ -425,19 +447,20 @@ body {
     animation-duration: 1.5s;
   }
 
-  .notification {
-    span {
-      color: $color-18;
-    }
-    width: 250px;
-    position: absolute;
-    display: flex;
-    border: 1px solid $color-18;
+  .notification-success {
+    @include center-flex;
+    max-width: 250px;
+    background-color: $color-18;
     border-radius: 5px;
     animation-name: notification;
     animation-duration: 4s;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
+    position: absolute;
+    z-index: 100;
+    strong {
+      margin-left: 10px;
+    }
   }
 
   .verify-token {
@@ -463,8 +486,12 @@ body {
   .sign-in,
   .verify {
     height: 100vh;
-    @include breakpoint(768px, 1600px) {
+    @include breakpoint(769px, 1600px) {
       @include center-flex;
+    }
+
+    @include breakpoint(0px, 768px) {
+      margin-top: 100px;
     }
 
     div {
@@ -492,6 +519,11 @@ body {
       }
 
       .content {
+        @include breakpoint(0px, 768px) {
+          margin-left: 52px;
+          margin-right: 52px;
+        }
+
         form {
           h4 {
             @include font-style($font-family-1, 20px, 700);
@@ -503,6 +535,7 @@ body {
             @include font-style($font-family-1, 15px, 400);
             color: $color-4;
             display: block;
+
             span {
               color: $color-14;
             }
@@ -510,16 +543,15 @@ body {
 
           input {
             display: block;
-            margin-top: 10px;
-            margin-bottom: 16px;
+            margin: 10px 0 16px 0;
             border: 2px solid $color-10;
             border-radius: 2px;
             outline: none;
-            @include breakpoint($size-big, 1600px) {
+            @include breakpoint(769px, 1600px) {
               @include size(570px, 40px);
             }
 
-            @include breakpoint(0px, $size-big) {
+            @include breakpoint(0px, 768px) {
               @include size(100%, 40px);
             }
           }
@@ -534,20 +566,18 @@ body {
             @include center-flex;
             button {
               color: $color-3;
-              margin-top: 25px;
-              @include breakpoint($size-big, 1600px) {
-                @include size(280px, 40px);
-              }
-
-              @include breakpoint(0px, $size-big) {
-                @include size(198px, 40px);
-              }
-
+              margin: 25px 0 11px 0;
               background-color: $color-17;
               border: 2px solid $color-17;
               border-radius: 5px;
               display: block;
-              margin-bottom: 11px;
+              @include breakpoint(769px, 1600px) {
+                @include size(280px, 40px);
+              }
+
+              @include breakpoint(0px, 768px) {
+                @include size(198px, 40px);
+              }
             }
 
             a {
@@ -560,26 +590,27 @@ body {
           .option {
             justify-content: space-between;
             margin-bottom: 40px;
+
             div {
               text-align: center;
               input {
                 margin: 0 8px 0 0;
-                @include breakpoint(0px, $size-big) {
+                @include breakpoint(0px, 768px) {
                   @include size(13px, 13px);
                 }
 
-                @include breakpoint($size-big, 1600px) {
+                @include breakpoint(769px, 1600px) {
                   @include size(24px, 24px);
                 }
               }
 
               span,
               a {
-                @include breakpoint(0px, $size-big) {
+                @include breakpoint(0px, 768px) {
                   @include font-style($font-family-1, 11px, 400);
                 }
 
-                @include breakpoint($size-big, 1600px) {
+                @include breakpoint(769px, 1600px) {
                   @include font-style($font-family-1, 15px, 400);
                 }
               }
@@ -589,6 +620,120 @@ body {
                 cursor: pointer;
               }
             }
+          }
+        }
+      }
+    }
+  }
+
+  .page-create-blog {
+    @include breakpoint(0px, 768px) {
+      margin: 39px 2% 40px 2%;
+    }
+    @include breakpoint(769px, 1600px) {
+      margin: 39px 5% 40px 5%;
+    }
+
+    .content {
+      background-color: $color-20;
+      div {
+        form {
+          @include breakpoint(0px, 768px) {
+            margin: 26px 11px 0;
+          }
+          @include breakpoint(769px, 1600px) {
+            margin: 31px 30px 0;
+          }
+
+          h3 {
+            @include font-style($font-family-1, 20px, 700);
+            padding-top: 31px;
+          }
+
+          p {
+            margin: 16px 0 10px;
+            @include font-style($font-family-1, 15px, 400);
+            span {
+              color: $color-14;
+            }
+          }
+
+          .category {
+            color: $color-8;
+            margin-bottom: 18px;
+            @include font-style($font-family-1, 15px, 400);
+            @include breakpoint(769px, 1600px) {
+              padding: 10px 200px 15px 14px;
+            }
+
+            @include breakpoint(0px, 768px) {
+              padding: 10px 100px 15px 2px;
+            }
+          }
+
+          input {
+            @include size($full, 40px);
+            outline: none;
+            margin: 10px 5px 0;
+            border: 2px solid $color-10;
+            border-radius: 2px;
+            padding: 13px 50px 13px 20px;
+            &::placeholder {
+              color: $color-8;
+              @include font-style($font-family-1, 15px, 400);
+            }
+          }
+
+          label,
+          button {
+            border: 1px solid $color-17;
+            background: $color-3;
+            margin: 20px 0px 10px 0px;
+            color: $color-21;
+            border-radius: 4px;
+            display: block;
+            @include center-flex;
+            @include font-style($font-family-1, 15px, 400);
+
+            @include breakpoint(0, 768px) {
+              @include size(130px, 40px);
+            }
+
+            @include breakpoint(769px, 1600px) {
+              @include size(133px, 40px);
+            }
+          }
+
+          .upload-image {
+            display: none;
+          }
+
+          img {
+            height: 170px;
+            margin-bottom: 11px;
+            display: none;
+            @include breakpoint(0px, 768px) {
+              width: 207px;
+            }
+            @include breakpoint(769px, 1600px) {
+              width: 269px;
+            }
+          }
+
+          textarea {
+            @include size($full, 459px);
+            outline: none;
+            border-radius: 4px;
+            border: 1px solid $color-10;
+            background: $color-3;
+          }
+
+          button {
+            color: $color-17;
+          }
+
+          .error {
+            color: $color-15;
           }
         }
       }
