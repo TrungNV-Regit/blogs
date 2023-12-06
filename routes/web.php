@@ -44,6 +44,12 @@ Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
       Route::post('/create', [UserBlogController::class, 'createBlog'])->name('create');
       Route::get('/my-blogs', [UserBlogController::class, 'myBlogs'])->name('my-blogs');
    });
+   
+   Route::middleware(['auth', 'admin'])->group(function () {
+      Route::get('/approve', function () {
+         return view('admin.approve_blog');
+      })->name('approve');
+   });
 });
 
 Route::get('/', [UserHomeController::class, 'home'])->name('/');

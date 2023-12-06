@@ -45,4 +45,11 @@ return [
     'reset_password' => 'Reset Password',
     'blog_management' => 'Blogs Management',
     'user_management' => 'Users Management',
+    'approved' => 'Approved',
+    'delete' => 'Delete',
+    'delete_blog' => 'Delete Blog',
+    'detail' => 'Detail Blog',
+    'comment' => 'Comment',
+    'comfirm_delete_blog' => 'Are you sure want to delete this  blog?',
+    'cancel' => 'Cancel',
 ];
