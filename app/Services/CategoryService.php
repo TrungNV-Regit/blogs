@@ -13,7 +13,7 @@ class CategoryService
         try {
             return Category::all()->toArray();
         } catch (\Exception $ex) {
-            return ;
+            throw new \Exception($ex->getMessage());
         }
     }
 }

@@ -36,7 +36,7 @@ class BlogService
 
             return back()->with('notification', trans('message.create_blog_success'));
         } catch (Exception $ex) {
-            return redirect()->route('exception')->with('error', $ex->getMessage());
+            throw new Exception($ex->getMessage());
         }
     }
 }
