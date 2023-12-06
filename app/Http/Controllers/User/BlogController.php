@@ -27,11 +27,12 @@ class BlogController extends Controller
 
     public function createBlogForm(): View
     {
-        return $this->categoryService->getAllCategory();
+        $categories= $this->categoryService->getAllCategory();
+        return view('user.create_blog')->with('categories',$categories);
     }
 
     public function createBlog(CreateBlogRequest $request): RedirectResponse
     {
-        return $this->blogService->createBlog($request->only('title', 'description', 'category', 'image'));
+        return $this->blogService->createBlog($request->only('title', 'content', 'category_id', 'image'));
     }
 }

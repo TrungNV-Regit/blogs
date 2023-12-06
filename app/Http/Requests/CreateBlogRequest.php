@@ -22,13 +22,13 @@ class CreateBlogRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category' => [
+            'category_id' => [
                 'required',
             ],
             'title' => [
                 'required',
             ],
-            'description' => [
+            'content' => [
                 'required',
             ]
         ];

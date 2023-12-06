@@ -8,11 +8,10 @@ use Illuminate\View\View;
 class CategoryService
 {
 
-    public function getAllCategory(): View
+    public function getAllCategory(): array
     {
         try {
-            $categories = Category::all()->toArray();
-            return view('user.create_blog')->with('categories', $categories);
+            return Category::all()->toArray();
         } catch (\Exception $ex) {
             return view('error.exception')->with('error', $ex->getMessage());
         }

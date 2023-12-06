@@ -10,26 +10,32 @@
 
 @section('backgroundCreateBlog', 'background')
 
+@if (session('success'))
+<div class='notification'>
+    <span> {{ session('success') }}</span>
+</div>
+@endif
+
 <div class="page-create-blog">
     <div class='breadcrumb'>
         <a href="{{route('/')}}">{{__('message.home')}} > <span>{{__('message.create')}}</span> </a>
     </div>
     <div class='content'>
         <div>
-            <form action="{{route('user.create-blog')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('blog.create')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <h3>{{__('message.create')}}</h3>
 
                 <p>{{__('message.category')}} <span>*</span></p>
-                <select name="category" class="category">
+                <select name="category_id" class="category">
                     <option disabled selected>{{__('message.select_category')}}</option>
                     @foreach($categories as $category)
                     <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
                     @endforeach
                 </select>
 
-                @if($errors->has('category'))
-                <p class="error">{{ $errors->first('category') }}</p>
+                @if($errors->has('category_id'))
+                <p class="error">{{ $errors->first('category_id') }}</p>
                 @endif
 
                 <p>{{__('message.title')}} <span>*</span></p>
@@ -45,10 +51,10 @@
                 <img id='imageBlog' alt="Image upload">
 
                 <p>{{__('message.description')}} <span>*</span></p>
-                <textarea name='description'></textarea>
+                <textarea name='content'></textarea>
 
-                @if($errors->has('description'))
-                <p class="error">{{ $errors->first('description') }}</p>
+                @if($errors->has('content'))
+                <p class="error">{{ $errors->first('content') }}</p>
                 @endif
 
                 <button type="submit">{{__('message.submit')}}</button>

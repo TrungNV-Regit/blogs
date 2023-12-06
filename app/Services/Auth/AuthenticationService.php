@@ -33,11 +33,7 @@ class AuthenticationService
                         return back()->with('notification', trans('message.account_blocked'));
                     }
 
-                    if ($request->has('remember')) {
-                        Auth::login($user, true);
-                    }
-
-                    Auth::login($user);
+                    Auth::login($user, $request->has('remember') ? true : false);
 
                     if ($user->role == User::ROLE_ADMIN) {
                         return redirect()->route('admin.home');

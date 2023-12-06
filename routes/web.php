@@ -33,22 +33,20 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-      Route::get('/home', [AdminHomeController::class, 'myBlogs'])->name('home');
+      Route::get('/home', [AdminHomeController::class, 'home'])->name('home');
    });
 });
 
-Route::middleware(['auth', 'user'])->group(function () {
-   Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
-      Route::get('/my-blogs', [UserBlogController::class, 'myBlogs'])->name('my-blogs');
-      Route::get('/create-blog', [UserBlogController::class, 'createBlogForm'])->name('create-blog');
-      Route::post('/create-blog', [UserBlogController::class, 'createBlog'])->name('create-blog');
+
+Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
+   Route::middleware(['auth', 'user'])->group(function () {
+      Route::get('/create', [UserBlogController::class, 'createBlogForm'])->name('create');
+      Route::post('/create', [UserBlogController::class, 'createBlog'])->name('create');
+      Route::get('/my', [UserBlogController::class, 'myBlogs'])->name('my');
    });
 });
 
 Route::get('/', [UserHomeController::class, 'home'])->name('/');
-Route::get('/top-blog', function () {
-   return view('top_blog');
-})->name('/top-blog');
 
 Route::get('exception', function () {
    return view('error.exception');

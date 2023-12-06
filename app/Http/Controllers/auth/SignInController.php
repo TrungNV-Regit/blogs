@@ -16,6 +16,7 @@ class SignInController extends Controller
     {
         $this->authenticationService = $authenticationService;
     }
+    
     public function signInForm(): View
     {
         return view('auth.sign_in');

@@ -58,7 +58,7 @@
     right: 100px;
   }
   100% {
-    top: -100px;
+    top: 100px;
     right: 100px;
   }
 }
@@ -68,6 +68,41 @@ body {
   a {
     text-decoration: none;
   }
+
+  .dropdown {
+    cursor: pointer;
+    img {
+      @include size(30px, 30px);
+      border-radius: 50%;
+    }
+  }
+
+  .dropdown-menu {
+    li {
+      a {
+        color: $color-19;
+      }
+      .dropdown-item {
+        background-color: transparent !important;
+      }
+      form {
+        display: none;
+      }
+    }
+  }
+
+  .breadcrumb {
+    margin-top: 34px;
+    a {
+      color: $color-22;
+      @include font-style($font-family-1, 16px, 400);
+      span {
+        color: $color-4;
+        @include font-style($font-family-1, 16px, 700);
+      }
+    }
+  }
+
   .header {
     position: relative;
     .image-banner {
@@ -79,6 +114,7 @@ body {
         height: 520px;
       }
     }
+
     .nav-home {
       @include breakpoint(0px, $size-big) {
         display: none;
@@ -134,7 +170,6 @@ body {
           @include position(47px, 68%);
           color: $color-4;
           position: $position-absolute;
-          border: none;
         }
 
         .create-blog {
@@ -143,7 +178,6 @@ body {
           @include position(48px, 73%);
           @include size(104px, 31px);
           color: $color-4;
-          border: none;
         }
 
         .background {
@@ -161,28 +195,6 @@ body {
             color: $color-4;
             padding-right: 17px;
             white-space: nowrap;
-          }
-
-          .dropdown {
-            cursor: pointer;
-          }
-
-          .dropdown-menu {
-            li {
-              a {
-                color: $color-19;
-              }
-              .dropdown-item {
-                background-color: transparent !important;
-              }
-              form {
-                margin: 0;
-                button {
-                  background: none;
-                  border: none;
-                }
-              }
-            }
           }
         }
 
@@ -205,10 +217,12 @@ body {
       position: static;
     }
   }
+
   .header-mobile {
     @include breakpoint($size-big, 1600px) {
       display: none;
     }
+
     @include breakpoint(0px, $size-big) {
       @include size($full, 69px);
       @include flex-relative;
@@ -268,8 +282,7 @@ body {
 
   .container {
     @include breakpoint(0, $size-big) {
-      padding-right: 10%;
-      padding-left: 10%;
+      padding: 0 10%;
     }
 
     @include breakpoint($size-big, 1600px) {
@@ -316,8 +329,7 @@ body {
             }
 
             .name {
-              margin-left: 4px;
-              margin-right: 21px;
+              margin: 0 21px 0 4px;
             }
 
             .time {
@@ -381,12 +393,11 @@ body {
     .page-numbers {
       @include center-flex;
       .btn-page {
+        @include size(36px,36px);
         @include font-style($font-family-2, 20px, 700);
         border-radius: 50%;
         background-color: $color-3;
         border: 0px;
-        width: 36px;
-        height: 36px;
         cursor: pointer;
 
         &:hover {
@@ -396,12 +407,12 @@ body {
     }
 
     .btn-nav {
+      @include size(36px,36px);
       @include center-flex;
       border-radius: 50%;
       background-color: $color-6;
       cursor: pointer;
-      width: 36px;
-      height: 36px;
+
       &:hover {
         background-color: $color-6;
       }
@@ -439,6 +450,7 @@ body {
     span {
       color: $color-18;
     }
+    background-color: $color-12;
     width: 250px;
     position: absolute;
     display: flex;
@@ -513,6 +525,7 @@ body {
             @include font-style($font-family-1, 15px, 400);
             color: $color-4;
             display: block;
+
             span {
               color: $color-14;
             }
@@ -520,8 +533,7 @@ body {
 
           input {
             display: block;
-            margin-top: 10px;
-            margin-bottom: 16px;
+            margin: 10px 0 16px 0;
             border: 2px solid $color-10;
             border-radius: 2px;
             outline: none;
@@ -544,7 +556,11 @@ body {
             @include center-flex;
             button {
               color: $color-3;
-              margin-top: 25px;
+              margin: 25px 0 11px 0;
+              background-color: $color-17;
+              border: 2px solid $color-17;
+              border-radius: 5px;
+              display: block;
               @include breakpoint($size-big, 1600px) {
                 @include size(280px, 40px);
               }
@@ -552,12 +568,6 @@ body {
               @include breakpoint(0px, $size-big) {
                 @include size(198px, 40px);
               }
-
-              background-color: $color-17;
-              border: 2px solid $color-17;
-              border-radius: 5px;
-              display: block;
-              margin-bottom: 11px;
             }
 
             a {
@@ -570,6 +580,7 @@ body {
           .option {
             justify-content: space-between;
             margin-bottom: 40px;
+
             div {
               text-align: center;
               input {
@@ -606,25 +617,13 @@ body {
   }
 
   .page-create-blog {
-    margin: 39px 0 40px;
     @include breakpoint(0px, 768px) {
-      margin-left: 2%;
-      margin-right: 2%;
+      margin: 39px 2% 40px 2%;
     }
     @include breakpoint(769px, 1600px) {
-      margin-left: 5%;
-      margin-right: 5%;
+      margin: 39px 5% 40px 5%;
     }
-    .breadcrumb {
-      a {
-        color: $color-22;
-        @include font-style($font-family-1, 16px, 400);
-        span {
-          color: $color-4;
-          @include font-style($font-family-1, 16px, 700);
-        }
-      }
-    }
+
     .content {
       background-color: $color-20;
       div {
@@ -638,12 +637,11 @@ body {
 
           h3 {
             @include font-style($font-family-1, 20px, 700);
-            margin-bottom: 0px;
             padding-top: 31px;
           }
+
           p {
-            margin-top: 16px;
-            margin-bottom: 10px;
+            margin: 16px 0 10px;
             @include font-style($font-family-1, 15px, 400);
             span {
               color: $color-14;
@@ -665,13 +663,11 @@ body {
           }
 
           input {
-            width: 100%;
+            @include size($full, 40px);
             outline: none;
-            margin-top: 10px;
-            margin-bottom: 5px;
+            margin: 10px 5px 0;
             border: 2px solid $color-10;
             border-radius: 2px;
-            height: 40px;
             padding: 13px 50px 13px 20px;
             &::placeholder {
               color: $color-8;
@@ -689,9 +685,11 @@ body {
             display: block;
             @include center-flex;
             @include font-style($font-family-1, 15px, 400);
+
             @include breakpoint(0, 768px) {
               @include size(130px, 40px);
             }
+
             @include breakpoint(769px, 1600px) {
               @include size(133px, 40px);
             }
@@ -726,7 +724,7 @@ body {
           }
 
           .error {
-            color: $color-1;
+            color: $color-15;
           }
         }
       }

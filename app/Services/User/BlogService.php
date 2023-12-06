@@ -6,6 +6,8 @@ use App\Models\Blog;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class BlogService
 {
@@ -15,25 +17,24 @@ class BlogService
         try {
             $user = Auth::user();
 
-            $data = [
-                'title' => $blog['title'],
-                'content' => $blog['description'],
+            $blog = [
+                ...$blog,
                 'user_id' => $user->id,
-                'category_id' => $blog['category'],
                 'status' => Blog::STATUS_PENDING,
                 'link_image' => null,
             ];
 
             if (array_key_exists('image', $blog)) {
                 $file = $blog['image'];
-                $filename = date('YmdHi') . $file->getClientOriginalName();
-                $file->move(public_path('images'), $filename);
-                $data['link_image'] = $filename;
+                $fileName = time() . '.' . $file->extension();
+                $imagePath = $file->storeAs('public/images', $fileName);
+                $linkImage = Storage::url($imagePath);
+                $blog['link_image']  = $linkImage;
             }
 
-            Blog::create($data);
+            Blog::create($blog);
 
-            return redirect()->route('user.my-blogs');
+            return back()->with('success', trans('message.create_blog_success'));
         } catch (Exception $ex) {
             return redirect()->route('exception')->with('error', $ex->getMessage());
         }

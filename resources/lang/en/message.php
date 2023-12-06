@@ -40,4 +40,9 @@ return [
     'my_blog' => 'My Blog',
     'logout' => 'Logout',
     'search' => 'Search blog',
+    'create_blog_success' => 'Create Blog Success',
+    'profile' => 'My Profile',
+    'reset_password' => 'Reset Password',
+    'blog_management' => 'Blogs Management',
+    'user_management' => 'Users Management',
 ];
