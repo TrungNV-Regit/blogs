@@ -4,16 +4,13 @@ namespace App\Services\User;
 
 use App\Models\Blog;
 use Exception;
-use Faker\Core\Blood;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 
 class BlogService
 {
 
-    public function createBlog(array $blog, bool $hasFile): RedirectResponse
+    public function createBlog(array $blog, bool $hasFile): void
     {
         try {
             $user = Auth::user();
@@ -34,8 +31,7 @@ class BlogService
             }
 
             Blog::create($blog);
-
-            return back()->with('notification', trans('message.create_blog_success'));
+            
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }
