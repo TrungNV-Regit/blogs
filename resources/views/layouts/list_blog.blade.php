@@ -2,10 +2,10 @@
     <div class="row">
         @foreach ($blogs as $blog)
             <div class="col-md-12 col-lg-4 col-sm-12 col-sx-12">
-                <a href="{{ route('blog.detail', ['id' => $blog['id']]) }}">
+                <a href="{{ route('blog.show', ['id' => $blog->id]) }}">
                     <div class="blog">
-                        @if ($blog['link_image'])
-                            <img src={{ $blog['link_image'] }} class="card-img-top" alt="Image blog">
+                        @if ($blog->link_image)
+                            <img src={{ $blog->link_image }} class="card-img-top" alt="Image blog">
                         @endif
                         <div class="card-body">
                             <div class="name-and-time">
@@ -22,7 +22,7 @@
                                             stroke-linejoin="round" />
                                     </svg>
                                     <span class="name">
-                                        {{ $blog['author']['username'] }}
+                                        {{ $blog->author->username }}
                                     </span>
                                 </div>
                                 <div>
@@ -36,12 +36,12 @@
                                             fill="#858383" stroke="#858383" stroke-width="0.5" />
                                     </svg>
                                     <span class="time">
-                                        {{ $blog['created_at']->diffForHumans() }}
+                                        {{ $blog->created_at->diffForHumans() }}
                                     </span>
                                 </div>
                             </div>
-                            <h5 class="card-title single-line">{{ $blog['title'] }}</h5>
-                            <p class="card-text single-line">{{ $blog['content'] }}</p>
+                            <h5 class="card-title single-line">{{ $blog->title }}</h5>
+                            <p class="card-text single-line">{{ $blog->content }}</p>
                             <button class="read-more">{{ __('message.read_more') }} &nbsp;&nbsp;&nbsp;
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="10"
                                     viewBox="0 0 20 10" fill="none">

@@ -40,17 +40,17 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
    Route::middleware(['auth', 'user'])->group(function () {
-      Route::get('/create', [UserBlogController::class, 'createBlogForm'])->name('create');
-      Route::post('/create', [UserBlogController::class, 'createBlog'])->name('create');
+      Route::get('/create', [UserBlogController::class, 'create'])->name('create');
+      Route::post('/create', [UserBlogController::class, 'store'])->name('create');
       Route::get('/my-blogs', [UserBlogController::class, 'myBlogs'])->name('my-blogs');
    });
 
    Route::middleware(['auth', 'admin'])->group(function () {
-      Route::get('/list-blogs', [AdminBlogController::class, 'getBlogPendingByPage'])->name('list-blogs');
-      Route::post('/aprrove/{id}', [AdminBlogController::class, 'approveBlog'])->name('aprrove');
+      Route::get('/index/{status}', [AdminBlogController::class, 'index'])->name('index');
+      Route::post('/aprrove/{id}', [AdminBlogController::class, 'approve'])->name('aprrove');
    });
 
-   Route::get('/detail/{id}', [UserBlogController::class, 'getBlogDetail'])->name('detail');
+   Route::get('/show/{id}', [UserBlogController::class, 'show'])->name('show');
 });
 
 Route::get('/', [UserHomeController::class, 'home'])->name('/');

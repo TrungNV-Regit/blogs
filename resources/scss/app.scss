@@ -104,6 +104,19 @@ body {
     }
   }
 
+  .arrow {
+    background-color: $color-13;
+    border-radius: 60px;
+  }
+  
+  .color-comment {
+    color: $color-4;
+  }
+
+  .color-time {
+    color: $color-25;
+  }
+
   .header {
     position: relative;
     .image-banner {
@@ -392,46 +405,27 @@ body {
   .pagination {
     @include center-flex;
     width: $full;
-    margin-bottom: 106px;
+    margin-bottom: 96px;
     @include breakpoint(0, 768px) {
       margin-bottom: 53px;
     }
 
-    button {
-      border: none;
-    }
+    .page-item {
+      padding: 1px;
 
-    .page-numbers {
-      @include center-flex;
-      .btn-page {
-        @include size(36px, 36px);
+      .page-link {
         @include font-style($font-family-2, 20px, 700);
-        border-radius: 50%;
-        background-color: $color-3;
-        border: 0px;
-        cursor: pointer;
-
+        border: none;
+        border-radius: 60%;
+        color: $color-7;
         &:hover {
-          background-color: $color-12;
+          background-color: $color-14;
         }
       }
-    }
 
-    .btn-nav {
-      @include size(36px, 36px);
-      @include center-flex;
-      border-radius: 50%;
-      background-color: $color-6;
-      cursor: pointer;
-
-      &:hover {
-        background-color: $color-6;
+      .page-current{
+        background-color: $color-14;
       }
-    }
-
-    .right-btn {
-      background-color: $color-13;
-      color: $color-3;
     }
   }
 
@@ -805,7 +799,7 @@ body {
             background: $color-23;
           }
           .btn-danger {
-            background-color: #dc3545;
+            background-color: $color-24;
           }
         }
       }
@@ -879,14 +873,6 @@ body {
               .comment-detail {
                 margin-left: 67px;
                 @include font-style($font-family-1, 14px, 400);
-
-                .content {
-                  color: $color-4;
-                }
-
-                .time {
-                  color: $color-25;
-                }
               }
             }
           }

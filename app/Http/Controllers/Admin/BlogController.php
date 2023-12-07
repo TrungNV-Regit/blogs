@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Services\Admin\BlogService;
@@ -9,7 +9,6 @@ use Illuminate\View\View;
 
 class BlogController extends Controller
 {
-
     private $blogService;
 
     public function __construct(BlogService $blogService)
@@ -17,15 +16,15 @@ class BlogController extends Controller
         $this->blogService = $blogService;
     }
 
-    public function getBlogPendingByPage(): View
+    public function index(int $status): View
     {
-        $data = $this->blogService->getBlogPendingByPage();
+        $data = $this->blogService->index($status);
         return view('admin.blogs', compact('data'));
     }
 
-    public function approveBlog(int $id): RedirectResponse
+    public function approve(int $id): RedirectResponse
     {
-        $this->blogService->approveBlog($id);
-        return back();
+        $this->blogService->approve($id);
+        return back()->with('notification', __('message.approve_success'));
     }
 }

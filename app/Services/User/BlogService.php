@@ -3,16 +3,18 @@
 namespace App\Services\User;
 
 use App\Models\Blog;
+use App\Services\Common\ImageService;
 use Exception;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class BlogService
 {
+    public function __construct(
+        private ImageService $imageService,
+    ) {
+    }
 
-    public function createBlog(array $blog, bool $hasFile): void
+    public function create(array $blog, bool $hasFile): Blog
     {
         try {
             $user = Auth::user();
@@ -25,27 +27,19 @@ class BlogService
             ];
 
             if ($hasFile) {
-                $file = $blog['image'];
-                $fileName = time() . '.' . $file->extension();
-                $imagePath = $file->storeAs('public/images', $fileName);
-                $linkImage = Storage::url($imagePath);
-                $blog['link_image']  = $linkImage;
+                $blog['link_image']  = $this->imageService->uploadImage($blog);
             }
 
-            Blog::create($blog);
-
+            $blog = Blog::create($blog);
+            return $blog;
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }
     }
 
-    public function getBlogDetail(int $idBlog): Blog
+    public function show(int $id): Blog
     {
-        try {
-            $blog = Blog::where('id', $idBlog)->with(['author', 'comments'])->first();
-            return $blog;
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
-        }
+        return Blog::with(['author', 'comments'])
+        ->find($id);
     }
 }

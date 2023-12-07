@@ -1,5 +1,6 @@
 @php
     use App\Models\User;
+    use App\Models\Blog;
 @endphp
 
 <ul class="dropdown-menu">
@@ -17,7 +18,10 @@
             <hr class="dropdown-divider">
         </li>
     @else
-        <li><a class="dropdown-item" href="{{ route('blog.list-blogs') }}">{{ __('message.blog_management') }}</a></li>
+        <li>
+            <a class="dropdown-item"
+                href="{{ route('blog.index', ['status'=> Blog::STATUS_PENDING ]) }}">{{ __('message.blog_management') }}</a>
+        </li>
         <li>
             <hr class="dropdown-divider">
         </li>

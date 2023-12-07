@@ -31,6 +31,6 @@ class Blog extends Model
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

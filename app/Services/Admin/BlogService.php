@@ -3,29 +3,30 @@
 namespace App\Services\Admin;
 
 use App\Models\Blog;
+use Exception;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class BlogService
 {
-
-    public function getBlogPendingByPage(int $page = 1): array
+    public function index(int $status): LengthAwarePaginator
     {
         try {
-            $data = Blog::where('status', Blog::STATUS_PENDING)->with('author')->orderByDesc('id')->paginate(9, ['*'], $page);
-            $blogs = $data->items();
-            $totalPages = $data->lastPage();
-            $currentPage = $data->currentPage();
-            return ['blogs' => $blogs, 'totalPages' => $totalPages, 'currentPage' => $currentPage];
-        } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
+            return Blog::where('status', $status)->with('author')->orderByDesc('id')->paginate(9);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
         }
     }
 
-    public function approveBlog(int $idBlog): void
+    public function approve(int $id): Blog
     {
         try {
-            Blog::where('id', $idBlog)->update(['status' => Blog::STATUS_ACTIVE]);
-        } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
+            $blog = Blog::findOrFail($id);
+            if ($blog) {
+                $blog->update(['status' => Blog::STATUS_ACTIVE]);
+            }
+            return $blog;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
         }
     }
 }
