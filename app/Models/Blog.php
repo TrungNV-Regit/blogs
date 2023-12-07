@@ -11,8 +11,8 @@ class Blog extends Model
 {
     use HasFactory;
 
-    const STATUS_ACTIVE=1;
-    const STATUS_PENDING=2;
+    const STATUS_ACTIVE = 1;
+    const STATUS_PENDING = 2;
     protected $table = 'blogs';
     protected $fillable = [
         'title',
