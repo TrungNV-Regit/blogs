@@ -33,7 +33,7 @@ class BlogService
             }
 
             Blog::create($blog);
-        
+
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }

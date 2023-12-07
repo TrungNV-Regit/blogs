@@ -35,6 +35,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
 Route::middleware(['auth', 'admin'])->group(function () {
    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
       Route::get('/home', [AdminHomeController::class, 'home'])->name('home');
+      Route::get('/blog-management/{page}', [AdminBlogController::class, 'getBlogPendingByPage'])->name('blog-management');
    });
 });
 
@@ -54,7 +55,3 @@ Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
 });
 
 Route::get('/', [UserHomeController::class, 'home'])->name('/');
-
-Route::get('exception', function () {
-   return view('error.exception');
-})->name('exception');

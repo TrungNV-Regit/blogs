@@ -900,7 +900,6 @@ body {
 
     .modal-dialog {
       .modal-content {
-        
         .modal-header {
           h5 {
             color: $color-4;
@@ -923,6 +922,15 @@ body {
           }
         }
       }
+    }
+  }
+
+  .blogs {
+    @include breakpoint(0px, 768px) {
+      margin: 39px 68px 40px 68px;
+    }
+    @include breakpoint(769px, 1600px) {
+      margin: 39px 5% 40px 5%;
     }
   }
 
