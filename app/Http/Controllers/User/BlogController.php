@@ -36,4 +36,10 @@ class BlogController extends Controller
         $this->blogService->createBlog($request->only('title', 'content', 'category_id', 'image'), $request->hasFile('image') ? true : false);
         return back()->with('notification', trans('message.create_blog_success'));
     }
+
+    public function getBlogDetail(int $id): View
+    {
+        $blog = $this->blogService->getBlogDetail($id);
+        return view('user.detail_blog')->with('blog', $blog);
+    }
 }

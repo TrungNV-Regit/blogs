@@ -40,7 +40,7 @@ return [
     'my_blog' => 'My Blog',
     'logout' => 'Logout',
     'search' => 'Search blog',
-    'create_blog_success' => 'Create Blog Success',
+    'create_blog_success' => 'Create blog successful. Blog is waiting for admin approval.',
     'profile' => 'My Profile',
     'reset_password' => 'Reset Password',
     'blog_management' => 'Blogs Management',
@@ -52,4 +52,7 @@ return [
     'comment' => 'Comment',
     'comfirm_delete_blog' => 'Are you sure want to delete this  blog?',
     'cancel' => 'Cancel',
+    'read_more' => 'Read more',
+    'list_blog' => 'List Blog',
+    'approve_blog_success' => 'Blog approval successful.',
 ];

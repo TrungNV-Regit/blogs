@@ -214,7 +214,7 @@ body {
       }
     }
 
-    .header-create-blog {
+    .header-static {
       position: static;
     }
   }
@@ -310,8 +310,12 @@ body {
       border: 1px solid rgba(0, 0, 0, 0.125);
       border-radius: 0.25rem;
       padding: 0;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
+      border-top-left-radius: -10px;
+      border-top-right-radius: -10px;
+      min-width: 417px;
+      img {
+        @include size($full, 276px);
+      }
 
       .card-body {
         .name-and-time {
@@ -349,6 +353,12 @@ body {
           color: $color-7;
           @include font-style($font-family-2, 18px, 400);
           line-height: 25px;
+        }
+
+        .single-line {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .read-more {
@@ -885,31 +895,47 @@ body {
     }
   }
 
-  .modal{
-    top:185px;
-  }
+  .modal {
+    top: 185px;
 
-  .modal-content{
-    .modal-header{
-      h5{
-        color:$color-4;
-        @include font-style($font-family-1,20px,700);
+    .modal-dialog {
+      .modal-content {
+        
+        .modal-header {
+          h5 {
+            color: $color-4;
+            @include font-style($font-family-1, 20px, 700);
+          }
+        }
+
+        .confirm-delete {
+          @include font-style($font-family-1, 15px, 400);
+          @include center-flex;
+          color: $color-4;
+          height: 112px;
+        }
+
+        .modal-footer {
+          display: flex;
+          justify-content: space-between;
+          button {
+            margin: 0 54px;
+          }
+        }
       }
     }
   }
 
-  .confirm-delete {
-    @include font-style($font-family-1, 15px, 400);
-    @include center-flex;
-    color: $color-4;
-    height: 112px;
-  }
+  .blogs {
+    @include breakpoint(0px, 768px) {
+      margin: 39px 68px 40px 68px;
+    }
+    @include breakpoint(769px, 1600px) {
+      margin: 39px 5% 40px 5%;
+    }
 
-  .modal-footer{
-    display: flex;
-    justify-content: space-between;
-    button{
-      margin: 0 54px;
+    .content {
+      margin-top: 40px;
     }
   }
 }
