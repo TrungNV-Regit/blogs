@@ -35,7 +35,6 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
 Route::middleware(['auth', 'admin'])->group(function () {
    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
       Route::get('/home', [AdminHomeController::class, 'home'])->name('home');
-      Route::get('/blog-management/{page}', [AdminBlogController::class, 'getBlogPendingByPage'])->name('blog-management');
    });
 });
 
