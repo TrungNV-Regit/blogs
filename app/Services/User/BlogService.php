@@ -4,6 +4,8 @@ namespace App\Services\User;
 
 use App\Models\Blog;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,9 +33,18 @@ class BlogService
             }
 
             Blog::create($blog);
-            
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
+        }
+    }
+
+    public function getBlogDetail(int $idBlog): Blog
+    {
+        try {
+            $blog = Blog::where('id', $idBlog)->with(['author', 'comments'])->first();
+            return $blog;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
         }
     }
 }

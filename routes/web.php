@@ -6,6 +6,8 @@ use App\Http\Controllers\auth\VerificationController;
 use App\Http\Controllers\User\HomeController as UserHomeController;
 use App\Http\Controllers\User\BlogController as UserBlogController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Admin\BlogController as AdminBlogController;
+use App\Models\Blog;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,9 +36,9 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
 Route::middleware(['auth', 'admin'])->group(function () {
    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
       Route::get('/home', [AdminHomeController::class, 'home'])->name('home');
+      Route::get('/blog-management/{page}', [AdminBlogController::class, 'getBlogPendingByPage'])->name('blog-management');
    });
 });
-
 
 Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
    Route::middleware(['auth', 'user'])->group(function () {
@@ -44,12 +46,13 @@ Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
       Route::post('/create', [UserBlogController::class, 'createBlog'])->name('create');
       Route::get('/my-blogs', [UserBlogController::class, 'myBlogs'])->name('my-blogs');
    });
-   
+
    Route::middleware(['auth', 'admin'])->group(function () {
-      Route::get('/approve', function () {
-         return view('admin.approve_blog');
-      })->name('approve');
+      Route::get('/list-blogs', [AdminBlogController::class, 'getBlogPendingByPage'])->name('list-blogs');
+      Route::post('/aprrove/{id}', [AdminBlogController::class, 'approveBlog'])->name('aprrove');
    });
+
+   Route::get('/detail/{id}', [UserBlogController::class, 'getBlogDetail'])->name('detail');
 });
 
 Route::get('/', [UserHomeController::class, 'home'])->name('/');

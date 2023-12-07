@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Model;
 use App\Services\Mail\MailService;
 use App\Services\User\BlogService as BlogUserService;
+use App\Services\Admin\BlogService as BlogAdminService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -51,6 +52,13 @@ class AppServiceProvider extends ServiceProvider
             BlogUserService::class,
             function ($app) {
                 return new BlogUserService();
+            }
+        );
+
+        $this->app->bind(
+            BlogAdminService::class,
+            function ($app) {
+                return new BlogAdminService();
             }
         );
     }
