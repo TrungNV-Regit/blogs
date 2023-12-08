@@ -45,7 +45,7 @@ class AuthenticationService
 
             return back()->with('error', trans('message.account_not_found'))->onlyInput('usernameOrEmail');
         } catch (Exception $ex) {
-            return redirect()->route('exception')->with('error', $ex->getMessage());
+            throw new Exception($ex->getMessage());
         }
     }
 
@@ -55,7 +55,7 @@ class AuthenticationService
             Auth::logout();
             return redirect()->route('auth.sign-in');
         } catch (Exception $ex) {
-            return redirect()->route('exception')->with('error', $ex->getMessage());
+            throw new Exception($ex->getMessage());
         }
     }
 }
