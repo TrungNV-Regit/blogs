@@ -22,7 +22,7 @@ class BlogController extends Controller
 
     public function approve(int $id): RedirectResponse
     {
-        if ($this->blogService->approve($id)) {
+        if ( $this->blogService->approve($id) ) {
             return back()->with('notification', __('message.approve_success'));
         };
         return back()->with('notification', __('message.blog_not_found'));

@@ -10,12 +10,11 @@ use Illuminate\Http\RedirectResponse;
 
 class SignInController extends Controller
 {
-    private $authenticationService;
-
-    public function __construct(AuthenticationService $authenticationService)
-    {
-        $this->authenticationService = $authenticationService;
+    public function __construct(
+        private AuthenticationService $authenticationService
+    ) {
     }
+    
     public function signInForm(): View
     {
         return view('auth.sign_in');
