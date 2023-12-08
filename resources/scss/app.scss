@@ -108,13 +108,20 @@ body {
     background-color: $color-13;
     border-radius: 60px;
   }
-  
+
   .color-comment {
     color: $color-4;
   }
 
   .color-time {
     color: $color-25;
+  }
+
+  .btn-success {
+    background-color: $color-23;
+  }
+  .btn-danger {
+    background-color: $color-24;
   }
 
   .header {
@@ -794,12 +801,6 @@ body {
             border-radius: 3px;
             border: none;
             margin-left: 31px;
-          }
-          .btn-success {
-            background: $color-23;
-          }
-          .btn-danger {
-            background-color: $color-24;
           }
         }
       }

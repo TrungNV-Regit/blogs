@@ -43,6 +43,6 @@ class BlogService
         if ($blog) {
             return $blog;
         }
-        throw new Exception('Blog not found');
+        throw new Exception(__('message.blog_not_found'));
     }
 }

@@ -13,8 +13,7 @@ class ImageService
             $file = $data['image'];
             $fileName = time() . '.' . $file->extension();
             $imagePath = $file->storeAs('public/images', $fileName);
-            $linkImage = Storage::url($imagePath);
-            return $linkImage;;
+            return Storage::url($imagePath);
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }
