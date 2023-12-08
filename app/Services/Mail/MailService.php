@@ -43,7 +43,7 @@ class MailService
             ];
             return view('auth.verify_token', compact('data'));
         } catch (Exception $ex) {
-            return view('error.exception')->with('error', $ex->getMessage());
+            throw new Exception($ex->getMessage());
         }
     }
 
