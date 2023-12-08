@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'RT Blog Blog Management')
+@section('title', __('message.title_management_blog'))
 
 @section('content')
 
@@ -19,12 +19,14 @@
     </div>
     <div class="d-flex">
         <h4 class='text-danger'>{{ __('message.choose_blog_type') }}</h4>
-        <select  onchange="window.location.href = this.value;">
-            <option disabled > {{ __('message.choose_blog_type') }}</option>
-            <option value="{{ route('blog.index', ['status' => Blog::STATUS_ACTIVE]) }}" {{request('status')==Blog::STATUS_ACTIVE ? 'selected': ''}}>
+        <select onchange="window.location.href = this.value;">
+            <option disabled> {{ __('message.choose_blog_type') }}</option>
+            <option value="{{ route('blog.index', ['status' => Blog::STATUS_ACTIVE]) }}"
+                {{ request('status') == Blog::STATUS_ACTIVE ? 'selected' : '' }}>
                 {{ __('message.active') }}
             </option>
-            <option value="{{ route('blog.index', ['status' => Blog::STATUS_PENDING]) }}"  {{request('status')==Blog::STATUS_PENDING ? 'selected': ''}}>
+            <option value="{{ route('blog.index', ['status' => Blog::STATUS_PENDING]) }}"
+                {{ request('status') == Blog::STATUS_PENDING ? 'selected' : '' }}>
                 {{ __('message.pending') }}
             </option>
         </select>

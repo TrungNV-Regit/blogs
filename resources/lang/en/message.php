@@ -58,5 +58,9 @@ return [
     'choose_blog_type' => 'Choose blog type',
     'pending' => 'Pending',
     'active' => 'Active',
-    'blog_not_found' => 'Blog not found'
+    'blog_not_found' => 'Blog not found',
+    'title_blog_detail' => 'RT Blog Detail',
+    'title_home' => 'RT Blog Home',
+    'title_create_blog' => 'RT Blog Create Blog',
+    'title_management_blog' => 'RT Blog Management Blog',
 ];

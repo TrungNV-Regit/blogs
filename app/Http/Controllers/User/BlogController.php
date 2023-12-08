@@ -12,13 +12,10 @@ use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
-    private $categoryService;
-    private $blogService;
-
-    public function __construct(CategoryService $categoryService, BlogService $blogService)
-    {
-        $this->categoryService = $categoryService;
-        $this->blogService = $blogService;
+    public function __construct(
+        private CategoryService $categoryService,
+        private  BlogService $blogService
+    ) {
     }
 
     public function myBlogs(): View
@@ -34,13 +31,13 @@ class BlogController extends Controller
 
     public function store(CreateBlogRequest $request): RedirectResponse
     {
-        $this->blogService->create($request->only('title', 'content', 'category_id', 'image'), $request->hasFile('image') ? true : false);
+        $this->blogService->create($request);
         return back()->with('notification', trans('message.create_blog_success'));
     }
 
     public function show(int $id): View
     {
         $blog = $this->blogService->show($id);
-        return view('user.detail_blog')->with('blog', $blog)->with('user', Auth::user());
+        return view('user.detail_blog')->with(['blog' => $blog, 'user' => Auth::user()]);
     }
 }

@@ -191,4 +191,8 @@ return [
 
     'valid_token_duration' => env('VALID_TOKEN_DURATION'),
 
+    'storage_path' => env('STORAGE_PATH'),
+
+    'per_page' => env('PER_PAGE'),
+
 ];

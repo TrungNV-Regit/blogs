@@ -7,12 +7,11 @@ use Exception;
 
 class ImageService
 {
-    public function uploadImage(array $data): string
+    public function uploadImage(object $image): string
     {
         try {
-            $file = $data['image'];
-            $fileName = time() . '.' . $file->extension();
-            $imagePath = $file->storeAs('public/images', $fileName);
+            $fileName = time() . '.' . $image->extension();
+            $imagePath = $image->storeAs(config('app.storage_path'), $fileName);
             return Storage::url($imagePath);
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'TR Blog Detail')
+@section('title', __('message.title_blog_detail'))
 
 @section('content')
 
@@ -8,7 +8,7 @@
 
 @section('class', 'header-static')
 
-@php
+@php    
     use App\Models\User;
     use App\Models\Blog;
 @endphp
@@ -32,11 +32,11 @@
                     @if ($user->role === User::ROLE_ADMIN)
                         @if ($blog->status == Blog::STATUS_PENDING)
                             <form action="{{ route('blog.aprrove', ['id' => $blog->id]) }}" method="post"
-                                class="d-none" id="approvedForm">
+                                class="d-none" id="approved">
                                 @csrf
                                 @method('POST')
                             </form>
-                            <button class="btn-success" onclick="document.getElementById('approvedForm').submit();">
+                            <button class="btn-success" onclick="document.getElementById('approved').submit();">
                                 {{ __('message.approved') }}
                             </button>
                         @endif

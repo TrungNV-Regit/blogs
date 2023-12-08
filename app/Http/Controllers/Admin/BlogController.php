@@ -9,11 +9,9 @@ use Illuminate\View\View;
 
 class BlogController extends Controller
 {
-    private $blogService;
-
-    public function __construct(BlogService $blogService)
-    {
-        $this->blogService = $blogService;
+    public function __construct(
+        private BlogService $blogService
+    ) {
     }
 
     public function index(int $status): View
@@ -24,7 +22,7 @@ class BlogController extends Controller
 
     public function approve(int $id): RedirectResponse
     {
-        if($this->blogService->approve($id)){
+        if ($this->blogService->approve($id)) {
             return back()->with('notification', __('message.approve_success'));
         };
         return back()->with('notification', __('message.blog_not_found'));

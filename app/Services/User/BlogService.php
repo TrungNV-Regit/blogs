@@ -5,6 +5,7 @@ namespace App\Services\User;
 use App\Models\Blog;
 use App\Services\Common\ImageService;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class BlogService
@@ -14,10 +15,12 @@ class BlogService
     ) {
     }
 
-    public function create(array $blog, bool $hasFile): Blog
+    public function create(Request $request): Blog
     {
         try {
             $user = Auth::user();
+
+            $blog = $request->only('title', 'content', 'category_id', 'image');
 
             $blog = [
                 ...$blog,
@@ -26,23 +29,22 @@ class BlogService
                 'link_image' => null,
             ];
 
-            if ($hasFile) {
-                $blog['link_image']  = $this->imageService->uploadImage($blog);
+            if ($request->hasFile('image')) {
+                $blog['link_image']  = $this->imageService->uploadImage($blog['image']);
             }
 
-            $blog = Blog::create($blog);
-            return $blog;
+            return Blog::create($blog);
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }
     }
 
-    public function show(int $id): Blog
+    public function show(int $id): Blog | string
     {
         $blog = Blog::with(['author', 'comments'])->findOrFail($id);
         if ($blog) {
             return $blog;
         }
-        throw new Exception(__('message.blog_not_found'));
+        return __('message.blog_not_found');
     }
 }
