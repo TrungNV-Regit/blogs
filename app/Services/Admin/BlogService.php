@@ -12,16 +12,6 @@ class BlogService
         return Blog::where('status', $status)->with('author')->orderByDesc('id')->paginate(config('app.per_page'));
     }
 
-    public function approve(int $id): bool
-    {
-        return Blog::findOrFail($id)->update(['status' => Blog::STATUS_ACTIVE]);
-    }
-
-    public function unapproved(int $id): bool
-    {
-        return Blog::findOrFail($id)->update(['status' => Blog::STATUS_PENDING]);
-    }
-
     public function changeStatus(int $id, int $status): bool
     {
         return Blog::findOrFail($id)->update(['status' => $status]);
