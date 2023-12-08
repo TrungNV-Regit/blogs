@@ -18,7 +18,7 @@ class BlogController extends Controller
     public function index(int $status): View
     {
         $data = $this->blogService->index($status);
-        $statuses = config('app.statuses');
+        $statuses = config('blog.statuses');
         return view('admin.blogs', compact('data', 'statuses'));
     }
 

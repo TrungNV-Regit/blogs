@@ -25,7 +25,7 @@ class MailService
                 $tokenCreatedAt = Carbon::parse($user->token_created_at);
                 $now = now();
 
-                if ($tokenCreatedAt->diffInMinutes($now) < config('app.valid_token_duration')) {
+                if ($tokenCreatedAt->diffInMinutes($now) < config('blog.valid_token_duration')) {
                     $user->update(['email_verified_at' => now()]);
                     $data = [
                         'success' => trans('message.email_verification_success'),

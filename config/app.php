@@ -185,19 +185,4 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
-    'constants' => [
-        'AVATAR_DEFAULT' => 'https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg'
-    ],
-
-    'valid_token_duration' => env('VALID_TOKEN_DURATION'),
-
-    'storage_path' => env('STORAGE_PATH'),
-
-    'per_page' => env('PER_PAGE'),
-
-    'statuses' => [
-        1 => 'ACTIVE',
-        2 => 'PENDING',
-    ]
-
 ];

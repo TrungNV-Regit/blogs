@@ -11,7 +11,7 @@ class ImageService
     {
         try {
             $fileName = time() . '.' . $image->extension();
-            $imagePath = $image->storeAs(config('app.storage_path'), $fileName);
+            $imagePath = $image->storeAs(config('blog.storage_path'), $fileName);
             return Storage::url($imagePath);
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
