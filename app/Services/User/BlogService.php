@@ -2,18 +2,25 @@
 
 namespace App\Services\User;
 
+use App\Http\Requests\CreateBlogRequest;
 use App\Models\Blog;
+use App\Services\Common\ImageService;
 use Exception;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class BlogService
 {
+    public function __construct(
+        private ImageService $imageService,
+    ) {
+    }
 
-    public function createBlog(array $blog, bool $hasFile): void
+    public function create(CreateBlogRequest $request): Blog
     {
         try {
             $user = Auth::user();
+
+            $blog = $request->only('title', 'content', 'category_id', 'image');
 
             $blog = [
                 ...$blog,
@@ -22,16 +29,20 @@ class BlogService
                 'link_image' => null,
             ];
 
-            if ($hasFile) {
-                $file = $blog['image'];
-                $fileName = time() . '.' . $file->extension();
-                $imagePath = $file->storeAs('public/images', $fileName);
-                $linkImage = Storage::url($imagePath);
-                $blog['link_image']  = $linkImage;
+            if ($request->hasFile('image')) {
+                $blog['link_image']  = $this->imageService->uploadImage($blog['image']);
             }
 
-            Blog::create($blog);
-            
+            return Blog::create($blog);
+        } catch (Exception $ex) {
+            throw new Exception($ex->getMessage());
+        }
+    }
+
+    public function show(int $id): Blog
+    {
+        try {
+            return Blog::with(['author', 'comments'])->findOrFail($id);
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }

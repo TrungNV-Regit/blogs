@@ -10,14 +10,12 @@ use Illuminate\View\View;
 
 class SignUpController extends Controller
 {
-    private $userService;
-
-    public function __construct(UserService $userService)
-    {
-        $this->userService = $userService;
+    public function __construct(
+        private UserService $userService
+    ) {
     }
 
-    public function signUpForm(): View
+    public function create(): View
     {
         return view('auth.sign_up');
     }

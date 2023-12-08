@@ -23,7 +23,7 @@ class UserService
                     'token_verify_email' => $token,
                     'role' => User::ROLE_USER,
                     'status' => User::STATUS_ACTIVE,
-                    'link_avatar' => config('app.constants.AVATAR_DEFAULT'),
+                    'link_avatar' => config('blog.constants.AVATAR_DEFAULT'),
                     'token_created_at' => now(),
                 ]
             );

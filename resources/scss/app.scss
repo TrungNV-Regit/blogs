@@ -104,6 +104,26 @@ body {
     }
   }
 
+  .arrow {
+    background-color: $color-13;
+    border-radius: 60px;
+  }
+
+  .color-comment {
+    color: $color-4;
+  }
+
+  .color-time {
+    color: $color-25;
+  }
+
+  .btn-success {
+    background-color: $color-23;
+  }
+  .btn-danger {
+    background-color: $color-24;
+  }
+
   .header {
     position: relative;
     .image-banner {
@@ -214,7 +234,7 @@ body {
       }
     }
 
-    .header-create-blog {
+    .header-static {
       position: static;
     }
   }
@@ -310,8 +330,12 @@ body {
       border: 1px solid rgba(0, 0, 0, 0.125);
       border-radius: 0.25rem;
       padding: 0;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
+      border-top-left-radius: -10px;
+      border-top-right-radius: -10px;
+      min-width: 417px;
+      img {
+        @include size($full, 276px);
+      }
 
       .card-body {
         .name-and-time {
@@ -351,6 +375,12 @@ body {
           line-height: 25px;
         }
 
+        .single-line {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
         .read-more {
           @include size(140px, 40px);
           @include center-flex;
@@ -382,46 +412,27 @@ body {
   .pagination {
     @include center-flex;
     width: $full;
-    margin-bottom: 106px;
+    margin-bottom: 96px;
     @include breakpoint(0, 768px) {
       margin-bottom: 53px;
     }
 
-    button {
-      border: none;
-    }
+    .page-item {
+      padding: 1px;
 
-    .page-numbers {
-      @include center-flex;
-      .btn-page {
-        @include size(36px, 36px);
+      .page-link {
         @include font-style($font-family-2, 20px, 700);
-        border-radius: 50%;
-        background-color: $color-3;
-        border: 0px;
-        cursor: pointer;
-
+        border: none;
+        border-radius: 60%;
+        color: $color-7;
         &:hover {
-          background-color: $color-12;
+          background-color: $color-14;
         }
       }
-    }
 
-    .btn-nav {
-      @include size(36px, 36px);
-      @include center-flex;
-      border-radius: 50%;
-      background-color: $color-6;
-      cursor: pointer;
-
-      &:hover {
-        background-color: $color-6;
+      .page-current{
+        background-color: $color-14;
       }
-    }
-
-    .right-btn {
-      background-color: $color-13;
-      color: $color-3;
     }
   }
 
@@ -737,6 +748,180 @@ body {
           }
         }
       }
+    }
+  }
+
+  .page-approve-blog {
+    @include breakpoint(0px, 768px) {
+      margin: 39px 2% 40px 2%;
+    }
+    @include breakpoint(769px, 1600px) {
+      margin: 39px 5% 40px 5%;
+    }
+
+    .content {
+      h3 {
+        margin-top: 40px;
+      }
+
+      .author-action {
+        display: flex;
+        justify-content: space-between;
+        margin: 40px 0;
+
+        .author {
+          @include center-flex;
+          .author-image {
+            @include size(36px, 36px);
+            border-radius: 36px;
+            margin-right: 8px;
+          }
+
+          .detail {
+            display: flex;
+            flex-direction: column;
+
+            .author-name {
+              @include font-style($font-family-1, 12px, 500);
+              color: $color-5;
+            }
+
+            .create-at {
+              @include font-style($font-family-1, 11px, 400);
+              color: $color-26;
+            }
+          }
+        }
+
+        .action {
+          button {
+            @include size(110px, 31px);
+            @include font-style($font-family-1, 15px, 500);
+            color: $color-3;
+            border-radius: 3px;
+            border: none;
+            margin-left: 31px;
+          }
+        }
+      }
+
+      .blog-image {
+        width: 100%;
+        @include breakpoint(0, 768px) {
+          height: 450px;
+          margin-bottom: 30px;
+        }
+
+        @include breakpoint(769px, 1600px) {
+          height: 555px;
+          margin-bottom: 40px;
+        }
+      }
+
+      .blog-content {
+        @include font-style($font-family-1, 14px, 400);
+        color: $color-25;
+      }
+
+      .blog-comment {
+        .title-comment {
+          @include center-flex;
+          h6 {
+            @include font-style($font-family-1, 24px, 700);
+            color: $color-4;
+          }
+        }
+
+        hr {
+          @include size(63px, 3px);
+        }
+
+        .comment {
+          margin-top: 25px;
+
+          .comment-image-author {
+            @include size(48px, 48px);
+            border-radius: 50%;
+            margin-right: 17px;
+          }
+
+          .my-comment {
+            display: flex;
+            margin-bottom: 49px;
+            form {
+              @include size($full, 55px);
+              input {
+                @include size($full, 55px);
+                outline: none;
+                border-radius: 4px;
+                border: 1px solid $color-27;
+                background: $color-3;
+              }
+            }
+          }
+
+          .list-comment {
+            .single-comment {
+              .author {
+                display: flex;
+                align-items: center;
+                span {
+                  @include font-style($font-family-1, 24px, 700);
+                  color: $color-4;
+                }
+              }
+
+              .comment-detail {
+                margin-left: 67px;
+                @include font-style($font-family-1, 14px, 400);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .modal {
+    top: 185px;
+
+    .modal-dialog {
+      .modal-content {
+        .modal-header {
+          h5 {
+            color: $color-4;
+            @include font-style($font-family-1, 20px, 700);
+          }
+        }
+
+        .confirm-delete {
+          @include font-style($font-family-1, 15px, 400);
+          @include center-flex;
+          color: $color-4;
+          height: 112px;
+        }
+
+        .modal-footer {
+          display: flex;
+          justify-content: space-between;
+          button {
+            margin: 0 54px;
+          }
+        }
+      }
+    }
+  }
+
+  .blogs {
+    @include breakpoint(0px, 768px) {
+      margin: 39px 68px 40px 68px;
+    }
+    @include breakpoint(769px, 1600px) {
+      margin: 39px 5% 40px 5%;
+    }
+
+    .content {
+      margin-top: 40px;
     }
   }
 }

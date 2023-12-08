@@ -16,7 +16,8 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->role == User::ROLE_USER) {
+        $user = auth()->user();
+        if ($user->role == User::ROLE_USER && $user->status == User::STATUS_ACTIVE) {
             return $next($request);
         }
         return abort(403, trans('message.auth'));

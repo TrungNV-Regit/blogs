@@ -11,11 +11,9 @@ use Illuminate\View\View;
 
 class VerificationController extends Controller
 {
-    private $mailService;
-
-    public function __construct(MailService $mailService)
-    {
-        $this->mailService = $mailService;
+    public function __construct(
+        private MailService $mailService
+    ) {
     }
 
     public function verifyEmail(Request $request): View

@@ -6,7 +6,7 @@
 
 @extends('layouts.header')
 
-@section('class', 'header-create-blog')
+@section('class', 'header-static')
 
 @section('backgroundCreateBlog', 'background')
 

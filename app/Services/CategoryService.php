@@ -3,17 +3,16 @@
 namespace App\Services;
 
 use App\Models\Category;
-use Illuminate\View\View;
+use Exception;
 
 class CategoryService
 {
-
-    public function getAllCategory(): array
+    public function index(): array
     {
         try {
             return Category::all()->toArray();
-        } catch (\Exception $ex) {
-            throw new \Exception($ex->getMessage());
+        } catch (Exception $ex) {
+            throw new Exception($ex->getMessage());
         }
     }
 }
