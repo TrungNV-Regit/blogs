@@ -2,10 +2,10 @@
 
 namespace App\Services\User;
 
+use App\Http\Requests\CreateBlogRequest;
 use App\Models\Blog;
 use App\Services\Common\ImageService;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class BlogService
@@ -15,7 +15,7 @@ class BlogService
     ) {
     }
 
-    public function create(Request $request): Blog
+    public function create(CreateBlogRequest $request): Blog
     {
         try {
             $user = Auth::user();

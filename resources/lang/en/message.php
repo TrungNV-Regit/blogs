@@ -46,6 +46,7 @@ return [
     'blog_management' => 'Blogs Management',
     'user_management' => 'Users Management',
     'approved' => 'Approved',
+    'unapproved' => 'Unapproved',
     'delete' => 'Delete',
     'delete_blog' => 'Delete Blog',
     'detail' => 'Detail Blog',
@@ -62,6 +63,5 @@ return [
     'title_home' => 'RT Blog Home',
     'title_create_blog' => 'RT Blog Create Blog',
     'title_management_blog' => 'RT Blog Management Blog',
-    'unapproved' => 'Unapproved',
     'change_status_success' => 'The blog status has been successfully updated.'
 ];

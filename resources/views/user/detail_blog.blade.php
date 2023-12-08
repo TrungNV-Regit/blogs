@@ -30,25 +30,14 @@
             <div class="action">
                 @if ($user)
                     @if ($user->role === User::ROLE_ADMIN)
-                        @if ($blog->status == Blog::STATUS_PENDING)
-                            <form action="{{ route('blog.change-status', ['id' => $blog->id]) }}" method="post"
-                                class="d-none" id="approved">
-                                @csrf
-                                @method('POST')
-                            </form>
-                            <button class="btn-success" onclick="document.getElementById('approved').submit();">
-                                {{ __('message.approved') }}
-                            </button>
-                        @else
-                            <form action="{{ route('blog.change-status', ['id' => $blog->id]) }}" method="post"
-                                class="d-none" id="unapproved">
-                                @csrf
-                                @method('POST')
-                            </form>
-                            <button class="btn-success" onclick="document.getElementById('unapproved').submit();">
-                                {{ __('message.unapproved') }}
-                            </button>
-                        @endif
+                        <form action="{{ route('blog.change-status', ['id' => $blog->id]) }}" method="post"
+                            class="d-none" id="changeStatus">
+                            @csrf
+                            @method('POST')
+                        </form>
+                        <button class="btn-success" onclick="document.getElementById('changeStatus').submit();">
+                            {{ $blog->status == Blog::STATUS_PENDING ? __('message.approved') : __('message.unapproved') }}
+                        </button>
                         <button class="btn-danger" data-bs-toggle="modal"
                             data-bs-target="#deleteModal">{{ __('message.delete_blog') }}</button>
                     @endif
