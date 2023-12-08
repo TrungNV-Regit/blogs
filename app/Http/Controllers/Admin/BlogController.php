@@ -19,12 +19,10 @@ class BlogController extends Controller
         $data = $this->blogService->index($status);
         return view('admin.blogs', compact('data'));
     }
-    
-    public function changeStatus(int $id, int $status): RedirectResponse
+
+    public function changeStatus(int $id): RedirectResponse
     {
-        if ( $this->blogService->changeStatus($id, $status) ) {
-            return back()->with('notification', __('message.change_status_success'));
-        };
-        return back()->with('notification', __('message.blog_not_found'));
+        $this->blogService->changeStatus($id);
+        return back()->with('notification', __('message.change_status_success'));
     }
 }

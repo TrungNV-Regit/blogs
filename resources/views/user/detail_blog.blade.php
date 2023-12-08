@@ -31,9 +31,8 @@
                 @if ($user)
                     @if ($user->role === User::ROLE_ADMIN)
                         @if ($blog->status == Blog::STATUS_PENDING)
-                            <form
-                                action="{{ route('blog.change-status', ['id' => $blog->id, 'status' => Blog::STATUS_ACTIVE]) }}"
-                                method="post" class="d-none" id="approved">
+                            <form action="{{ route('blog.change-status', ['id' => $blog->id]) }}" method="post"
+                                class="d-none" id="approved">
                                 @csrf
                                 @method('POST')
                             </form>
@@ -41,9 +40,8 @@
                                 {{ __('message.approved') }}
                             </button>
                         @else
-                            <form
-                                action="{{ route('blog.change-status', ['id' => $blog->id, 'status' => Blog::STATUS_PENDING]) }}"
-                                method="post" class="d-none" id="unapproved">
+                            <form action="{{ route('blog.change-status', ['id' => $blog->id]) }}" method="post"
+                                class="d-none" id="unapproved">
                                 @csrf
                                 @method('POST')
                             </form>
