@@ -56,6 +56,7 @@ return [
     'list_blog' => 'List Blog',
     'approve_success' => 'Blog approval successful.',
     'choose_blog_type' => 'Choose blog type',
-    'pending'=>'Pending',
+    'pending' => 'Pending',
     'active' => 'Active',
+    'blog_not_found' => 'Blog not found'
 ];

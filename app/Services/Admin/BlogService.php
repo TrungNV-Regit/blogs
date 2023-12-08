@@ -17,14 +17,15 @@ class BlogService
         }
     }
 
-    public function approve(int $id): Blog
+    public function approve(int $id): bool
     {
         try {
             $blog = Blog::findOrFail($id);
             if ($blog) {
                 $blog->update(['status' => Blog::STATUS_ACTIVE]);
+                return true;
             }
-            return $blog;
+            return false;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

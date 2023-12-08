@@ -39,7 +39,10 @@ class BlogService
 
     public function show(int $id): Blog
     {
-        return Blog::with(['author', 'comments'])
-        ->find($id);
+        $blog = Blog::with(['author', 'comments'])->findOrFail($id);
+        if ($blog) {
+            return $blog;
+        }
+        throw new Exception('Blog not found');
     }
 }
