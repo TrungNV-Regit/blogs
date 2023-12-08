@@ -39,12 +39,8 @@ class BlogService
         }
     }
 
-    public function show(int $id): Blog | string
+    public function show(int $id): Blog
     {
-        $blog = Blog::with(['author', 'comments'])->findOrFail($id);
-        if ($blog) {
-            return $blog;
-        }
-        return __('message.blog_not_found');
+        return Blog::with(['author', 'comments'])->findOrFail($id);
     }
 }

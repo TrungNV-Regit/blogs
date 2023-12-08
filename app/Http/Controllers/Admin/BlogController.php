@@ -27,4 +27,12 @@ class BlogController extends Controller
         };
         return back()->with('notification', __('message.blog_not_found'));
     }
+    public function unapproved(int $id): RedirectResponse
+    {
+        if ( $this->blogService->unapproved($id) ) {
+            return back()->with('notification', __('message.unapproved_success'));
+        };
+        return back()->with('notification', __('message.blog_not_found'));
+    }
+
 }

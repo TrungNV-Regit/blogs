@@ -8,7 +8,7 @@
 
 @section('class', 'header-static')
 
-@php    
+@php
     use App\Models\User;
     use App\Models\Blog;
 @endphp
@@ -38,6 +38,15 @@
                             </form>
                             <button class="btn-success" onclick="document.getElementById('approved').submit();">
                                 {{ __('message.approved') }}
+                            </button>
+                        @else
+                            <form action="{{ route('blog.unapproved', ['id' => $blog->id]) }}" method="post"
+                                class="d-none" id="unapproved">
+                                @csrf
+                                @method('POST')
+                            </form>
+                            <button class="btn-success" onclick="document.getElementById('unapproved').submit();">
+                                {{ __('message.unapproved') }}
                             </button>
                         @endif
                         <button class="btn-danger" data-bs-toggle="modal"

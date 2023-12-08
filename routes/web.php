@@ -48,6 +48,7 @@ Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
    Route::middleware(['auth', 'admin'])->group(function () {
       Route::get('/index/{status}', [AdminBlogController::class, 'index'])->name('index');
       Route::post('/aprrove/{id}', [AdminBlogController::class, 'approve'])->name('aprrove');
+      Route::post('/unapproved/{id}', [AdminBlogController::class, 'unapproved'])->name('unapproved');
    });
 
    Route::get('/show/{id}', [UserBlogController::class, 'show'])->name('show');

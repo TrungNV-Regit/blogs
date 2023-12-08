@@ -54,7 +54,7 @@ return [
     'cancel' => 'Cancel',
     'read_more' => 'Read more',
     'list_blog' => 'List Blog',
-    'approve_success' => 'Blog approval successful.',
+    'approve_success' => 'The blog has been successfully approved.',
     'choose_blog_type' => 'Choose blog type',
     'pending' => 'Pending',
     'active' => 'Active',
@@ -63,4 +63,6 @@ return [
     'title_home' => 'RT Blog Home',
     'title_create_blog' => 'RT Blog Create Blog',
     'title_management_blog' => 'RT Blog Management Blog',
+    'unapproved' => 'Unapproved',
+    'unapproved_success' => 'The blog post was not approved successfully.'
 ];

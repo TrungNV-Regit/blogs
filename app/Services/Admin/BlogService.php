@@ -14,11 +14,11 @@ class BlogService
 
     public function approve(int $id): bool
     {
-        $blog = Blog::findOrFail($id);
-        if ($blog) {
-            $blog->update(['status' => Blog::STATUS_ACTIVE]);
-            return true;
-        }
-        return false;
+        return Blog::findOrFail($id)->update(['status' => Blog::STATUS_ACTIVE]);
+    }
+
+    public function unapproved(int $id): bool
+    {
+        return Blog::findOrFail($id)->update(['status' => Blog::STATUS_PENDING]);
     }
 }
