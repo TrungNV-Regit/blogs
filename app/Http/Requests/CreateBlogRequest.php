@@ -22,15 +22,10 @@ class CreateBlogRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category_id' => [
-                'required',
-            ],
-            'title' => [
-                'required',
-            ],
-            'content' => [
-                'required',
-            ]
+            'category_id' => 'required',
+            'title' => 'required',
+            'content' => 'required',
+            'image' => 'file|max:2048',
         ];
     }
 }
