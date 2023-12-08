@@ -21,4 +21,9 @@ class BlogService
     {
         return Blog::findOrFail($id)->update(['status' => Blog::STATUS_PENDING]);
     }
+
+    public function changeStatus(int $id, int $status): bool
+    {
+        return Blog::findOrFail($id)->update(['status' => $status]);
+    }
 }

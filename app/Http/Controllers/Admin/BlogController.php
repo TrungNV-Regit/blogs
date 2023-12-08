@@ -19,20 +19,12 @@ class BlogController extends Controller
         $data = $this->blogService->index($status);
         return view('admin.blogs', compact('data'));
     }
-
-    public function approve(int $id): RedirectResponse
+    
+    public function changeStatus(int $id, int $status): RedirectResponse
     {
-        if ( $this->blogService->approve($id) ) {
-            return back()->with('notification', __('message.approve_success'));
+        if ( $this->blogService->changeStatus($id, $status) ) {
+            return back()->with('notification', __('message.change_status_success'));
         };
         return back()->with('notification', __('message.blog_not_found'));
     }
-    public function unapproved(int $id): RedirectResponse
-    {
-        if ( $this->blogService->unapproved($id) ) {
-            return back()->with('notification', __('message.unapproved_success'));
-        };
-        return back()->with('notification', __('message.blog_not_found'));
-    }
-
 }
