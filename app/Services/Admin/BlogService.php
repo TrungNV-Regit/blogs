@@ -12,15 +12,9 @@ class BlogService
         return Blog::where('status', $status)->with('author')->orderByDesc('id')->paginate(config('app.per_page'));
     }
 
-    public function changeStatus(int $id): Blog
+    public function changeStatus(int $id): bool
     {
         $blog = Blog::findOrFail($id);
-        $isActive = $blog->status == Blog::STATUS_ACTIVE ? true : false;
-        if ( $isActive ) {
-            $blog->update(['status' => Blog::STATUS_PENDING]);
-        } else {
-            $blog->update(['status' => Blog::STATUS_ACTIVE]);
-        }
-        return $blog;
+        return $blog->update(['status' => $blog->status == Blog::STATUS_ACTIVE ? Blog::STATUS_PENDING : Blog::STATUS_ACTIVE]);
     }
 }
