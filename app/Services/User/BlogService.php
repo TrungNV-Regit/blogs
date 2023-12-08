@@ -41,6 +41,10 @@ class BlogService
 
     public function show(int $id): Blog
     {
-        return Blog::with(['author', 'comments'])->findOrFail($id);
+        try {
+            return Blog::with(['author', 'comments'])->findOrFail($id);
+        } catch (Exception $ex) {
+            throw new Exception($ex->getMessage());
+        }
     }
 }

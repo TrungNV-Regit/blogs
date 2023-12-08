@@ -4,6 +4,7 @@ namespace App\Services\Admin;
 
 use App\Models\Blog;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Exception;
 
 class BlogService
 {
@@ -14,7 +15,11 @@ class BlogService
 
     public function changeStatus(int $id): bool
     {
-        $blog = Blog::findOrFail($id);
-        return $blog->update(['status' => $blog->status == Blog::STATUS_ACTIVE ? Blog::STATUS_PENDING : Blog::STATUS_ACTIVE]);
+        try {
+            $blog = Blog::findOrFail($id);
+            return $blog->update(['status' => $blog->status == Blog::STATUS_ACTIVE ? Blog::STATUS_PENDING : Blog::STATUS_ACTIVE]);
+        } catch (Exception $ex) {
+            throw new Exception($ex->getMessage());
+        }
     }
 }
