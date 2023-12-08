@@ -195,4 +195,9 @@ return [
 
     'per_page' => env('PER_PAGE'),
 
+    'statuses' => [
+        1 => 'ACTIVE',
+        2 => 'PENDING',
+    ]
+
 ];

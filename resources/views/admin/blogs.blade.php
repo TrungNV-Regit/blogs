@@ -12,8 +12,7 @@
     <div class='breadcrumb'>
         <a href="{{ route('/') }}">{{ __('message.home') }} > <span>{{ __('message.list_blog') }}</span> </a>
     </div>
-    <div class="d-flex">
-        <h4 class='text-danger'>{{ __('message.choose_blog_type') }}</h4>
+    <div>
         <select onchange="window.location.href = this.value;">
             @foreach ($statuses as $key => $status)
                 <option value="{{ route('blog.index', ['status' => $key]) }}"
@@ -25,6 +24,7 @@
     </div>
 
     @include('layouts.list_blog', ['blogs' => $data])
+
 </div>
 
 {{ $data->links('layouts.pagination') }}

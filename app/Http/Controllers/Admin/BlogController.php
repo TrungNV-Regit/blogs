@@ -18,10 +18,7 @@ class BlogController extends Controller
     public function index(int $status): View
     {
         $data = $this->blogService->index($status);
-        $statuses = [
-            Blog::STATUS_ACTIVE => __('message.active'),
-            Blog::STATUS_PENDING => __('message.pending'),
-        ];
+        $statuses = config('app.statuses');
         return view('admin.blogs', compact('data', 'statuses'));
     }
 
