@@ -2,13 +2,14 @@
 
 namespace App\Providers;
 
-use App\Services\CategoryService;
+use App\Services\Common\CategoryService;
 use App\Services\User\UserService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Model;
 use App\Services\Mail\MailService;
 use App\Services\User\BlogService as BlogUserService;
 use App\Services\Admin\BlogService as BlogAdminService;
+use App\Services\Common\BlogService as BlogCommonService;
 use App\Services\Common\ImageService;
 
 class AppServiceProvider extends ServiceProvider
@@ -60,6 +61,13 @@ class AppServiceProvider extends ServiceProvider
             BlogAdminService::class,
             function ($app) {
                 return new BlogAdminService();
+            }
+        );
+
+        $this->app->bind(
+            BlogCommonService::class,
+            function ($app) {
+                return new BlogCommonService(new ImageService());
             }
         );
     }

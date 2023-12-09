@@ -7,12 +7,6 @@
 <div class='sign-up'>
     <div>
 
-        @if (session('notification'))
-            @section('notification')
-                {{ session('notification') }}
-            @endsection
-        @endif
-
         @include('layouts.logo')
 
         <div class="content">
@@ -43,7 +37,7 @@
                 @endif
 
                 <label for="passwordConfirmation">{{ trans('message.password_confirmation') }}<span>*</span></label>
-                <input type="password" name="passwordConfirmation" id='passwordConfirmation'>
+                <input type="password" name="password_confirmation" id='passwordConfirmation'>
 
                 @if($errors->has('password'))
                 <p>{{ $errors->first('password') }}</p>

@@ -1,3 +1,3 @@
 <footer class="footer">
-    <div>{{__('message.copyright')}}</div>
+    <div>{{ __('message.copyright') }}</div>
 </footer>
