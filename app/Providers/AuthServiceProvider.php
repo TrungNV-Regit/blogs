@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
+use App\Models\Blog;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -21,6 +23,12 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('update-blog', function (User $user, Blog $blog) {
+            return ( $user->status == User::STATUS_ACTIVE && $user->id === $blog->user_id ) || $user->role == User::ROLE_ADMIN;
+        });
+
+        Gate::define('delete-blog', function (User $user, Blog $blog) {
+            return ( $user->status == User::STATUS_ACTIVE && $user->id === $blog->user_id ) || $user->role == User::ROLE_ADMIN;
+        });
     }
 }

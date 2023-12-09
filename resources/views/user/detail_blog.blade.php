@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('message.title_blog_detail'))
+@section('title', __('message.detail'))
 
 @section('content')
 
@@ -29,26 +29,31 @@
             </div>
             <div class="action">
                 @if ($user)
-                    @if ($user->role === User::ROLE_ADMIN)
+                    @if ( $user->role === User::ROLE_ADMIN )
                         <form action="{{ route('blog.change-status', ['id' => $blog->id]) }}" method="post"
                             class="d-none" id="changeStatus">
                             @csrf
                             @method('POST')
                         </form>
-                        <button class="btn-success" onclick="document.getElementById('changeStatus').submit();">
-                            {{ $blog->status == Blog::STATUS_PENDING ? __('message.approved') : __('message.unapproved') }}
+                        <button
+                            class="btn  {{ $blog->status == Blog::STATUS_PENDING ? 'btn-approved' : 'btn-not-approved' }}"
+                            onclick="document.getElementById('changeStatus').submit();">
+                            {{ $blog->status == Blog::STATUS_PENDING ? __('message.approved') : __('message.not_approved') }}
                         </button>
-                        <button class="btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#deleteModal">{{ __('message.delete_blog') }}</button>
                     @endif
-                    @if ($user->id === $blog->author->id)
-                        <button class="btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#deleteModal">{{ __('message.delete_blog') }}</button>
+                    @if ( $user->role === User::ROLE_ADMIN || $user->id === $blog->author->id )
+                        <button class="btn-warning"
+                            onclick="window.location.href='{{ route('blog.edit', ['id' => $blog->id]) }}'">
+                            {{ __('message.update_blog') }}
+                        </button>
+                        <button class="btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            {{ __('message.delete_blog') }}
+                        </button>
                     @endif
                 @endif
             </div>
         </div>
-        @if ($blog->link_image)
+        @if ( $blog->link_image )
             <img class="blog-image" src="{{ $blog->link_image }}" alt="Image blog">
         @endif
         <div class="blog-content">
