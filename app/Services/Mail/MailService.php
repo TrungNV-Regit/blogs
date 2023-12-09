@@ -67,6 +67,11 @@ class MailService
         try {
             $user = User::where('email', $data['email'])->first();
             if ($user) {
+                
+                if ( $user->email_verified_at == null ) {
+                    return back()->with("notification", trans("message.notVerified"));
+                }
+
                 $to = $user->email;
                 $newPassword = Str::password(16, true, true, false, false);
                 User::where('email', $to)->update(
