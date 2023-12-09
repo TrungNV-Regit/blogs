@@ -46,8 +46,8 @@
                 <label for="uploadImage">{{ __('message.upload_image') }}</label>
                 <input name='image' id="uploadImage" class="upload-image" type="file"
                     accept="image/png, image/jpeg" />
-                <img id='imageBlog' alt="Image upload">
-
+                <img id='imageBlog' class="d-none">
+                
                 <p>{{ __('message.description') }} <span>*</span></p>
                 <textarea name='content'></textarea>
 
