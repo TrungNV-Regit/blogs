@@ -68,7 +68,7 @@ class MailService
             $user = User::where('email', $data['email'])->first();
             if ($user) {
                 
-                if ( $user->email_verified_at == null ) {
+                if ($user->email_verified_at == null ) {
                     return back()->with("notification", trans("message.notVerified"));
                 }
 

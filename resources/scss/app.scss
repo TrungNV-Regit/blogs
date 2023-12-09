@@ -124,6 +124,14 @@ body {
     background-color: $color-24;
   }
 
+  .btn-not-approved{
+    background-color: $color-28;
+  }
+
+  .btn-approved{
+    background-color: $color-23;
+  }
+
   .header {
     position: relative;
     .image-banner {
@@ -418,19 +426,20 @@ body {
     }
 
     .page-item {
-      padding: 1px;
-
+      @include size(40px, 40px);
       .page-link {
         @include font-style($font-family-2, 20px, 700);
+        @include size($full, $full);
+        @include center-flex;
         border: none;
-        border-radius: 60%;
+        border-radius: 50%;
         color: $color-7;
         &:hover {
           background-color: $color-14;
         }
       }
 
-      .page-current{
+      .page-current {
         background-color: $color-14;
       }
     }
@@ -722,7 +731,6 @@ body {
           img {
             height: 170px;
             margin-bottom: 11px;
-            display: none;
             @include breakpoint(0px, 768px) {
               width: 207px;
             }
@@ -795,7 +803,7 @@ body {
 
         .action {
           button {
-            @include size(110px, 31px);
+            @include size(125px, 31px);
             @include font-style($font-family-1, 15px, 500);
             color: $color-3;
             border-radius: 3px;
