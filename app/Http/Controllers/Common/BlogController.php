@@ -22,8 +22,8 @@ class BlogController extends Controller
     public function edit(int $id): View
     {
         $blog = $this->blogService->show($id);
-        $categories = $this->categoryService->index();
         Gate::authorize('update', $blog);
+        $categories = $this->categoryService->index();
         return view('blogs.update')->with(['blog' => $blog, 'categories' => $categories]);
     }
 

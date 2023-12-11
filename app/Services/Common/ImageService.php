@@ -22,8 +22,8 @@ class ImageService
     public function deleteImage(string $imagePath): void
     {
         try {
-            $nameFile = Str::after($imagePath, config('blog.image_path_prefix'));
-            Storage::delete(config('blog.storage_path') . $nameFile);
+            $fileName = Str::after($imagePath, config('blog.image_path_prefix'));
+            Storage::delete(config('blog.storage_path') . $fileName);
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }
