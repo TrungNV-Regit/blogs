@@ -27,13 +27,13 @@ class BlogService
         try {
             $data = $request->only('title', 'content', 'category_id', 'image');
 
-            if ($request->has('checkDeleteImage') ) {
+            if ( $request->has('checkDeleteImage') ) {
                 $this->imageService->deleteImage($blog->link_image);
                 $data['link_image'] = null;
             }
 
-            if ($request->hasFile('image') ) {
-                if ($blog->link_image ) {
+            if ( $request->hasFile('image') ) {
+                if ( $blog->link_image ) {
                     $this->imageService->deleteImage($blog->link_image);
                 }
                 $data['link_image'] = $this->imageService->uploadImage($data['image']);
@@ -51,7 +51,7 @@ class BlogService
             if ( $blog->link_image ) {
                 $this->imageService->deleteImage($blog->link_image);
             }
-            return  $blog->delete();
+            return $blog->delete();
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }
