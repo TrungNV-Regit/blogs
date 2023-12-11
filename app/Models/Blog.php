@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Blog extends Model
@@ -24,6 +25,11 @@ class Blog extends Model
         'created_at',
     ];
 
+    protected $appends = [
+        'time_elapsed',
+        'formatted_created_date',
+    ];
+
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class, 'blog_id');
@@ -37,5 +43,25 @@ class Blog extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function randomRelatedBlog(): HasMany
+    {
+        return $this->hasMany(Blog::class, 'category_id', 'category_id')->where('id', '!=', $this->id)->inRandomOrder()->limit(config('blog.related_blog_limit'));
+    }
+
+    public function getTimeElapsedAttribute(): string
+    {
+        return $this->created_at->diffForHumans();
+    }
+
+    public function getFormattedCreatedDateAttribute(): string
+    {
+        return $this->created_at->format('d/m/Y');
+    }
+
+    public function likes(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'likes', 'blog_id', 'user_id');
     }
 }

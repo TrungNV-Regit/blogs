@@ -60,7 +60,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             BlogAdminService::class,
             function ($app) {
-                return new BlogAdminService();
+                return new BlogAdminService(new ImageService());
             }
         );
 

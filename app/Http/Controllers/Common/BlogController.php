@@ -27,23 +27,4 @@ class BlogController extends Controller
         $categories = $this->categoryService->index();
         return view('blogs.update')->with(['blog' => $blog, 'categories' => $categories]);
     }
-
-    public function update(int $id, CreateBlogRequest $request): RedirectResponse
-    {
-        $blog = Blog::findOrFail($id);
-        Gate::authorize('update', $blog);
-        $this->blogService->update($blog, $request);
-        return redirect()->route('blog.show', ['id' => $id])->with('notification', __('message.update_blog_success'));
-    }
-
-    public function destroy(int $id): RedirectResponse
-    {
-        $blog = Blog::findOrFail($id);
-        Gate::authorize('delete', $blog);
-        $this->blogService->destroy($blog);
-        if ( auth()->user()->role == User::ROLE_ADMIN ) {
-            return redirect()->route('blog.index', ['status' => $blog->status])->with('notification', __('message.delete_blog_success'));
-        }
-        return redirect()->route('blog.my-blogs')->with('notification', __('message.delete_blog_success'));
-    }
 }

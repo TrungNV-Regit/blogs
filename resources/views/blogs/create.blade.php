@@ -19,7 +19,7 @@
     <div class='content'>
 
         <div>
-            <form action="{{ route('blog.create') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('user.blog.create') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <h3>{{ __('message.create') }}</h3>
 
@@ -47,7 +47,7 @@
                 <input name='image' id="uploadImage" class="upload-image" type="file"
                     accept="image/png, image/jpeg" />
                 <img id='imageBlog' class="d-none">
-                
+
                 <p>{{ __('message.description') }} <span>*</span></p>
                 <textarea name='content'></textarea>
 

@@ -8,6 +8,10 @@
 
 @section('class', 'header-static')
 
+@php
+    use App\Models\User;
+@endphp
+
 <div class="page-create-blog">
 
     <div class='breadcrumb'>
@@ -16,7 +20,9 @@
     <div class='content'>
 
         <div>
-            <form action="{{ route('blog.update', ['id' => $blog->id]) }}" method="post" enctype="multipart/form-data">
+            <form
+                action="{{ auth()->user()->role == User::ROLE_ADMIN ? route('admin.blog.update', ['id' => $blog->id]) : route('user.blog.update', ['id' => $blog->id]) }}"
+                method="post" enctype="multipart/form-data">
                 @csrf
                 <h3>{{ __('message.update_blog') }}</h3>
 

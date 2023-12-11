@@ -7,6 +7,7 @@ use App\Models\Blog;
 use App\Services\Common\ImageService;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class BlogService
 {
@@ -42,9 +43,15 @@ class BlogService
     public function show(int $id): Blog
     {
         try {
-            return Blog::with(['author', 'comments'])->findOrFail($id);
+            return Blog::with(['author', 'comments', 'likes'])->findOrFail($id);
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }
+    }
+
+    public function myBlogs(): LengthAwarePaginator
+    {
+        $userId = auth()->user()->id;
+        return Blog::where('user_id', $userId)->orderByDesc('id')->paginate(config('blog.per_page'));
     }
 }

@@ -35,29 +35,35 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-      Route::get('/home', [AdminHomeController::class, 'home'])->name('home');
+
+      Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
+         Route::get('/index', [AdminBlogController::class, 'index'])->name('index');
+         Route::post('/change-status/{id}', [AdminBlogController::class, 'changeStatus'])->name('change-status');
+         Route::get('/show/{id}', [AdminBlogController::class, 'show'])->name('show');
+         Route::get('/edit/{id}', [CommonBlogController::class, 'edit'])->name('edit');
+         Route::post('/update/{id}', [AdminBlogController::class, 'update'])->name('update');
+         Route::post('/destroy/{id}', [AdminBlogController::class, 'destroy'])->name('destroy');
+      });
+   });
+});
+
+Route::middleware(['auth', 'user'])->group(function () {
+   Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+      Route::prefix('blog')->name('blog.')->group(function () {
+         Route::get('/create', [UserBlogController::class, 'create'])->name('create');
+         Route::post('/create', [UserBlogController::class, 'store'])->name('create');
+         Route::get('/edit/{id}', [CommonBlogController::class, 'edit'])->name('edit');
+         Route::post('/update/{id}', [UserBlogController::class, 'update'])->name('update');
+         Route::post('/destroy/{id}', [UserBlogController::class, 'destroy'])->name('destroy');
+         Route::get('/my-blogs', [UserBlogController::class, 'myBlogs'])->name('my-blogs');
+      });
    });
 });
 
 Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
-   Route::middleware(['auth', 'user'])->group(function () {
-      Route::get('/create', [UserBlogController::class, 'create'])->name('create');
-      Route::post('/create', [UserBlogController::class, 'store'])->name('create');
-      Route::get('/my-blogs', [UserBlogController::class, 'myBlogs'])->name('my-blogs');
-   });
-
-   Route::middleware(['auth'])->group(function () {
-      Route::get('/edit/{id}', [CommonBlogController::class, 'edit'])->name('edit');
-      Route::post('/update/{id}', [CommonBlogController::class, 'update'])->name('update');
-      Route::post('/destroy/{id}', [CommonBlogController::class, 'destroy'])->name('destroy');
-   });
-
-   Route::middleware(['auth', 'admin'])->group(function () {
-      Route::get('/index/{status}', [AdminBlogController::class, 'index'])->name('index');
-      Route::post('/change-status/{id}', [AdminBlogController::class, 'changeStatus'])->name('change-status');
-   });
-
    Route::get('/show/{id}', [UserBlogController::class, 'show'])->name('show');
+   Route::post('/like', [UserBlogController::class, 'like'])->name('like');
+   Route::post('/comment', [UserBlogController::class, 'comment'])->name('comment');
 });
 
 Route::get('/', [UserHomeController::class, 'home'])->name('/');
