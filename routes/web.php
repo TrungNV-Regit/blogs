@@ -51,11 +51,6 @@ Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
       Route::post('/update/{id}', [CommonBlogController::class, 'update'])->name('update');
    });
 
-   Route::middleware(['auth'])->group(function () {
-      Route::get('/edit/{id}', [CommonBlogController::class, 'edit'])->name('edit');
-      Route::post('/update/{id}', [CommonBlogController::class, 'update'])->name('update');
-   });
-
    Route::middleware(['auth', 'admin'])->group(function () {
       Route::get('/index/{status}', [AdminBlogController::class, 'index'])->name('index');
       Route::post('/change-status/{id}', [AdminBlogController::class, 'changeStatus'])->name('change-status');
