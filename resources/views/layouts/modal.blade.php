@@ -17,8 +17,11 @@
                 <button type="button" class="btn btn-secondary"
                     data-bs-dismiss="modal">{{ __('message.cancel') }}</button>
                 <button type="button" class="btn btn-danger"
-                    onclick="document.getElementById('deleteBlogForm').submit();">{{ __('message.delete') }}</button>
-                <form action="" method="post" class="d-none" id="deleteBlogForm">
+                    onclick="document.getElementById('deleteBlog').submit();">{{ __('message.delete') }}</button>
+                <form action="{{ route('blog.destroy', ['id' => $blog->id]) }}" method="post" class="d-none"
+                    id="deleteBlog">
+                    @csrf
+                    @method('POST')
                 </form>
             </div>
         </div>

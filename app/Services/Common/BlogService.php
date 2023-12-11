@@ -44,4 +44,16 @@ class BlogService
             throw new Exception($ex->getMessage());
         }
     }
+
+    public function destroy(Blog $blog): bool
+    {
+        try {
+            if ( $blog->link_image ) {
+                $this->imageService->deleteImage($blog->link_image);
+            }
+            return $blog->delete();
+        } catch (Exception $ex) {
+            throw new Exception($ex->getMessage());
+        }
+    }
 }
