@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Common;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateBlogRequest;
 use App\Models\Blog;
+use App\Models\User;
 use App\Services\Common\CategoryService;
 use App\Services\Common\BlogService;
 use Illuminate\Http\RedirectResponse;
@@ -33,5 +34,17 @@ class BlogController extends Controller
         Gate::authorize('update', $blog);
         $this->blogService->update($blog, $request);
         return redirect()->route('blog.show', ['id' => $id])->with('notification', __('message.update_blog_success'));
+    }
+
+    public function destroy(int $id): RedirectResponse
+    {
+        $blog = Blog::findOrFail($id);
+        Gate::authorize('delete', $blog);
+        $this->blogService->destroy($blog);
+        $user = auth()->user();
+        if ($user->role == User::ROLE_ADMIN) {
+            return redirect()->route('blog.index', ['status' => $blog->status])->with('notification', __('message.delete_blog_success'));
+        }
+        return redirect()->route('blog.my-blogs')->with('notification', __('message.delete_blog_success'));
     }
 }
