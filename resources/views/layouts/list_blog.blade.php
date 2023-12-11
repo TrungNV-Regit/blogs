@@ -1,5 +1,8 @@
 <div class="content">
     <div class="row">
+        @if (count($blogs) == 0)
+            <h1 class='text-success'>{{ __('message.empty_list') }}</h1>
+        @endif
         @foreach ($blogs as $blog)
             <div class="col-md-12 col-lg-4 col-sm-12 col-sx-12">
                 <a href="{{ route('blog.show', ['id' => $blog->id]) }}">
