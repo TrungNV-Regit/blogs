@@ -15,6 +15,7 @@ return [
     'statuses' => [
         1 => 'ACTIVE',
         2 => 'PENDING',
-    ]
+    ],
 
+    'image_path_prefix' => '/storage/images',
 ];

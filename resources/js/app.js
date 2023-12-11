@@ -7,8 +7,18 @@ uploadImageInput.addEventListener('change', (event) => {
 
     reader.onload = (e) => {
         imageBlog.src = e.target.result;
-        imageBlog.style.display = 'block';
+        imageBlog.classList.remove('d-none');
     };
 
     reader.readAsDataURL(file);
+    document.getElementById('buttonDeleteImage').classList.remove('d-none');
 });
+
+function deleteImage(hasImage) {
+    uploadImageInput.value = '';
+    document.getElementById('imageBlog').classList.add('d-none');
+    document.getElementById('buttonDeleteImage').classList.add('d-none');
+    if (hasImage) {
+        document.getElementById('checkDeleteImage').checked = true;
+    }
+}
