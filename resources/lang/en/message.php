@@ -64,5 +64,6 @@ return [
     'change_status_success' => 'The blog status has been successfully updated.',
     'delete_image' => 'Delete image',
     'update_blog_success' => 'The blog has been successfully updated.',
-    'delete_blog_success' => 'The blog has been successfully deleted.'
+    'delete_blog_success' => 'The blog has been successfully deleted.',
+    'empty_list'=>'Blog list is empty'
 ];
