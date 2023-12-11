@@ -1,3 +1,7 @@
+@php
+    $status = app('request')->input('status');
+@endphp
+
 @if ($paginator->hasPages())
     <nav>
         <ul class="pagination">
@@ -15,8 +19,9 @@
                 </li>
             @else
                 <li class="page-item">
-                    <a class="page-link arrow" href="{{ $paginator->previousPageUrl() }}" rel="prev"
-                        aria-label="@lang('pagination.previous')">
+                    <a class="page-link arrow"
+                        href="{{ url()->current() }} ? {{ http_build_query(['page' => $paginator->currentPage() - 1, 'status' => $status]) }}"
+                        rel="prev" aria-label="@lang('pagination.previous')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
                             fill="none">
                             <path
@@ -42,7 +47,10 @@
                             </li>
                         @else
                             <li class="page-item">
-                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                <a class="page-link"
+                                    href="{{ url()->current() }} ? {{ http_build_query(['page' => $page, 'status' => $status]) }}">
+                                    {{ $page }}
+                                </a>
                             </li>
                         @endif
                     @endforeach
@@ -51,8 +59,9 @@
 
             @if ($paginator->hasMorePages())
                 <li class="page-item">
-                    <a class="page-link arrow" href="{{ $paginator->nextPageUrl() }}" rel="next"
-                        aria-label="@lang('pagination.next')">
+                    <a class="page-link arrow"
+                        href="{{ url()->current() }} ? {{ http_build_query(['page' => $paginator->currentPage() + 1, 'status' => $status]) }}"
+                        rel="next" aria-label="@lang('pagination.next')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
                             fill="none">
                             <path

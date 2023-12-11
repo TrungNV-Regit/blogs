@@ -5,28 +5,44 @@
 
 <ul class="dropdown-menu">
     @if (Auth::user()->role == User::ROLE_USER)
-        <li><a class="dropdown-item" href="{{ route('blog.my-blogs') }}">{{ __('message.my_blog') }}</a></li>
+        <li>
+            <a class="dropdown-item" href="{{ route('user.blog.my-blogs') }}">
+                {{ __('message.my_blog') }}
+            </a>
+        </li>
         <li>
             <hr class="dropdown-divider">
         </li>
-        <li><a class="dropdown-item" href="">{{ __('message.profile') }}</a></li>
+        <li>
+            <a class="dropdown-item" href="">
+                {{ __('message.profile') }}
+            </a>
+        </li>
         <li>
             <hr class="dropdown-divider">
         </li>
-        <li><a class="dropdown-item" href="">{{ __('message.reset_password') }}</a></li>
+        <li>
+            <a class="dropdown-item" href="">
+                {{ __('message.reset_password') }}
+            </a>
+        </li>
         <li>
             <hr class="dropdown-divider">
         </li>
     @else
         <li>
-            <a class="dropdown-item" href="{{ route('blog.index', ['status' => Blog::STATUS_PENDING]) }}">
+            <a class="dropdown-item" href="{{ route('admin.blog.index', ['status' => Blog::STATUS_PENDING]) }}">
                 {{ __('message.blog_management') }}
             </a>
         </li>
         <li>
             <hr class="dropdown-divider">
         </li>
-        <li><a class="dropdown-item" href="">{{ __('message.user_management') }}</a></li>
+        <li>
+            <a class="dropdown-item" href="">
+                {{ __('message.user_management') }}
+            </a>
+        </li>
         <li>
             <hr class="dropdown-divider">
         </li>

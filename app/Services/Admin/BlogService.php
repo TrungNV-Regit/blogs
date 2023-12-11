@@ -3,11 +3,17 @@
 namespace App\Services\Admin;
 
 use App\Models\Blog;
+use App\Services\Common\ImageService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Exception;
 
 class BlogService
 {
+    public function __construct(
+        private ImageService $imageService,
+    ) {
+    }
+    
     public function index(int $status): LengthAwarePaginator
     {
         return Blog::where('status', $status)->with('author')->orderByDesc('id')->paginate(config('blog.per_page'));
@@ -18,6 +24,15 @@ class BlogService
         try {
             $blog = Blog::findOrFail($id);
             return $blog->update(['status' => $blog->status == Blog::STATUS_ACTIVE ? Blog::STATUS_PENDING : Blog::STATUS_ACTIVE]);
+        } catch (Exception $ex) {
+            throw new Exception($ex->getMessage());
+        }
+    }
+
+    public function show(int $id): Blog
+    {
+        try {
+            return Blog::with(['author', 'comments'])->findOrFail($id);
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }

@@ -47,7 +47,7 @@
 
         @if (Auth::check())
             @if (Auth::user()->role == User::ROLE_USER)
-                <a href="{{ route('blog.create') }}" class="create-blog @yield('backgroundCreateBlog')">
+                <a href="{{ route('user.blog.create') }}" class="create-blog @yield('backgroundCreateBlog')">
                     <span>{{ __('message.create') }}</span>
                 </a>
             @endif

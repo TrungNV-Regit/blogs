@@ -18,4 +18,6 @@ return [
     ],
 
     'image_path_prefix' => '/storage/images',
+
+    'related_blog_limit' => 4,
 ];

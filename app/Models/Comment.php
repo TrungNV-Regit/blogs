@@ -9,17 +9,27 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Comment extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'comments';
 
     protected $fillable = [
         'user_id',
         'blog_id',
         'content',
+        'created_at',
+    ];
+
+    protected $appends = [
+        'time_elapsed',
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getTimeElapsedAttribute(): string
+    {
+        return $this->created_at->diffForHumans();
     }
 }

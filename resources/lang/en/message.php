@@ -65,5 +65,7 @@ return [
     'delete_image' => 'Delete image',
     'update_blog_success' => 'The blog has been successfully updated.',
     'delete_blog_success' => 'The blog has been successfully deleted.',
-    'empty_list'=>'Blog list is empty'
+    'empty_list' => 'Blog list is empty',
+    'related' => 'Related',
+    'like' => 'Like',
 ];
