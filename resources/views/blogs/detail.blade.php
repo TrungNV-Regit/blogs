@@ -36,7 +36,7 @@
                             @method('POST')
                         </form>
                         <button
-                            class="btn  {{ $blog->status == Blog::STATUS_PENDING ? 'btn-approved' : 'btn-not-approved' }}"
+                            class="btn {{ $blog->status == Blog::STATUS_PENDING ? 'btn-approved' : 'btn-not-approved' }}"
                             onclick="document.getElementById('changeStatus').submit();">
                             {{ $blog->status == Blog::STATUS_PENDING ? __('message.approved') : __('message.not_approved') }}
                         </button>
@@ -53,7 +53,7 @@
                 @endif
             </div>
         </div>
-        @if ( $blog->link_image )
+        @if ($blog->link_image)
             <img class="blog-image" src="{{ $blog->link_image }}" alt="Image blog">
         @endif
         <div class="blog-content">
