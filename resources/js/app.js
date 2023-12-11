@@ -18,7 +18,7 @@ function deleteImage(hasImage) {
     uploadImageInput.value = '';
     document.getElementById('imageBlog').classList.add('d-none');
     document.getElementById('buttonDeleteImage').classList.add('d-none');
-    if(hasImage){
+    if (hasImage) {
         document.getElementById('checkDeleteImage').checked = true;
     }
 }

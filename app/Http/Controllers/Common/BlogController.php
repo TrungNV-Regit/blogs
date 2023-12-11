@@ -8,7 +8,6 @@ use App\Models\Blog;
 use App\Services\Common\CategoryService;
 use App\Services\Common\BlogService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Gate;
 
