@@ -49,6 +49,7 @@ Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
    Route::middleware(['auth'])->group(function () {
       Route::get('/edit/{id}', [CommonBlogController::class, 'edit'])->name('edit');
       Route::post('/update/{id}', [CommonBlogController::class, 'update'])->name('update');
+      Route::post('/destroy/{id}', [CommonBlogController::class, 'destroy'])->name('destroy');
    });
 
    Route::middleware(['auth', 'admin'])->group(function () {
