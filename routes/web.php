@@ -44,7 +44,6 @@ Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
       Route::get('/create', [UserBlogController::class, 'create'])->name('create');
       Route::post('/create', [UserBlogController::class, 'store'])->name('create');
       Route::get('/my-blogs', [UserBlogController::class, 'myBlogs'])->name('my-blogs');
-      Route::get('/my-blogs', [UserBlogController::class, 'myBlogs'])->name('my-blogs');
    });
 
    Route::middleware(['auth'])->group(function () {
