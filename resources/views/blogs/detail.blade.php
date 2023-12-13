@@ -4,13 +4,12 @@
 
 @section('content')
 
-    @extends('layouts.header')
-
 @section('class', 'header-static')
 
 <div class="page-approve-blog">
     <div class='breadcrumb'>
-        <a href="{{ route('/') }}">{{ __('message.home') }} > <span>{{ __('message.detail') }}</span> </a>
+        <a href="{{ route('/index') }}">{{ __('message.home') }} &nbsp;>&nbsp; </a>
+        <span>{{ __('message.detail') }}</span>
     </div>
     <div class="content">
         <h3>{{ $blog->title }}</h3>
@@ -69,5 +68,7 @@
 @include ('layouts.modal')
 
 @include('layouts.footer')
+
+<script src="{{ Vite::asset('resources/js/app.js') }}"></script>
 
 @endsection

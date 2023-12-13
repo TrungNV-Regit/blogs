@@ -4,8 +4,6 @@
 
 @section('content')
 
-    @extends('layouts.header')
-
 @section('class', 'header-static')
 
 @php
@@ -15,7 +13,8 @@
 <div class="page-create-blog">
 
     <div class='breadcrumb'>
-        <a href="{{ route('/') }}">{{ __('message.home') }} > <span>{{ __('message.update_blog') }}</span> </a>
+        <a href="{{ route('/index') }}">{{ __('message.home') }} &nbsp;>&nbsp; </a>
+        <span>{{ __('message.update_blog') }}</span>
     </div>
     <div class='content'>
 

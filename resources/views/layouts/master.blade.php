@@ -35,6 +35,8 @@
         </div>
     @endif
 
+    @include('layouts.header')
+
     @yield('content')
 
 </body>

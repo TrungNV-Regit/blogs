@@ -1,8 +1,10 @@
 @extends('layouts.master')
 
-@section('title', 'Forgot Password')
+@section('title', trans('message.title_forgot_password'))
 
 @section('content')
+
+@section('noHeader', 'd-none')
 
 <div class="sign-up">
     <div>
@@ -10,28 +12,28 @@
         @include('layouts.logo')
 
         <div class="content">
-            <form action="{{route('auth.forgot-password')}}" method="post">
+            <form action="{{ route('auth.forgot-password') }}" method="post">
                 {{ csrf_field() }}
 
-                <h4>{{trans('message.title_forgot_password')}}</h4>
+                <h4>{{ trans('message.title_forgot_password') }}</h4>
 
-                <label for="email">{{trans('message.email')}}<span>*</span></label>
-                <input type="text" name="email" id="email" value="{{old('email')}}">
+                <label for="email">{{ trans('message.email') }}<span>*</span></label>
+                <input type="text" name="email" id="email" value="{{ old('email') }}">
 
-                @if($errors->has('email'))
-                <p>{{ $errors->first('email') }}</p>
+                @if ($errors->has('email'))
+                    <p>{{ $errors->first('email') }}</p>
                 @endif
 
                 @if (session('error'))
-                <p>{{ session('error') }}</p>
+                    <p>{{ session('error') }}</p>
                 @endif
 
                 @if (session('notification'))
-                <p>{{ session('notification') }}</p>
+                    <p>{{ session('notification') }}</p>
                 @endif
 
                 <div>
-                    <button type="submit">{{trans('message.submit')}}</button>
+                    <button type="submit">{{ trans('message.submit') }}</button>
                 </div>
             </form>
         </div>

@@ -4,8 +4,6 @@
 
 @section('content')
 
-    @extends('layouts.header')
-
 @section('class', 'header-static')
 
 <div class="blogs">

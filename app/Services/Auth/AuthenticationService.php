@@ -39,7 +39,7 @@ class AuthenticationService
                         return redirect()->route('admin.home');
                     }
 
-                    return redirect()->route('/');
+                    return redirect()->route('/index');
                 }
             }
 

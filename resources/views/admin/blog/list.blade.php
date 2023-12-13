@@ -4,13 +4,12 @@
 
 @section('content')
 
-    @extends('layouts.header')
-
 @section('class', 'header-static')
 
 <div class="blogs">
     <div class='breadcrumb'>
-        <a href="{{ route('/') }}">{{ __('message.home') }} > <span>{{ __('message.list_blog') }}</span> </a>
+        <a href="{{ route('/index') }}">{{ __('message.home') }} &nbsp;>&nbsp; </a>
+        <span>{{ __('message.list_blog') }}</span>
     </div>
     <div>
         <select onchange="window.location.href = this.value;">
@@ -29,7 +28,7 @@
                 <h1 class='text-success'>{{ __('message.empty_list') }}</h1>
             @endif
             @foreach ($data as $blog)
-                <div class="col-md-6 col-lg-4 col-sm-12 col-sx-12">
+                <div class="col-md-12 col-lg-4 col-sm-12">
                     <a href="{{ route('admin.blog.show', ['id' => $blog->id]) }}">
                         @include('layouts.blog', ['blogs' => $blog])
                     </a>

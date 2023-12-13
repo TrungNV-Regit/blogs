@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\Common;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateBlogRequest;
-use App\Models\Blog;
-use App\Models\User;
 use App\Services\Common\CategoryService;
 use App\Services\Common\BlogService;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
@@ -20,11 +17,24 @@ class BlogController extends Controller
     ) {
     }
 
-    public function edit(int $id): View
+    public function show(int $id): View
     {
         $blog = $this->blogService->show($id);
+        return view('blogs.detail')->with(['blog' => $blog, 'user' => auth()->user()]);
+    }
+
+    public function edit(int $id): View
+    {
+        $blog = $this->blogService->edit($id);
         Gate::authorize('update', $blog);
         $categories = $this->categoryService->index();
         return view('blogs.update')->with(['blog' => $blog, 'categories' => $categories]);
+    }
+
+    public function index(Request $request): View
+    {
+        $data = $this->blogService->index($request);
+        $categories = $this->categoryService->index();
+        return view('user.home')->with(['data' => $data, 'categories' => $categories]);
     }
 }
