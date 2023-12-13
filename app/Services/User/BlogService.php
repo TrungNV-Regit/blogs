@@ -6,6 +6,7 @@ use App\Http\Requests\CreateBlogRequest;
 use App\Models\Blog;
 use App\Services\Common\ImageService;
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
@@ -44,6 +45,8 @@ class BlogService
     {
         try {
             return Blog::with(['author', 'comments', 'likes'])->findOrFail($id);
+        } catch (ModelNotFoundException $ex) {
+            abort(404);
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }
@@ -51,7 +54,11 @@ class BlogService
 
     public function myBlogs(): LengthAwarePaginator
     {
-        $userId = auth()->user()->id;
-        return Blog::where('user_id', $userId)->orderByDesc('id')->paginate(config('blog.per_page'));
+        try {
+            $userId = auth()->user()->id;
+            return Blog::where('user_id', $userId)->orderByDesc('id')->paginate(config('blog.per_page'));
+        } catch (Exception $ex) {
+            throw new Exception($ex->getMessage());
+        }
     }
 }

@@ -4,8 +4,6 @@
 
 @section('content')
 
-    @extends('layouts.header')
-
 @section('class', 'header-static')
 
 @php
@@ -14,7 +12,8 @@
 
 <div class="page-approve-blog">
     <div class='breadcrumb'>
-        <a href="{{ route('/') }}">{{ __('message.home') }} > <span>{{ __('message.detail') }}</span> </a>
+        <a href="{{ route('/index') }}">{{ __('message.home') }} &nbsp;>&nbsp; </a>
+        <span>{{ __('message.detail') }}</span>
     </div>
     <div class="content">
         <h3>{{ $blog->title }}</h3>

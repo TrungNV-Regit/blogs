@@ -8,7 +8,6 @@ use App\Models\Blog;
 use App\Services\Admin\BlogService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Gate;
 use App\Services\Common\BlogService as CommonBlogService;
 
 class BlogController extends Controller

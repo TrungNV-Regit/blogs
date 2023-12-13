@@ -63,6 +63,15 @@
   }
 }
 
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 body {
   width: $full;
   overflow-x: hidden;
@@ -102,17 +111,12 @@ body {
     a {
       color: $color-22;
       @include font-style($font-family-1, 16px, 400);
-
-      span {
-        color: $color-4;
-        @include font-style($font-family-1, 16px, 700);
-      }
     }
-  }
 
-  .arrow {
-    background-color: $color-13;
-    border-radius: 60px;
+    span {
+      color: $color-4;
+      @include font-style($font-family-1, 16px, 700);
+    }
   }
 
   .color-comment {
@@ -164,7 +168,7 @@ body {
       }
     }
 
-    .nav-home {
+    .nav {
       @include breakpoint(0px, 768px) {
         display: none;
       }
@@ -178,7 +182,8 @@ body {
 
         .nav-logo {
           position: relative;
-          left: 5%;
+          display: flex;
+          left: 5.5%;
           top: 33px;
 
           img {
@@ -188,15 +193,22 @@ body {
 
           span {
             @include font-style($font-family-1, 20px, 700);
-            position: relative;
-            top: 1px;
             color: $color-5;
           }
+        }
 
+        form {
+          position: absolute;
+          @include position(35px, 16%);
+          display: flex;
+          justify-content: center;
+          width: 32%;
           input {
-            @include size(50%, 45px);
+            @include size($full, 45px);
+            @include font-style($font-family-1, 15px, 500);
             border-radius: 4px;
-            border: 1px solid #d4d4d4;
+            border: 1px solid $color-29;
+            color: $color-8;
             background: $color-3;
             margin-left: 3%;
             padding: 13px 50px 13px 20px;
@@ -208,10 +220,12 @@ body {
             }
           }
 
-          svg {
+          button {
             position: relative;
             cursor: pointer;
-            @include position(-3px, -4%);
+            background: none;
+            border: none;
+            left: -8%;
           }
         }
 
@@ -240,7 +254,7 @@ body {
         }
 
         .profile {
-          @include position(46px, 88.5%);
+          @include position(46px, 87.5%);
           @include center-flex-absolute;
 
           span {
@@ -253,7 +267,7 @@ body {
 
         .no-login {
           @include center-flex-absolute;
-          @include position(46px, 84%);
+          @include position(46px, 87%);
 
           a {
             span {
@@ -452,9 +466,12 @@ body {
   .pagination {
     @include center-flex;
     width: $full;
-    margin-bottom: 96px;
+    margin-bottom: 106px;
     @include breakpoint(0, 768px) {
-      margin-bottom: 53px;
+      margin-bottom: 59px;
+    }
+    li {
+      margin-right: 1px;
     }
 
     .page-item {
@@ -469,12 +486,19 @@ body {
         color: $color-7;
 
         &:hover {
-          background-color: $color-14;
+          background-color: $color-12;
         }
       }
 
       .page-current {
-        background-color: $color-14;
+        background-color: $color-12;
+      }
+
+      .arrow {
+        background-color: $color-13;
+        &:hover {
+          background-color: $color-14;
+        }
       }
     }
   }
@@ -801,7 +825,7 @@ body {
 
   .page-approve-blog {
     @include breakpoint(0px, 768px) {
-      margin: 39px 2% 40px 2%;
+      margin: 39px 42px 40px 42px;
     }
     @include breakpoint(769px, 1600px) {
       margin: 39px 5% 40px 5%;
@@ -924,6 +948,46 @@ body {
               @include font-style($font-family-1, 14px, 400);
             }
           }
+        }
+      }
+
+      .related-blog {
+        .slideshow-container {
+          max-width: 1000px;
+          position: relative;
+          margin: auto;
+          .slide {
+            display: none;
+            .blog {
+              .card-body {
+                @include font-style($font-family-1, 17px, 700);
+                color: $color-5;
+              }
+            }
+          }
+
+          .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+            animation-fill-mode: forwards;
+          }
+        }
+
+        .dot {
+          cursor: pointer;
+          @include size(15px, 15px);
+          margin: 0 2px 36px 2px;
+          background-color: $color-20;
+          border-radius: 50%;
+          display: inline-block;
+          transition: background-color 0.6s ease;
+          &:hover {
+            background-color: $color-30;
+          }
+        }
+
+        .active {
+          background-color: $color-30;
         }
       }
     }

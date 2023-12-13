@@ -52,6 +52,7 @@ Route::middleware(['auth', 'user'])->group(function () {
       Route::prefix('blog')->name('blog.')->group(function () {
          Route::get('/create', [UserBlogController::class, 'create'])->name('create');
          Route::post('/create', [UserBlogController::class, 'store'])->name('create');
+         Route::get('/show/{id}', [UserBlogController::class, 'show'])->name('show');
          Route::get('/edit/{id}', [CommonBlogController::class, 'edit'])->name('edit');
          Route::post('/update/{id}', [UserBlogController::class, 'update'])->name('update');
          Route::post('/destroy/{id}', [UserBlogController::class, 'destroy'])->name('destroy');
@@ -61,9 +62,9 @@ Route::middleware(['auth', 'user'])->group(function () {
 });
 
 Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
-   Route::get('/show/{id}', [UserBlogController::class, 'show'])->name('show');
+   Route::get('/show/{id}', [CommonBlogController::class, 'show'])->name('show');
    Route::post('/like', [UserBlogController::class, 'like'])->name('like');
    Route::post('/comment', [UserBlogController::class, 'comment'])->name('comment');
 });
 
-Route::get('/', [UserHomeController::class, 'home'])->name('/');
+Route::get('/index', [CommonBlogController::class, 'index'])->name('/index');

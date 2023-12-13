@@ -4,19 +4,16 @@
 
 @section('content')
 
-    @extends('layouts.header')
-
 @section('class', 'header-static')
 
 @php
-
     use App\Models\Blog;
-
 @endphp
 
 <div class="blogs">
     <div class='breadcrumb'>
-        <a href="{{ route('/') }}">{{ __('message.home') }} > <span>{{ __('message.my_blog') }}</span> </a>
+        <a href="{{ route('/index') }}">{{ __('message.home') }} &nbsp;>&nbsp; </a>
+        <span>{{ __('message.my_blog') }}</span>
     </div>
     <div class="content">
         <div class="row">
@@ -24,8 +21,8 @@
                 <h3 class='text-success'>{{ __('message.empty_list') }}</h3>
             @endif
             @foreach ($blogs as $blog)
-                <div class="col-md-6 col-lg-4 col-sm-12 col-sx-12">
-                    <a href="{{ route('blog.show', ['id' => $blog->id]) }}">
+                <div class="col-md-12 col-lg-4 col-sm-12">
+                    <a href="{{ route('user.blog.show', ['id' => $blog->id]) }}">
                         <div class="blog">
                             @if ($blog->link_image)
                                 <img src={{ $blog->link_image }} class="card-img-top" alt="{{ $blog->title }}">

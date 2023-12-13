@@ -1,14 +1,16 @@
 <div>
-    <div class='title d-flex justify-content-center'>
-        <div>
+    @if (auth()->check() || $blog->comments->count())
+        <div class='title d-flex justify-content-center'>
             <div>
-                <h6>{{ __('message.comment') }}</h6>
-            </div>
-            <div class="d-flex justify-content-center">
-                <hr>
+                <div>
+                    <h6>{{ __('message.comment') }}</h6>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <hr>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <div class="comment">
         @if ($user)

@@ -23,7 +23,7 @@
                 <button type="button" class="btn btn-danger"
                     onclick="document.getElementById('deleteBlog').submit();">{{ __('message.delete') }}</button>
                 <form
-                    action="{{ auth()->user()->role == User::ROLE_ADMIN ? route('admin.blog.destroy', ['id' => $blog->id]) : route('user.blog.destroy', ['id' => $blog->id]) }}"
+                    action="{{ optional(auth()->user())->role == User::ROLE_ADMIN ? route('admin.blog.destroy', ['id' => $blog->id]) : route('user.blog.destroy', ['id' => $blog->id]) }}"
                     method="post" class="d-none" id="deleteBlog">
                     @csrf
                     @method('POST')
