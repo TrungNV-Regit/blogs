@@ -8,6 +8,7 @@ use App\Http\Controllers\User\BlogController as UserBlogController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Common\BlogController as CommonBlogController;
+use App\Http\Controllers\Common\LikeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,8 +64,10 @@ Route::middleware(['auth', 'user'])->group(function () {
 
 Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
    Route::get('/show/{id}', [CommonBlogController::class, 'show'])->name('show');
-   Route::post('/like', [UserBlogController::class, 'like'])->name('like');
-   Route::post('/comment', [UserBlogController::class, 'comment'])->name('comment');
+   Route::middleware(['auth'])->group(function () {
+      Route::post('/like', [LikeController::class, 'like'])->name('like');
+      Route::post('/comment', [UserBlogController::class, 'comment'])->name('comment');
+   });
 });
 
 Route::get('/index', [CommonBlogController::class, 'index'])->name('/index');

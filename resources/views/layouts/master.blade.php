@@ -10,6 +10,9 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/svn-gilroy" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite(['resources/scss/app.scss'])
 </head>
 

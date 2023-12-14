@@ -12,9 +12,9 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row related-blog-list">
             @foreach ($blog->randomRelatedBlog as $relatedBlog)
-                <div class='d-lg-block d-md-block d-sm-none col-lg-3 col-md-3'>
+                <div class=' col-lg-3 col-md-3'>
                     <a href="{{ route('blog.show', ['id' => $relatedBlog->id]) }}">
                         <div class="blog">
                             @if ($relatedBlog->link_image)

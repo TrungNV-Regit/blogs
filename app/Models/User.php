@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -34,7 +35,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'role',
         'email_verified_at',
         'token_verify_email',
-        'status',   
+        'status',
         'token_created_at',
     ];
 
@@ -63,5 +64,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function blogs(): HasMany
     {
         return $this->hasMany(Blog::class);
+    }
+
+    public function likes(): BelongsToMany
+    {
+        return $this->belongsToMany(Blog::class, 'likes', 'user_id', 'blog_id');
     }
 }
