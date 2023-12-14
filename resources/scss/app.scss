@@ -155,6 +155,12 @@ body {
     }
   }
 
+  .author-picture {
+    @include size(48px, 48px);
+    border-radius: 50%;
+    margin-right: 17px;
+  }
+
   .header {
     position: relative;
 
@@ -169,7 +175,7 @@ body {
     }
 
     .nav {
-      @include breakpoint(0px, 768px) {
+      @include breakpoint(0, 768px) {
         display: none;
       }
 
@@ -896,98 +902,128 @@ body {
         color: $color-25;
         margin-bottom: 50px;
 
-        .like {
+        .like-comment {
           display: flex;
+          cursor: pointer;
+          align-items: center;
+
+          .liked,
+          .unliked {
+            @include size(30px, 30px);
+            background-size: 30px 30px;
+          }
+
+          .liked {
+            background-image: url("../images/liked.png");
+          }
+
+          .unliked {
+            background-image: url("../images/unliked.png");
+          }
+
           span {
             @include font-style($font-family-1, 20px, 700);
             margin: 0 20px 0 10px;
-            position: relative;
-            bottom: -8px;
+          }
+
+          img {
+            @include size(30px, 30px);
           }
         }
       }
+    }
 
-      .comment {
-        .comment-image-author {
-          @include size(48px, 48px);
-          border-radius: 50%;
-          margin-right: 17px;
-        }
-
-        .my-comment {
-          display: flex;
-          margin-bottom: 49px;
-
-          form {
-            @include size($full, 55px);
-
-            input {
-              @include size($full, 55px);
-              outline: none;
-              border-radius: 4px;
-              border: 1px solid $color-27;
-              background: $color-3;
-            }
-          }
-        }
-
-        .list-comment {
-          .single-comment {
-            .author {
-              display: flex;
-              align-items: center;
-
-              span {
-                @include font-style($font-family-1, 24px, 700);
-                color: $color-4;
-              }
-            }
-
-            .comment-detail {
-              margin-left: 67px;
-              @include font-style($font-family-1, 14px, 400);
-            }
-          }
+    .related-blog {
+      .related-blog-list {
+        @include breakpoint(0, 768px) {
+          display: none;
         }
       }
 
-      .related-blog {
-        .slideshow-container {
-          max-width: 1000px;
-          position: relative;
-          margin: auto;
-          .slide {
-            display: none;
-            .blog {
-              .card-body {
-                @include font-style($font-family-1, 17px, 700);
-                color: $color-5;
-              }
+      .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+
+        .slide {
+          display: none;
+
+          .blog {
+            img {
+              width: $full;
+              height: 461px;
+            }
+
+            .card-body {
+              @include font-style($font-family-1, 17px, 700);
+              color: $color-5;
             }
           }
-
-          .fade {
-            animation-name: fade;
-            animation-duration: 1.5s;
-            animation-fill-mode: forwards;
-          }
         }
 
-        .dot {
-          cursor: pointer;
-          @include size(15px, 15px);
-          margin: 0 2px 36px 2px;
-          background-color: $color-20;
-          border-radius: 50%;
-          display: inline-block;
-          transition: background-color 0.6s ease;
-          &:hover {
-            background-color: $color-30;
-          }
+        .fade {
+          animation-name: fade;
+          animation-duration: 1.5s;
+          animation-fill-mode: forwards;
         }
+      }
 
-        .active {
+      .dot {
+        cursor: pointer;
+        @include size(15px, 15px);
+        margin: 0 2px 36px 2px;
+        background-color: $color-20;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+        &:hover {
           background-color: $color-30;
+        }
+      }
+
+      .active {
+        background-color: $color-30;
+      }
+    }
+
+    .comment {
+      .my-comment {
+        display: flex;
+        margin-bottom: 49px;
+
+        form {
+          @include size($full, 55px);
+
+          input {
+            @include size($full, 55px);
+            outline: none;
+            border-radius: 4px;
+            border: 1px solid $color-27;
+            background: $color-3;
+          }
+        }
+      }
+
+      .list-comment {
+        .single-comment {
+          .author {
+            display: flex;
+            align-items: center;
+
+            span {
+              @include font-style($font-family-1, 24px, 700);
+              color: $color-4;
+            }
+
+            img {
+              @include size(48px, 48px);
+            }
+          }
+
+          .comment-detail {
+            margin-left: 67px;
+            @include font-style($font-family-1, 14px, 400);
+          }
         }
       }
     }
