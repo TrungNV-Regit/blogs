@@ -47,7 +47,7 @@ class Blog extends Model
 
     public function randomRelatedBlog(): HasMany
     {
-        return $this->hasMany(Blog::class, 'category_id', 'category_id')->where('id', '!=', $this->id)->inRandomOrder()->limit(config('blog.related_blog_limit'));
+        return $this->hasMany(Blog::class, 'category_id', 'category_id')->where('id', '!=', $this->id)->where('status', Blog::STATUS_ACTIVE)->inRandomOrder()->limit(config('blog.related_blog_limit'));
     }
 
     public function getTimeElapsedAttribute(): string

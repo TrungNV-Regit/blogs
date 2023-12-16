@@ -20,4 +20,6 @@ return [
     'image_path_prefix' => '/storage/images',
 
     'related_blog_limit' => 4,
+    
+    'per_page_comment' => env('PER_PAGE_COMMENT', 20),
 ];

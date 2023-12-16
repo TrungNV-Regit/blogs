@@ -70,6 +70,4 @@ return [
     'empty_list' => 'Blog list is empty',
     'related' => 'Related',
     'like' => 'Like',
-    'like_success' => 'Congratulations! You have successfully liked the blog.',
-    'unlike_success' => 'Your unlike has been recorded successfully.',
 ];
