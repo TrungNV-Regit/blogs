@@ -10,6 +10,7 @@ use App\Services\Mail\MailService;
 use App\Services\User\BlogService as BlogUserService;
 use App\Services\Admin\BlogService as BlogAdminService;
 use App\Services\Common\BlogService as BlogCommonService;
+use App\Services\Common\CommentService;
 use App\Services\Common\ImageService;
 use App\Services\Common\LikeService;
 
@@ -76,6 +77,13 @@ class AppServiceProvider extends ServiceProvider
             LikeService::class,
             function ($app) {
                 return new LikeService();
+            }
+        );
+
+        $this->app->bind(
+            CommentService::class,
+            function ($app) {
+                return new CommentService();
             }
         );
     }

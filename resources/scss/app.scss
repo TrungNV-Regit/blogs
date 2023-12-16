@@ -161,6 +161,11 @@ body {
     margin-right: 17px;
   }
 
+  .disable {
+    pointer-events: none;
+    cursor: default;
+  }
+
   .header {
     position: relative;
 
@@ -493,6 +498,11 @@ body {
 
         &:hover {
           background-color: $color-12;
+        }
+
+        &:focus {
+          outline: none;
+          box-shadow: none;
         }
       }
 
@@ -947,6 +957,9 @@ body {
 
         .slide {
           display: none;
+          border: 1px solid rgba(0, 0, 0, 0.125);
+          margin-bottom: 70px;
+          border-radius: 0.25rem;
 
           .blog {
             img {
@@ -1004,8 +1017,28 @@ body {
         }
       }
 
+      form {
+        @include center-flex;
+        position: relative;
+        input {
+          z-index: 1;
+        }
+        div {
+          position: absolute;
+          justify-content: space-between;
+          right: 10px;
+          top: 15px;
+          z-index: 2;
+
+          label {
+            cursor: pointer;
+          }
+        }
+      }
+
       .list-comment {
         .single-comment {
+          margin-bottom: 30px;
           .author {
             display: flex;
             align-items: center;
@@ -1023,6 +1056,21 @@ body {
           .comment-detail {
             margin-left: 67px;
             @include font-style($font-family-1, 14px, 400);
+
+            p {
+              span {
+                margin-right: 10px;
+                cursor: pointer;
+              }
+            }
+
+            input {
+              @include size($full, 55px);
+              outline: none;
+              border-radius: 4px;
+              border: 1px solid $color-27;
+              background: $color-3;
+            }
           }
         }
       }

@@ -21,7 +21,8 @@
                 </li>
             @else
                 <li class="page-item">
-                    <a class="page-link arrow"
+                    <a class="page-link arrow {{ isset($useAjax) ? 'useAjax' : '' }}"
+                        endpoint="{{ route('api.comment.index', ['blogId' => isset($blogId) ? $blogId : '', 'page' => $paginator->currentPage() - 1]) }}"
                         href="{{ url()->current() }}?{{ http_build_query(['page' => $paginator->currentPage() - 1, 'status' => $status, 'keyword' => $keyword, 'category' => $category]) }}"
                         rel="prev" aria-label="@lang('pagination.previous')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
@@ -37,8 +38,8 @@
 
             @foreach ($elements as $element)
                 @if (is_string($element))
-                    <li class="page-item d-none" aria-disabled="true">
-                        <span class="page-link">{{ $element }}</span>
+                    <li class="page-item" aria-disabled="true">
+                        <span class="page-link disable">{{ $element }}</span>
                     </li>
                 @endif
 
@@ -50,7 +51,8 @@
                             </li>
                         @else
                             <li class="page-item">
-                                <a class="page-link"
+                                <a class="page-link {{ isset($useAjax) ? 'useAjax' : '' }}"
+                                    endpoint="{{ route('api.comment.index', ['blogId' => isset($blogId) ? $blogId : '', 'page' => $page]) }}"
                                     href="{{ url()->current() }}?{{ http_build_query(['page' => $page, 'status' => $status, 'keyword' => $keyword, 'category' => $category]) }}">
                                     {{ $page }}
                                 </a>
@@ -62,7 +64,8 @@
 
             @if ($paginator->hasMorePages())
                 <li class="page-item">
-                    <a class="page-link arrow"
+                    <a class="page-link arrow {{ isset($useAjax) ? 'useAjax' : '' }}"
+                        endpoint="{{ route('api.comment.index', ['blogId' => isset($blogId) ? $blogId : '', 'page' => $paginator->currentPage() + 1]) }}"
                         href="{{ url()->current() }}?{{ http_build_query(['page' => $paginator->currentPage() + 1, 'status' => $status, 'keyword' => $keyword, 'category' => $category]) }}"
                         rel="next" aria-label="@lang('pagination.next')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"

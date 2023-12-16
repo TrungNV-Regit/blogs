@@ -8,6 +8,7 @@ use App\Http\Controllers\User\BlogController as UserBlogController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Common\BlogController as CommonBlogController;
+use App\Http\Controllers\Common\CommentController;
 use App\Http\Controllers\Common\LikeController;
 use Illuminate\Support\Facades\Route;
 
@@ -64,9 +65,18 @@ Route::middleware(['auth', 'user'])->group(function () {
 
 Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
    Route::get('/show/{id}', [CommonBlogController::class, 'show'])->name('show');
-   Route::middleware(['auth'])->group(function () {
-      Route::post('/like', [LikeController::class, 'like'])->name('like');
-      Route::post('/comment', [UserBlogController::class, 'comment'])->name('comment');
+});
+
+Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
+   Route::middleware(['auth'])->post('/like', [LikeController::class, 'like'])->name('like');
+
+   Route::group(['prefix' => 'comment', 'as' => 'comment.'], function () {
+      Route::get('/index', [CommentController::class, 'index'])->name('index');
+      Route::middleware(['auth'])->group(function () {
+         Route::post('/store', [CommentController::class, 'store'])->name('store');
+         Route::post('/update', [CommentController::class, 'update'])->name('update');
+         Route::post('/destroy', [CommentController::class, 'destroy'])->name('destroy');
+      });
    });
 });
 
