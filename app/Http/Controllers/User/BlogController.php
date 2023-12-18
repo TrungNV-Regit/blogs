@@ -51,7 +51,7 @@ class BlogController extends Controller
         $blog = Blog::findOrFail($id);
         Gate::authorize('update', $blog);
         $this->commonBlogService->update($blog, $request);
-        return redirect()->route('blog.show', ['id' => $id])->with('notification', __('message.update_blog_success'));
+        return redirect()->route('user.blog.show', ['id' => $id])->with('notification', __('message.update_blog_success'));
     }
 
     public function destroy(int $id): RedirectResponse

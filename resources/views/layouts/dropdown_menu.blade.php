@@ -39,7 +39,7 @@
             <hr class="dropdown-divider">
         </li>
         <li>
-            <a class="dropdown-item" href="">
+            <a class="dropdown-item" href="{{ route('admin.user.index') }}">
                 {{ __('message.user_management') }}
             </a>
         </li>
