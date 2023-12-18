@@ -36,7 +36,7 @@ class AuthenticationService
                     Auth::login($user, $request->has('remember') ? true : false);
 
                     if ($user->role == User::ROLE_ADMIN) {
-                        return redirect()->route('admin.home');
+                        return redirect()->route('admin.user.index');
                     }
 
                     return redirect()->route('/index');

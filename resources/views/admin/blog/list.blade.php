@@ -24,16 +24,19 @@
 
     <div class="content">
         <div class="row">
-            @if (count($data) == 0)
+            
+            @if (count($data))
+                @foreach ($data as $blog)
+                    <div class="col-md-12 col-lg-4 col-sm-12">
+                        <a href="{{ route('admin.blog.show', ['id' => $blog->id]) }}">
+                            @include('layouts.blog', ['blogs' => $blog])
+                        </a>
+                    </div>
+                @endforeach
+            @else
                 <h1 class='text-success'>{{ __('message.empty_list') }}</h1>
             @endif
-            @foreach ($data as $blog)
-                <div class="col-md-12 col-lg-4 col-sm-12">
-                    <a href="{{ route('admin.blog.show', ['id' => $blog->id]) }}">
-                        @include('layouts.blog', ['blogs' => $blog])
-                    </a>
-                </div>
-            @endforeach
+
         </div>
     </div>
 </div>

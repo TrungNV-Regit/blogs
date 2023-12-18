@@ -1120,4 +1120,48 @@ body {
       margin-top: 40px;
     }
   }
+
+  .search-user {
+    
+    input {
+      @include size(50%, 45px);
+      @include font-style($font-family-1, 15px, 500);
+      border-radius: 4px;
+      border: 1px solid $color-29;
+      color: $color-8;
+      background: $color-3;
+      padding: 13px 50px 13px 20px;
+      outline: none;
+
+      &::placeholder {
+        color: $color-8;
+        @include font-style($font-family-1, 15px, 500);
+      }
+    }
+
+    button {
+      @include font-style($font-family-2, 15px, 300);
+      margin-left: 20px;
+    }
+  }
+
+  .table-manager-user {
+    thead {
+      @include font-style($font-family-1, 15px, 500);
+    }
+
+    tbody {
+      font-size: 20px;
+    }
+
+    input {
+      min-width: 80px;
+      @include size(100px, 35px);
+      cursor: pointer;
+    }
+
+    img {
+      @include size(70px, 70px);
+    }
+  }
 }

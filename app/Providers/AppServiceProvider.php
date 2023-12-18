@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Services\Mail\MailService;
 use App\Services\User\BlogService as BlogUserService;
 use App\Services\Admin\BlogService as BlogAdminService;
+use App\Services\Admin\ManagerUserService;
 use App\Services\Common\BlogService as BlogCommonService;
 use App\Services\Common\CommentService;
 use App\Services\Common\ImageService;
@@ -84,6 +85,13 @@ class AppServiceProvider extends ServiceProvider
             CommentService::class,
             function ($app) {
                 return new CommentService();
+            }
+        );
+
+        $this->app->bind(
+            ManagerUserService::class,
+            function ($app) {
+                return new ManagerUserService();
             }
         );
     }

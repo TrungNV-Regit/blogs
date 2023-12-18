@@ -16,8 +16,10 @@
             @endif
         </div>
         <div class="logo-mobile">
-            <img src="{{ Vite::asset('resources/images/logo-mobile.png') }}" alt="Logo Mobile">
-            <span>{{ __('message.made') }}</span>
+            <a href="{{ route('/index') }}">
+                <img src="{{ Vite::asset('resources/images/logo-mobile.png') }}" alt="Logo Mobile">
+                <span>{{ __('message.made') }}</span>
+            </a>
         </div>
         <div class="logo-search-mobile">
             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">

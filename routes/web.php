@@ -7,6 +7,7 @@ use App\Http\Controllers\User\HomeController as UserHomeController;
 use App\Http\Controllers\User\BlogController as UserBlogController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
+use App\Http\Controllers\Admin\ManagerUserController;
 use App\Http\Controllers\Common\BlogController as CommonBlogController;
 use App\Http\Controllers\Common\CommentController;
 use App\Http\Controllers\Common\LikeController;
@@ -45,6 +46,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
          Route::get('/edit/{id}', [CommonBlogController::class, 'edit'])->name('edit');
          Route::post('/update/{id}', [AdminBlogController::class, 'update'])->name('update');
          Route::post('/destroy/{id}', [AdminBlogController::class, 'destroy'])->name('destroy');
+      });
+
+      Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+         Route::get('/index', [ManagerUserController::class, 'index'])->name('index');
+         Route::post('/change-status', [ManagerUserController::class, 'changeStatus'])->name('change-status');
       });
    });
 });

@@ -70,4 +70,12 @@ return [
     'empty_list' => 'Blog list is empty',
     'related' => 'Related',
     'like' => 'Like',
+    'blogs' => 'Blogs',
+    'blocked' => 'Blocked',
+    'list_user' => 'List user',
+    'avatar' => 'Avatar',
+    'no' => 'No.',
+    'status' => 'Status',
+    'search_user' => 'Search by username.',
+    'no_result' => 'No matching results.',
 ];
