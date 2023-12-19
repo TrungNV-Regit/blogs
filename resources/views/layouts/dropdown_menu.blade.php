@@ -22,7 +22,7 @@
             <hr class="dropdown-divider">
         </li>
         <li>
-            <a class="dropdown-item" href="">
+            <a class="dropdown-item" href="{{ route('user.reset-password') }}">
                 {{ __('message.reset_password') }}
             </a>
         </li>

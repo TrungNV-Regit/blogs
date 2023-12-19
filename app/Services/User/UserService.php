@@ -27,8 +27,24 @@ class UserService
                     'token_created_at' => now(),
                 ]
             );
-            Mail::to($data['email'])->send(new SendEmail(trans('message.subject_verify_email'), 'mail.verify_email', $token));
+            Mail::to($data['email'])->send(new SendEmail(trans('message.subject_verify_email'), 'mail.verify', $token));
             return back()->with('notification', trans('message.sign_up_success'));
+        } catch (Exception $ex) {
+            throw new Exception($ex->getMessage());
+        }
+    }
+
+    public function resetPassword(array $data): bool
+    {
+        try {
+            $user = auth()->user();
+            $oldPassword = $data['oldPassword'];
+            $newPassword = $data['password'];
+            if (Hash::check($oldPassword, $user->password)) {
+                $user->update(['password' => Hash::make($newPassword)]);
+                return true;
+            }
+            return false;
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }

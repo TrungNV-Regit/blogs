@@ -28,10 +28,6 @@
                     <p>{{ session('error') }}</p>
                 @endif
 
-                @if (session('notification'))
-                    <p>{{ session('notification') }}</p>
-                @endif
-
                 <div>
                     <button type="submit">{{ trans('message.submit') }}</button>
                 </div>

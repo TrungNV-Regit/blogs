@@ -52,7 +52,7 @@ class MailService
         try {
             $user = User::where('token_verify_email', $token)->first();
             $user->update(['token_created_at' => now()]);
-            Mail::to($user->email)->send(new SendEmail(__('en.subject_verify_email'), 'mail.verify_email', $token));
+            Mail::to($user->email)->send(new SendEmail(__('en.subject_verify_email'), 'mail.verify', $token));
             $data = [
                 'resend_token_success' => trans('message.resend_token_success'),
             ];
@@ -79,7 +79,7 @@ class MailService
                         'password' => Hash::make($newPassword),
                     ]
                 );
-                Mail::to($to)->send(new SendEmail(__('message.new_password'), 'mail.email_forgot_password', $newPassword));
+                Mail::to($to)->send(new SendEmail(__('message.new_password'), 'mail.forgot_password', $newPassword));
                 return back()->with("notification", trans("message.forgot_password_success"));
             }
             return back()->with("error", trans('message.email_not_found'));
