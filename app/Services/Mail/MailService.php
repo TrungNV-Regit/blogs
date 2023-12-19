@@ -58,7 +58,7 @@ class MailService
             ];
             return view('auth.verify_token', compact('data'));
         } catch (Exception $ex) {
-            return view('error.exception')->with('error', $ex->getMessage());
+            throw new Exception($ex->getMessage());
         }
     }
 
@@ -84,7 +84,7 @@ class MailService
             }
             return back()->with("error", trans('message.email_not_found'));
         } catch (Exception $ex) {
-            return redirect()->route('exception')->with('error', $ex->getMessage());
+            throw new Exception($ex->getMessage());
         }
     }
 }
