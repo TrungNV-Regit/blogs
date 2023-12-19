@@ -87,7 +87,7 @@ $(document).ready(function () {
 
     $('#store').submit(function (event) {
         event.preventDefault();
-        let content = $('#comment').val();
+        let content = $('#comment').val().replace(/</g, "&lt;").replace(/>/g, "&gt;");
         $.ajax({
             url: data.route.commentCreate,
             type: 'POST',

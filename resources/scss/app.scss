@@ -267,7 +267,7 @@ body {
         .profile {
           @include position(46px, 87.5%);
           @include center-flex-absolute;
-
+         
           span {
             @include font-style($font-family-1, 15px, 500);
             color: $color-4;
@@ -1020,9 +1020,12 @@ body {
       form {
         @include center-flex;
         position: relative;
+
         input {
           z-index: 1;
+          padding-right: 50px;
         }
+
         div {
           position: absolute;
           justify-content: space-between;
@@ -1039,6 +1042,7 @@ body {
       .list-comment {
         .single-comment {
           margin-bottom: 30px;
+
           .author {
             display: flex;
             align-items: center;
@@ -1070,6 +1074,7 @@ body {
               border-radius: 4px;
               border: 1px solid $color-27;
               background: $color-3;
+              padding-right: 100px;
             }
           }
         }

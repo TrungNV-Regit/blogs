@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ManagerUserController;
 use App\Http\Controllers\Common\BlogController as CommonBlogController;
 use App\Http\Controllers\Common\CommentController;
 use App\Http\Controllers\Common\LikeController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,6 +67,8 @@ Route::middleware(['auth', 'user'])->group(function () {
          Route::post('/destroy/{id}', [UserBlogController::class, 'destroy'])->name('destroy');
          Route::get('/my-blogs', [UserBlogController::class, 'myBlogs'])->name('my-blogs');
       });
+      Route::get('/reset-password', [UserController::class, 'showResetPasswordForm'])->name('reset-password');
+      Route::post('/reset-password', [UserController::class, 'resetPassword'])->name('verify');
    });
 });
 

@@ -31,7 +31,7 @@
                         <p>{{ $errors->first('email') }}</p>
                     @endif
 
-                    <label for="username">{{ trans('message.password') }}<span>*</span></label>
+                    <label for="password">{{ trans('message.password') }}<span>*</span></label>
                     <input type="password" id='password' name="password">
 
                     @if ($errors->has('password'))
