@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class SignUpRequest extends FormRequest
+class UpdateProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,26 +19,15 @@ class SignUpRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-
     public function rules(): array
     {
         return [
+            'image' => 'file|max:2048',
             'username' => [
-                'required',
                 'min:6',
                 'max:20',
                 'unique:users,username'
-            ],
-            'email' => [
-                'required',
-                'email',
-                'unique:users,email',
-            ],
-            'password' => [
-                'required',
-                'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,30}$/',
-                'confirmed',
-            ],
+            ]
         ];
     }
 }

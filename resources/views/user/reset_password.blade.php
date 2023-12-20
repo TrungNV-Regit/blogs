@@ -13,7 +13,7 @@
 
             <div class="content">
                 <form action="{{ route('user.reset-password') }}" method="POST">
-                    {{ csrf_field() }}
+                    @csrf
 
                     <h4>{{ trans('message.reset_password') }}</h4>
 

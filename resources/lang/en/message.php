@@ -85,5 +85,12 @@ return [
     'old_password' => 'Old Password',
     'new_password_confirmation' => 'New Password Confirmation',
     'old_password_incorrect' => 'Old Password Incorrect',
-    'reset_password_success' => 'Reset password successfully'
+    'reset_password_success' => 'Reset password successfully',
+    'edit' => 'Edit',
+    'update' => 'Upadate',
+    'reset' => 'Reset',
+    'new_username' => 'New username',
+    'upload_avatar' => 'Upload avatar',
+    'profile_unchanged' => 'The profile remains unchanged.',
+    'update_profile_success' => 'Update profile successfully',
 ];

@@ -3,9 +3,7 @@
 use App\Http\Controllers\auth\SignInController;
 use App\Http\Controllers\auth\SignUpController;
 use App\Http\Controllers\auth\VerificationController;
-use App\Http\Controllers\User\HomeController as UserHomeController;
 use App\Http\Controllers\User\BlogController as UserBlogController;
-use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\ManagerUserController;
 use App\Http\Controllers\Common\BlogController as CommonBlogController;
@@ -69,6 +67,11 @@ Route::middleware(['auth', 'user'])->group(function () {
       });
       Route::get('/reset-password', [UserController::class, 'showResetPasswordForm'])->name('reset-password');
       Route::post('/reset-password', [UserController::class, 'resetPassword'])->name('verify');
+
+      Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+         Route::get('/show', [UserController::class, 'show'])->name('show');
+         Route::put('/update', [UserController::class, 'update'])->name('update');
+      });
    });
 });
 
