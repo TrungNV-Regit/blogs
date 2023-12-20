@@ -267,7 +267,7 @@ body {
         .profile {
           @include position(46px, 87.5%);
           @include center-flex-absolute;
-         
+
           span {
             @include font-style($font-family-1, 15px, 500);
             color: $color-4;
@@ -1083,8 +1083,6 @@ body {
   }
 
   .modal {
-    top: 185px;
-
     .modal-dialog {
       .modal-content {
         .modal-header {
@@ -1126,8 +1124,8 @@ body {
     }
   }
 
-  .search-user {
-    
+  .search-user {  
+
     input {
       @include size(50%, 45px);
       @include font-style($font-family-1, 15px, 500);
@@ -1167,6 +1165,74 @@ body {
 
     img {
       @include size(70px, 70px);
+    }
+  }
+
+  .my-profile {
+    @include font-style($font-family-1, 15px, 500);
+    margin-bottom: 50px;
+
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      max-width: 300px;
+      margin: auto;
+      text-align: center;
+      font-family: arial;
+
+      .title {
+        color: grey;
+        font-size: 18px;
+      }
+
+      img {
+        @include size(300px, 300px);
+      }
+
+      .update {
+        border: none;
+        padding: 8px;
+        color: $color-10;
+        background-color: $color-5;
+        text-align: center;
+        width: 100%;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+
+  .update-profile {
+    label {
+      display: block;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    
+    .update-username {
+      @include size($full, 40px);
+      @include font-style($font-family-1, 15px, 500);
+      border-radius: 4px;
+      border: 1px solid $color-29;
+      background: $color-3;
+      padding: 13px 50px 13px 20px;
+      outline: none;
+
+      &::placeholder {
+        color: $color-8;
+        @include font-style($font-family-1, 15px, 500);
+      }
+    }
+
+    img {
+      @include size(150px, 150px);
+      margin-bottom: 20px;
+      border-radius: 50%;
+    }
+
+    #buttonDeleteImage {
+      color: white;
+      display: block;
     }
   }
 }

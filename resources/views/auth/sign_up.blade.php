@@ -13,7 +13,7 @@
 
             <div class="content">
                 <form action="{{ route('auth.sign-up') }}" method="post">
-                    {{ csrf_field() }}
+                    @csrf
 
                     <h4>{{ trans('message.sign_up') }}</h4>
 

@@ -2,8 +2,10 @@
 
 namespace App\Services\User;
 
+use App\Http\Requests\UpdateProfileRequest;
 use App\Mail\SendEmail;
 use App\Models\User;
+use App\Services\Common\ImageService;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
@@ -11,6 +13,11 @@ use Illuminate\Support\Facades\Mail;
 
 class UserService
 {
+    public function __construct(
+        private ImageService $imageService,
+    ) {
+    }
+
     public function createUser(array $data): RedirectResponse
     {
         try {
@@ -45,6 +52,27 @@ class UserService
                 return true;
             }
             return false;
+        } catch (Exception $ex) {
+            throw new Exception($ex->getMessage());
+        }
+    }
+
+    public function updateProfile(UpdateProfileRequest $request): bool
+    {
+        try {
+            $user = auth()->user();
+            $data = [];
+
+            if ($request->hasFile('image')) {
+                $this->imageService->deleteImage($user->link_avatar);
+                $data['link_avatar'] = $this->imageService->uploadImage($request->file('image'));
+            }
+
+            if ($request->filled('username')) {
+                $data['username'] = $request->username;
+            }
+
+            return $user->update($data);
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }

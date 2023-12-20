@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             UserService::class,
             function ($app) {
-                return new UserService();
+                return new UserService(new ImageService());
             }
         );
 

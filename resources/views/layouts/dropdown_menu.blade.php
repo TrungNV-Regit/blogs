@@ -14,7 +14,7 @@
             <hr class="dropdown-divider">
         </li>
         <li>
-            <a class="dropdown-item" href="">
+            <a class="dropdown-item" href="{{ route('user.profile.show') }}">
                 {{ __('message.profile') }}
             </a>
         </li>
