@@ -8,7 +8,7 @@ $(document).ready(function () {
         let enpoint = $(this).attr('change-status-route');
         $.ajax({
             url: enpoint,
-            type: 'POST',
+            type: 'PUT',
             success: function (response) {
                 input.parent().siblings('.status').text(response);
                 input.is(":checked") ? input.prop('checked', false) : input.prop('checked', true);

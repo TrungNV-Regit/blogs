@@ -5,11 +5,10 @@ namespace App\Services\Admin;
 use App\Models\User;
 use Exception;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Nette\Utils\Strings;
 
 class ManagerUserService
 {
-    public function index(string $username): LengthAwarePaginator
+    public function index(string|null $username): LengthAwarePaginator
     {
         try {
             return User::with('blogs')

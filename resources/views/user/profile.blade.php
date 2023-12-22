@@ -6,14 +6,16 @@
 
 @section('class', 'header-static')
 
-<div class="container">
+<div class="blogs">
     <div class='breadcrumb'>
         <a href="{{ route('/index') }}">{{ __('message.home') }} &nbsp;>&nbsp; </a>
         <span>{{ __('message.profile') }}</span>
     </div>
     <div class="my-profile mt-5">
         <div class="card">
-            <img src="{{ $user->link_avatar }}" class="rounded-circle " alt="{{ $user->username }}">
+            <div class="d-flex justify-content-center background-image">
+                <img src="{{ $user->link_avatar }}" class="rounded-circle " alt="{{ $user->username }}">
+            </div>
             <h1>
                 {{ $user->username }}
             </h1>

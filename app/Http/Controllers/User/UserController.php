@@ -16,16 +16,16 @@ class UserController extends Controller
     ) {
     }
 
-    public function showResetPasswordForm(): View
+    public function showChangePasswordForm(): View
     {
-        return view('user.reset_password');
+        return view('user.change_password');
     }
 
-    public function resetPassword(ResetPasswordRequest $request): RedirectResponse
+    public function changePassword(ResetPasswordRequest $request): RedirectResponse
     {
         $result = $this->userService->resetPassword($request->only(['oldPassword', 'password']));
         if ($result) {
-            return back()->with('notification', __('message.reset_password_success'));
+            return back()->with('notification', __('message.change_password_success'));
         }
         return back()->withErrors(['oldPassword' => __('message.old_password_incorrect')]);
     }

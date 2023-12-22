@@ -121,10 +121,10 @@ $(document).ready(function () {
         let form = $(this);
         let oldComment = $(this).siblings('p');
         let id = parseInt(oldComment.attr('data-id'));
-        let content = $(this).find('input[name="comment"]').val();
+        let content = $(this).find('input[name="comment"]').val().replace(/</g, "&lt;").replace(/>/g, "&gt;");
         $.ajax({
             url: data.route.commentUpdate,
-            type: 'POST',
+            type: 'PUT',
             data: {
                 id: id,
                 content: content,
@@ -148,7 +148,7 @@ $(document).ready(function () {
         let comment = $(this).closest(".single-comment");
         $.ajax({
             url: data.route.commentDestroy,
-            type: 'POST',
+            type: 'DELETE',
             data: {
                 id: id,
             },

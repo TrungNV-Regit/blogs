@@ -22,8 +22,8 @@
             <hr class="dropdown-divider">
         </li>
         <li>
-            <a class="dropdown-item" href="{{ route('user.reset-password') }}">
-                {{ __('message.reset_password') }}
+            <a class="dropdown-item" href="{{ route('user.change-password') }}">
+                {{ __('message.change_password') }}
             </a>
         </li>
         <li>
@@ -41,6 +41,22 @@
         <li>
             <a class="dropdown-item" href="{{ route('admin.user.index') }}">
                 {{ __('message.user_management') }}
+            </a>
+        </li>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+        <li>
+            <a class="dropdown-item" href="{{ route('admin.category.index') }}">
+                {{ __('message.category_management') }}
+            </a>
+        </li>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+        <li>
+            <a class="dropdown-item" href="{{ route('admin.change-password') }}">
+                {{ __('message.change_password') }}
             </a>
         </li>
         <li>
