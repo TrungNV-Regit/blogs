@@ -1,9 +1,3 @@
-@php
-    $status = app('request')->input('status');
-    $category = app('request')->input('category');
-    $keyword = app('request')->input('keyword');
-@endphp
-
 @if ($paginator->hasPages())
     <nav>
         <ul class="pagination">
@@ -23,8 +17,7 @@
                 <li class="page-item">
                     <a class="page-link arrow {{ isset($useAjax) ? 'useAjax' : '' }}"
                         endpoint="{{ route('api.comment.index', ['blogId' => isset($blogId) ? $blogId : '', 'page' => $paginator->currentPage() - 1]) }}"
-                        href="{{ url()->current() }}?{{ http_build_query(['page' => $paginator->currentPage() - 1, 'status' => $status, 'keyword' => $keyword, 'category' => $category]) }}"
-                        rel="prev" aria-label="@lang('pagination.previous')">
+                        href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
                             fill="none">
                             <path
@@ -53,7 +46,7 @@
                             <li class="page-item">
                                 <a class="page-link {{ isset($useAjax) ? 'useAjax' : '' }}"
                                     endpoint="{{ route('api.comment.index', ['blogId' => isset($blogId) ? $blogId : '', 'page' => $page]) }}"
-                                    href="{{ url()->current() }}?{{ http_build_query(['page' => $page, 'status' => $status, 'keyword' => $keyword, 'category' => $category]) }}">
+                                    href="{{ $url }}">
                                     {{ $page }}
                                 </a>
                             </li>
@@ -66,8 +59,7 @@
                 <li class="page-item">
                     <a class="page-link arrow {{ isset($useAjax) ? 'useAjax' : '' }}"
                         endpoint="{{ route('api.comment.index', ['blogId' => isset($blogId) ? $blogId : '', 'page' => $paginator->currentPage() + 1]) }}"
-                        href="{{ url()->current() }}?{{ http_build_query(['page' => $paginator->currentPage() + 1, 'status' => $status, 'keyword' => $keyword, 'category' => $category]) }}"
-                        rel="next" aria-label="@lang('pagination.next')">
+                        href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
                             fill="none">
                             <path

@@ -5,6 +5,7 @@ use App\Http\Controllers\auth\SignUpController;
 use App\Http\Controllers\auth\VerificationController;
 use App\Http\Controllers\User\BlogController as UserBlogController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ManagerUserController;
 use App\Http\Controllers\Common\BlogController as CommonBlogController;
 use App\Http\Controllers\Common\CommentController;
@@ -39,18 +40,29 @@ Route::middleware(['auth', 'admin'])->group(function () {
    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
       Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
-         Route::get('/index', [AdminBlogController::class, 'index'])->name('index');
-         Route::post('/change-status/{id}', [AdminBlogController::class, 'changeStatus'])->name('change-status');
+         Route::get('/', [AdminBlogController::class, 'index'])->name('index');
+         Route::put('/change-status/{id}', [AdminBlogController::class, 'changeStatus'])->name('change-status');
          Route::get('/show/{id}', [AdminBlogController::class, 'show'])->name('show');
          Route::get('/edit/{id}', [CommonBlogController::class, 'edit'])->name('edit');
-         Route::post('/update/{id}', [AdminBlogController::class, 'update'])->name('update');
-         Route::post('/destroy/{id}', [AdminBlogController::class, 'destroy'])->name('destroy');
+         Route::put('/update/{id}', [AdminBlogController::class, 'update'])->name('update');
+         Route::delete('/destroy/{id}', [AdminBlogController::class, 'destroy'])->name('destroy');
       });
 
       Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
-         Route::get('/index', [ManagerUserController::class, 'index'])->name('index');
-         Route::post('/change-status', [ManagerUserController::class, 'changeStatus'])->name('change-status');
+         Route::get('/', [ManagerUserController::class, 'index'])->name('index');
+         Route::put('/change-status', [ManagerUserController::class, 'changeStatus'])->name('change-status');
       });
+
+      Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
+         Route::get('/', [CategoryController::class, 'index'])->name('index');
+         Route::post('/store', [CategoryController::class, 'store'])->name('store');
+         Route::get('/edit', [CategoryController::class, 'edit'])->name('edit');
+         Route::put('/update', [CategoryController::class, 'update'])->name('update');
+         Route::delete('/destroy', [CategoryController::class, 'destroy'])->name('destroy');
+      });
+
+      Route::get('/change-password', [UserController::class, 'showChangePasswordForm'])->name('change-password');
+      Route::post('/change-password', [UserController::class, 'changePassword'])->name('verify');
    });
 });
 
@@ -61,12 +73,12 @@ Route::middleware(['auth', 'user'])->group(function () {
          Route::post('/create', [UserBlogController::class, 'store'])->name('create');
          Route::get('/show/{id}', [UserBlogController::class, 'show'])->name('show');
          Route::get('/edit/{id}', [CommonBlogController::class, 'edit'])->name('edit');
-         Route::post('/update/{id}', [UserBlogController::class, 'update'])->name('update');
-         Route::post('/destroy/{id}', [UserBlogController::class, 'destroy'])->name('destroy');
+         Route::put('/update/{id}', [UserBlogController::class, 'update'])->name('update');
+         Route::delete('/destroy/{id}', [UserBlogController::class, 'destroy'])->name('destroy');
          Route::get('/my-blogs', [UserBlogController::class, 'myBlogs'])->name('my-blogs');
       });
-      Route::get('/reset-password', [UserController::class, 'showResetPasswordForm'])->name('reset-password');
-      Route::post('/reset-password', [UserController::class, 'resetPassword'])->name('verify');
+      Route::get('/change-password', [UserController::class, 'showChangePasswordForm'])->name('change-password');
+      Route::post('/change-password', [UserController::class, 'changePassword'])->name('verify');
 
       Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
          Route::get('/show', [UserController::class, 'show'])->name('show');
@@ -83,11 +95,11 @@ Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
    Route::middleware(['auth'])->post('/like', [LikeController::class, 'like'])->name('like');
 
    Route::group(['prefix' => 'comment', 'as' => 'comment.'], function () {
-      Route::get('/index', [CommentController::class, 'index'])->name('index');
+      Route::get('/', [CommentController::class, 'index'])->name('index');
       Route::middleware(['auth'])->group(function () {
          Route::post('/store', [CommentController::class, 'store'])->name('store');
-         Route::post('/update', [CommentController::class, 'update'])->name('update');
-         Route::post('/destroy', [CommentController::class, 'destroy'])->name('destroy');
+         Route::put('/update', [CommentController::class, 'update'])->name('update');
+         Route::delete('/destroy', [CommentController::class, 'destroy'])->name('destroy');
       });
    });
 });

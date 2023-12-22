@@ -1,10 +1,14 @@
 @extends('layouts.master')
 
-@section('title', trans('message.reset_password'))
+@section('title', trans('message.change_password'))
 
 @section('noHeader', 'd-none')
 
 @section('content')
+
+    @php
+        use App\Models\User;
+    @endphp
 
     <div class="verify">
         <div>
@@ -12,10 +16,12 @@
             @include('layouts.logo')
 
             <div class="content">
-                <form action="{{ route('user.reset-password') }}" method="POST">
+                <form
+                    action="{{ auth()->user()->role == User::ROLE_USER ? route('user.change-password') : route('admin.change-password') }}"
+                    method="POST">
                     @csrf
 
-                    <h4>{{ trans('message.reset_password') }}</h4>
+                    <h4>{{ trans('message.change_password') }}</h4>
 
                     <label for="oldPassword">
                         {{ trans('message.old_password') }}

@@ -22,7 +22,10 @@
             <form
                 action="{{ auth()->user()->role == User::ROLE_ADMIN ? route('admin.blog.update', ['id' => $blog->id]) : route('user.blog.update', ['id' => $blog->id]) }}"
                 method="post" enctype="multipart/form-data">
+
                 @csrf
+                @method('PUT')
+                
                 <h3>{{ __('message.update_blog') }}</h3>
 
                 <p>{{ __('message.category') }} <span>*</span></p>

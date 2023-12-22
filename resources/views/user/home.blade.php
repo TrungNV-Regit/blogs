@@ -10,7 +10,7 @@
 
 @section('backgroundTopBlog', 'background')
 
-<div class="container">
+<div class="blogs">
     <div class="header-body">
         <h1 class="title-body">{{ __('message.list_blog') }}</h1>
         <select name="category" onchange="handleOnchangeCategory(value)">
@@ -40,7 +40,7 @@
     </div>
 </div>
 
-{{ $data->links('layouts.pagination') }}
+{{ $data->withQueryString()->links('layouts.pagination') }}
 
 @include('layouts.footer')
 

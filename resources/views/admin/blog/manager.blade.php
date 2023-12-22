@@ -35,7 +35,7 @@
                 <form action="{{ route('admin.blog.change-status', ['id' => $blog->id]) }}" method="post"
                     class="d-none" id="changeStatus">
                     @csrf
-                    @method('POST')
+                    @method('PUT')
                 </form>
                 <button class="btn {{ $blog->status == Blog::STATUS_PENDING ? 'btn-approved' : 'btn-not-approved' }}"
                     onclick="document.getElementById('changeStatus').submit();">

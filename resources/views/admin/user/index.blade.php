@@ -79,7 +79,7 @@
 
 </div>
 
-{{ $users->links('layouts.pagination') }}
+{{ $users->withQueryString()->links('layouts.pagination') }}
 
 @include('layouts.footer')
 

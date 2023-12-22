@@ -24,7 +24,7 @@
 
     <div class="content">
         <div class="row">
-            
+
             @if (count($data))
                 @foreach ($data as $blog)
                     <div class="col-md-12 col-lg-4 col-sm-12">
@@ -41,7 +41,7 @@
     </div>
 </div>
 
-{{ $data->links('layouts.pagination') }}
+{{ $data->withQueryString()->links('layouts.pagination') }}
 
 @include('layouts.footer')
 

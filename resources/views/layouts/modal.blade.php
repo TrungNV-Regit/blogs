@@ -3,7 +3,7 @@
 @endphp
 
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">{{ __('message.delete') }}</h5>
@@ -26,7 +26,7 @@
                     action="{{ optional(auth()->user())->role == User::ROLE_ADMIN ? route('admin.blog.destroy', ['id' => $blog->id]) : route('user.blog.destroy', ['id' => $blog->id]) }}"
                     method="post" class="d-none" id="deleteBlog">
                     @csrf
-                    @method('POST')
+                    @method('DELETE')
                 </form>
             </div>
         </div>
