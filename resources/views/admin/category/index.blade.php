@@ -12,7 +12,7 @@
 
 <div class="blogs">
     <div class='breadcrumb'>
-        <a href="{{ route('/index') }}">{{ __('message.home') }} &nbsp;>&nbsp; </a>
+        <a href="{{ route('index') }}">{{ __('message.home') }} &nbsp;>&nbsp; </a>
         <span>{{ __('message.category_management') }}</span>
     </div>
     <div class="content">

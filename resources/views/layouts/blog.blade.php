@@ -3,7 +3,7 @@
         <img src={{ $blog->link_image }} class="card-img-top" alt="{{ $blog->title }}">
     @endif
     <div class="card-body">
-        <div class="name-and-time">
+        <div class="name-and-time {{ isset($topBlog) ? 'justify-content-between' : '' }}">
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -30,6 +30,20 @@
                     {{ $blog->created_at->diffForHumans() }}
                 </span>
             </div>
+            @if (isset($topBlog))
+                <div>
+                    <img src="{{ Vite::asset('resources/images/liked.png') }}">
+                    <span class="time">
+                        {{ $blog->likes()->count() }}
+                    </span>
+                </div>
+                <div>
+                    <img src="{{ Vite::asset('resources/images/comment.png') }}">
+                    <span class="time">
+                        {{ $blog->comments()->count() }}
+                    </span>
+                </div>
+            @endif
         </div>
         <h5 class="card-title single-line">{{ $blog->title }}</h5>
         <p class="card-text single-line">{{ $blog->content }}</p>

@@ -16,7 +16,7 @@
             @endif
         </div>
         <div class="logo-mobile">
-            <a href="{{ route('/index') }}">
+            <a href="{{ route('index') }}">
                 <img src="{{ Vite::asset('resources/images/logo-mobile.png') }}" alt="Logo Mobile">
                 <span>{{ __('message.made') }}</span>
             </a>
@@ -31,13 +31,13 @@
     </div>
     <div class="nav d-lg-block d-md-block d-sm-none @yield('class')" id="headerScroll">
         <div class="nav-logo">
-            <a href="{{ route('/index') }}">
+            <a href="{{ route('index') }}">
                 <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="Logo" />
                 <span>{{ __('message.made') }}</span>
             </a>
         </div>
 
-        <form action="{{ route('/index') }}" id="search" method="GET">
+        <form action="{{ route('index') }}" id="search" method="GET">
 
             <input type="text" placeholder="{{ __('message.search') }}" id="inputSearch" name="keyword"
                 value={{ app('request')->input('keyword') }}>
@@ -54,8 +54,8 @@
             </button>
         </form>
 
-        <a href="{{ route('/index') }}" class="top-blog @yield('backgroundTopBlog')">
-            <span>Top</span>
+        <a href="{{ route('blog.top') }}" class="top-blog @yield('backgroundTopBlog')">
+            <span>{{ __('message.top') }}</span>
         </a>
 
         @if (Auth::check())

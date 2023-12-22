@@ -8,8 +8,6 @@
     <img src="{{ Vite::asset('resources/images/banner.png') }}" class="image-banner" alt="Image banner">
 @endsection
 
-@section('backgroundTopBlog', 'background')
-
 <div class="blogs">
     <div class="header-body">
         <h1 class="title-body">{{ __('message.list_blog') }}</h1>

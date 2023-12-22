@@ -101,4 +101,6 @@ return [
     'comfirm_delete_category' => 'Are you sure want to delete this  category?',
     'action' => 'Action',
     'change_password' => 'Change password',
+    'top_blog' => 'Top Blog',
+    'top' => 'Top'
 ];

@@ -37,4 +37,10 @@ class BlogController extends Controller
         $categories = $this->categoryService->index();
         return view('user.home')->with(['data' => $data, 'categories' => $categories]);
     }
+
+    public function top()
+    {
+        $blogs = $this->blogService->topBlogs();
+        return view('user.top_blogs')->with(['blogs' => $blogs]);
+    }
 }

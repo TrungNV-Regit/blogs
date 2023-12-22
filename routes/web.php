@@ -89,6 +89,7 @@ Route::middleware(['auth', 'user'])->group(function () {
 
 Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
    Route::get('/show/{id}', [CommonBlogController::class, 'show'])->name('show');
+   Route::get('/top', [CommonBlogController::class, 'top'])->name('top');
 });
 
 Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
@@ -104,4 +105,4 @@ Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
    });
 });
 
-Route::get('/index', [CommonBlogController::class, 'index'])->name('/index');
+Route::get('/index', [CommonBlogController::class, 'index'])->name('index');
