@@ -26,7 +26,7 @@ class BlogService
                 $query->where('category_id', $categoryId);
             }
 
-            return $query->orderByDesc('created_at')->paginate(config('blog.per_page'));
+            return $query->inRandomOrder()->orderByDesc('created_at')->paginate(config('blog.per_page'));
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }
@@ -84,6 +84,18 @@ class BlogService
                 $this->imageService->deleteImage($blog->link_image);
             }
             return $blog->delete();
+        } catch (Exception $ex) {
+            throw new Exception($ex->getMessage());
+        }
+    }
+
+    public function topBlogs(): LengthAwarePaginator
+    {
+        try {
+            return Blog::with('author', 'likes')
+                ->where('blogs.status', Blog::STATUS_ACTIVE)
+                ->orderBy('blogs.created_at', 'desc')
+                ->paginate(config('blog.per_page'));
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }

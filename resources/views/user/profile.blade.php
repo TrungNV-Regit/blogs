@@ -8,7 +8,7 @@
 
 <div class="blogs">
     <div class='breadcrumb'>
-        <a href="{{ route('/index') }}">{{ __('message.home') }} &nbsp;>&nbsp; </a>
+        <a href="{{ route('index') }}">{{ __('message.home') }} &nbsp;>&nbsp; </a>
         <span>{{ __('message.profile') }}</span>
     </div>
     <div class="my-profile mt-5">
