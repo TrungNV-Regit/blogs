@@ -109,7 +109,7 @@ $(document).ready(function () {
                 $('#comment').val("");
             },
             error: function (xhr) {
-                if (xhr.status == 401) {
+                if (xhr.status == 401 || xhr.status == 403) {
                     window.location.href = data.route.login;
                 }
             }

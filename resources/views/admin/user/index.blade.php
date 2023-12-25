@@ -12,7 +12,7 @@
 
 <div class="blogs">
     <div class='breadcrumb'>
-        <a href="{{ route('/index') }}">{{ __('message.home') }} &nbsp;>&nbsp; </a>
+        <a href="{{ route('index') }}">{{ __('message.home') }} &nbsp;>&nbsp; </a>
         <span>{{ __('message.list_user') }}</span>
     </div>
     <div class="search-user">

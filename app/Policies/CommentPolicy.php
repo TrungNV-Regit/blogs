@@ -23,4 +23,12 @@ class CommentPolicy
     {
         return $user->status == User::STATUS_ACTIVE && $user->id === $comment->user_id;
     }
+
+    /**
+     * Determine whether the user can create models.
+     */
+    public function create(User $user): bool
+    {
+        return $user->status == User::STATUS_ACTIVE;
+    }
 }
