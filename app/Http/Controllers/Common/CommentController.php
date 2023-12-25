@@ -25,6 +25,7 @@ class CommentController extends Controller
 
     public function store(Request $request): string
     {
+        Gate::authorize('create', Comment::class);
         $user = auth()->user();
         $data = $request->only('blog_id', 'content');
         $comment = $this->commentService->store([...$data, 'user_id' => $user->id]);
@@ -50,5 +51,5 @@ class CommentController extends Controller
         Gate::authorize("update", $comment);
         $result = $this->commentService->update($comment, $request->content);
         return json_encode($result);
-    }   
+    }
 }

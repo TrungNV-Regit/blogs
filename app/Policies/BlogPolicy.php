@@ -22,4 +22,9 @@ class BlogPolicy
     {
         return ( $user->status == User::STATUS_ACTIVE && $user->id === $blog->user_id ) || $user->role == User::ROLE_ADMIN;
     }
+
+    public function like(User $user): bool
+    {
+        return $user->status == User::STATUS_ACTIVE;
+    }
 }
