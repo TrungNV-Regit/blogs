@@ -4,7 +4,23 @@
 @endphp
 
 <ul class="dropdown-menu">
+    <li class="dropdown-moblie">
+        <a class="dropdown-item" href="{{ route('blog.top') }}">
+            {{ __('message.top_blog') }}
+        </a>
+    </li>
+    <li class="dropdown-moblie">
+        <hr class="dropdown-divider">
+    </li>
     @if (Auth::user()->role == User::ROLE_USER)
+        <li class="dropdown-moblie">
+            <a class="dropdown-item" href="{{ route('user.blog.create') }}">
+                {{ __('message.create') }}
+            </a>
+        </li>
+        <li class="dropdown-moblie">
+            <hr class="dropdown-divider">
+        </li>
         <li>
             <a class="dropdown-item" href="{{ route('user.blog.my-blogs') }}">
                 {{ __('message.my_blog') }}

@@ -26,7 +26,7 @@ class BlogService
                 $query->where('category_id', $categoryId);
             }
 
-            return $query->inRandomOrder()->orderByDesc('created_at')->paginate(config('blog.per_page'));
+            return $query->orderByDesc('created_at')->paginate(config('blog.per_page'));
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }

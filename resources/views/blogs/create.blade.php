@@ -35,7 +35,8 @@
                 @endif
 
                 <p>{{ __('message.title') }} <span>*</span></p>
-                <input type="text" name='title' placeholder="{{ __('message.title') }} ">
+                <input type="text" name='title' placeholder="{{ __('message.title') }} "
+                    value="{{ old('title') }}">
 
                 @if ($errors->has('title'))
                     <p class="error">{{ $errors->first('title') }}</p>
@@ -45,10 +46,14 @@
                 <label for="uploadImage">{{ __('message.upload_image') }}</label>
                 <input name='image' id="uploadImage" class="upload-image" type="file"
                     accept="image/png, image/jpeg" />
-                <img id='imageBlog' class="d-none">
+                <img id='imageBlog' class="d-none" has-error={{ $errors->any() }}>
+
+                <button class='btn-success d-none' id="buttonDeleteImage" type="button" onclick="deleteImage(true)">
+                    {{ __('message.delete_image') }}
+                </button>
 
                 <p>{{ __('message.description') }} <span>*</span></p>
-                <textarea name='content'></textarea>
+                <textarea name='content'>{{ old('content') }}</textarea>
 
                 @if ($errors->has('content'))
                     <p class="error">{{ $errors->first('content') }}</p>

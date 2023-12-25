@@ -43,7 +43,9 @@
             <img class="blog-image" src="{{ $blog->link_image }}" alt="{{ $blog->title }}">
         @endif
         <div class="blog-content">
-            <p>{{ $blog->content }}</p>
+
+            {!! nl2br($blog->content) !!}
+
             <div class="like-comment">
                 @if ($user)
                     <div id="like"
