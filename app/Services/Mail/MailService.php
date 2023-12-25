@@ -52,7 +52,7 @@ class MailService
         try {
             $user = User::where('token_verify_email', $token)->first();
             $user->update(['token_created_at' => now()]);
-            Mail::to($user->email)->send(new SendEmail(__('en.subject_verify_email'), 'mail.verify', $token));
+            Mail::to($user->email)->send(new SendEmail(__('message.subject_verify_email'), 'mail.verify', $token));
             $data = [
                 'resend_token_success' => trans('message.resend_token_success'),
             ];

@@ -1,47 +1,57 @@
-const uploadImageInput = document.getElementById('uploadImage');
-const imageBlog = document.getElementById('imageBlog');
-let header = document.querySelector("#headerScroll");
+const uploadImageInput = $('#uploadImage');
+const imageBlog = $('#imageBlog');
+let header = $("#headerScroll");
 let previousScroll = window.scrollY;
 
-if (uploadImageInput) {
-    uploadImageInput.addEventListener('change', (event) => {
+if (imageBlog.attr('has-error') && localStorage.getItem('imageBlog')) {
+    imageBlog.attr('src', localStorage.getItem('imageBlog'));
+    imageBlog.removeClass('d-none');
+    $('#buttonDeleteImage').removeClass('d-none');
+} else {
+    localStorage.removeItem('imageBlog');
+}
+
+if (uploadImageInput.length) {
+    uploadImageInput.on('change', (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
 
         reader.onload = (e) => {
-            imageBlog.src = e.target.result;
-            imageBlog.classList.remove('d-none');
+            imageBlog.attr('src', e.target.result);
+            imageBlog.removeClass('d-none');
+            localStorage.setItem('imageBlog', e.target.result);
         };
 
         reader.readAsDataURL(file);
-        document.getElementById('buttonDeleteImage').classList.remove('d-none');
+        $('#buttonDeleteImage').removeClass('d-none');
     });
 }
 
 function deleteImage(hasImage) {
-    uploadImageInput.value = '';
-    document.getElementById('imageBlog').classList.add('d-none');
-    document.getElementById('buttonDeleteImage').classList.add('d-none');
+    localStorage.removeItem('imageBlog');
+    uploadImageInput.val('');
+    imageBlog.addClass('d-none');
+    $('#buttonDeleteImage').addClass('d-none');
     if (hasImage) {
-        document.getElementById('checkDeleteImage').checked = true;
+        $('#checkDeleteImage').prop('checked', true);
     }
 }
 
-document.addEventListener('scroll', function () {
-    if (window.scrollY > previousScroll) {
-        header.classList.remove('header-down');
-        header.classList.add('header-up');
+$(document).scroll(function () {
+    if ($(window).scrollTop() > previousScroll) {
+        header.removeClass('header-down');
+        header.addClass('header-up');
     } else {
-        header.classList.remove('header-up');
-        header.classList.add('header-down');
+        header.removeClass('header-up');
+        header.addClass('header-down');
     }
 
-    previousScroll = window.scrollY;
+    previousScroll = $(window).scrollTop();
 });
 
 function handleOnchangeCategory(value) {
-    document.getElementById('categoryId').value = value;
-    document.getElementById('search').submit();
+    $('#categoryId').val(value);
+    $('#search').submit();
 }
 
 let slideIndex = 1;
@@ -56,23 +66,29 @@ function currentSlide(index) {
 }
 
 function showSlides(index) {
-    let i;
-    let slides = document.getElementsByClassName("slide");
-    let dots = document.getElementsByClassName("dot");
-    if (slides && slides.length > 1) {
+    let slides = $(".slide");
+    let dots = $(".dot");
+    if (slides.length > 1) {
         if (index > slides.length) {
-            slideIndex = 1
+            slideIndex = 1;
         }
         if (index < 1) {
-            slideIndex = slides.length
+            slideIndex = slides.length;
         }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
+        slides.hide();
+        dots.removeClass("active");
+        slides.eq(slideIndex - 1).show();
+        dots.eq(slideIndex - 1).addClass("active");
     }
+}
+
+function seachMobile() {
+    $('#headerMobile').find('div:first').addClass('d-none');
+    $('#headerMobile').find('form').removeClass('d-none');
+    $('#headerMobile').find('input:first').focus();
+}
+
+function handleCancelSearch() {
+    $('#headerMobile').find('div:first').removeClass('d-none');
+    $('#headerMobile').find('form').addClass('d-none');
 }

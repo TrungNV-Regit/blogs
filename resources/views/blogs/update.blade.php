@@ -25,7 +25,7 @@
 
                 @csrf
                 @method('PUT')
-                
+
                 <h3>{{ __('message.update_blog') }}</h3>
 
                 <p>{{ __('message.category') }} <span>*</span></p>

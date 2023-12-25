@@ -39,7 +39,7 @@ class AuthenticationService
                         return redirect()->route('admin.user.index');
                     }
 
-                    return redirect()->route('/index');
+                    return redirect()->route('index');
                 }
             }
 
