@@ -15,10 +15,24 @@ class BlogService
     ) {
     }
 
-    public function index(int $status): LengthAwarePaginator
+    public function index(?int $status, ?int $categoryId, ?string $title): LengthAwarePaginator
     {
         try {
-            return Blog::where('status', $status)->with('author')->orderByDesc('id')->paginate(config('blog.per_page'));
+            $query = Blog::with('author');
+
+            if ($status) {
+                $query->where('status', $status);
+            }
+
+            if ($categoryId) {
+                $query->where('category_id', $categoryId);
+            }
+
+            if ($title) {
+                $query->where('title', 'LIKE', '%' . $title . '%');
+            }
+
+            return $query->orderByDesc('id')->paginate(config('blog.per_page'));
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }

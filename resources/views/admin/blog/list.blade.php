@@ -11,16 +11,31 @@
         <a href="{{ route('index') }}">{{ __('message.home') }} &nbsp;>&nbsp; </a>
         <span>{{ __('message.list_blog') }}</span>
     </div>
-    <div>
-        <select onchange="window.location.href = this.value;">
-            @foreach ($statuses as $key => $status)
-                <option value="{{ route('admin.blog.index', ['status' => $key]) }}"
-                    {{ request('status') == $key ? 'selected' : '' }}>
-                    {{ $status }}
-                </option>
-            @endforeach
-        </select>
+
+    <div class="search-blog-admin">
+        <form action="{{ route('admin.blog.index') }}" class="d-flex" method="GET">
+            <select name="status">
+                @foreach ($statuses as $key => $status)
+                    <option value="{{ $key }}" {{ request('status') == $key ? 'selected' : '' }}>
+                        {{ $status }}
+                    </option>
+                @endforeach
+            </select>
+            <select name="categoryId">
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                        {{ $category->name }}
+                    </option>
+                @endforeach
+            </select>
+            <input type="text" placeholder="{{ __('message.search') }}" name="title" class="input-search "
+                value={{ app('request')->input('title') }}>
+            <button type="submit" class="btn btn-success">
+                {{ __('message.search') }}
+            </button>
+        </form>
     </div>
+
 
     <div class="content">
         <div class="row">
