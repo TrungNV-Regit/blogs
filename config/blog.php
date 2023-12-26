@@ -13,13 +13,13 @@ return [
     'per_page' => env('PER_PAGE', 9),
 
     'statuses' => [
-        1 => 'ACTIVE',
-        2 => 'PENDING',
+        1 => 'Active',
+        2 => 'Pending',
     ],
 
     'image_path_prefix' => '/storage/images',
 
     'related_blog_limit' => 4,
-    
+
     'per_page_comment' => env('PER_PAGE_COMMENT', 20),
 ];

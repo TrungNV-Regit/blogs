@@ -46,7 +46,7 @@
 
             {!! nl2br($blog->content) !!}
 
-            <div class="like-comment">
+            <div class="like-comment mt-4">
                 @if ($user)
                     <div id="like"
                         class="{{ $user->likes()->where('blog_id', $blog->id)->exists()? 'liked': 'unliked' }}"></div>
