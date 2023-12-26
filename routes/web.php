@@ -51,6 +51,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
       Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
          Route::get('/', [ManagerUserController::class, 'index'])->name('index');
          Route::put('/change-status', [ManagerUserController::class, 'changeStatus'])->name('change-status');
+         Route::get('/detail', [ManagerUserController::class, 'detail'])->name('detail');
       });
 
       Route::group(['prefix' => 'category', 'as' => 'category.'], function () {

@@ -16,13 +16,18 @@ class ManagerUserController extends Controller
 
     public function index(Request $request): View
     {
-        $username = $request->input('username', '');
-        $users = $this->userService->index($username);
+        $users = $this->userService->index($request->username, $request->sortTotalBlog);
         return view('admin.user.index')->with('users', $users);
     }
 
     public function changeStatus(Request $request): string
     {
         return $this->userService->changeStatus($request->userId);
+    }
+
+    public function detail(Request $request): View
+    {
+        $data = $this->userService->detail($request->userId);
+        return view('admin.user.detail')->with('data', $data);
     }
 }
