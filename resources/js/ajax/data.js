@@ -11,6 +11,7 @@ const data = {
         commentUpdate: dataElement.attr('comment-update-route'),
         commentDestroy: dataElement.attr('comment-destroy-route'),
         login: dataElement.attr('login-route'),
+        replyIndex: dataElement.attr('reply-index-route'),
     }
 };
 

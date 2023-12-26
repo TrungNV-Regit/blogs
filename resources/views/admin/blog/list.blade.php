@@ -15,6 +15,7 @@
     <div class="search-blog-admin">
         <form action="{{ route('admin.blog.index') }}" class="d-flex" method="GET">
             <select name="status">
+                <option disabled selected>{{ __('message.select_status') }}</option>
                 @foreach ($statuses as $key => $status)
                     <option value="{{ $key }}" {{ request('status') == $key ? 'selected' : '' }}>
                         {{ $status }}
@@ -22,8 +23,9 @@
                 @endforeach
             </select>
             <select name="categoryId">
+                <option disabled selected>{{ __('message.select_category') }}</option>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                    <option value="{{ $category->id }}" {{ request('categoryId') == $category->id ? 'selected' : '' }}>
                         {{ $category->name }}
                     </option>
                 @endforeach

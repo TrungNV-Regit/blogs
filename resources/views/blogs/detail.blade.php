@@ -9,7 +9,7 @@
 <div id="data" like-route="{{ route('api.like') }}" comment-create-route="{{ route('api.comment.store') }}"
     comment-update-route="{{ route('api.comment.update') }}" comment-destroy-route="{{ route('api.comment.destroy') }}"
     comment-index-route="{{ route('api.comment.index', ['blogId' => $blog->id]) }}" blog-id={{ $blog->id }}
-    login-route="{{ route('auth.sign-in') }}">
+    login-route="{{ route('auth.sign-in') }}" reply-index-route="{{ route('api.comment.reply') }}">
 </div>
 
 <div class="page-approve-blog">
