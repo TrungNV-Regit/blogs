@@ -27,7 +27,7 @@
                         </div>
                     </a>
                 </div>
-            @endforeach  
+            @endforeach
         </div>
 
         <div class="slideshow-container d-lg-none d-md-none d-sm-block d-xs-block">

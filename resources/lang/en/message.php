@@ -38,6 +38,7 @@ return [
     'create' => 'Create Blog',
     'category' => 'Category',
     'select_category' => 'Select Category',
+    'select_status' => 'Select Status',
     'title' => 'Title',
     'upload_image' => 'Upload image',
     'description' => 'Description',
@@ -102,5 +103,6 @@ return [
     'action' => 'Action',
     'change_password' => 'Change password',
     'top_blog' => 'Top Blog',
-    'top' => 'Top'
+    'top' => 'Top',
+    'reply' => 'Reply'
 ];

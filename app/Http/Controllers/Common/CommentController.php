@@ -28,6 +28,9 @@ class CommentController extends Controller
         Gate::authorize('create', Comment::class);
         $user = auth()->user();
         $data = $request->only('blog_id', 'content');
+        if ($request->has('parentId')) {
+            $data['parent_id'] = $request->parentId;
+        }
         $comment = $this->commentService->store([...$data, 'user_id' => $user->id]);
         return json_encode(
             [
@@ -41,8 +44,8 @@ class CommentController extends Controller
     {
         $comment = Comment::findOrFail($request->id);
         Gate::authorize("destroy", $comment);
-        $result = $this->commentService->destroy($comment);
-        return json_encode($result);
+        $this->commentService->destroy($comment);
+        return json_encode($comment);
     }
 
     public function update(Request $request): string
@@ -51,5 +54,12 @@ class CommentController extends Controller
         Gate::authorize("update", $comment);
         $result = $this->commentService->update($comment, $request->content);
         return json_encode($result);
+    }
+
+    public function getRepliesComment(Request $request): View
+    {
+        $data = $this->commentService->getRepliesComment($request->parentId);
+        $user = auth()->user();
+        return view('blogs.reply_comment')->with(['data' => $data, 'user' => $user]);
     }
 }

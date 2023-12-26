@@ -39,8 +39,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('user.profile.update', $user) }}" enctype="multipart/form-data" method="POST"
-                        class="update-profile">
+                    <form action="{{ route('user.profile.update', $user) }}" enctype="multipart/form-data"
+                        method="POST" class="update-profile">
 
                         @csrf
                         @method('PUT')

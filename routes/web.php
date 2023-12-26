@@ -98,6 +98,7 @@ Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
 
    Route::group(['prefix' => 'comment', 'as' => 'comment.'], function () {
       Route::get('/', [CommentController::class, 'index'])->name('index');
+      Route::get('/reply', [CommentController::class, 'getRepliesComment'])->name('reply');
       Route::middleware(['auth'])->group(function () {
          Route::post('/store', [CommentController::class, 'store'])->name('store');
          Route::put('/update', [CommentController::class, 'update'])->name('update');

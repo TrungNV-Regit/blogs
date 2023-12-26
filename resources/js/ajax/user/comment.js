@@ -1,6 +1,9 @@
 import "../config.js"
 import data from "../data.js";
 
+let formUpdateCommentCurrent = null;
+let formUpdateReplyCurrent = null;
+
 $(document).ready(function () {
 
     $.ajax({
@@ -41,7 +44,36 @@ $(document).ready(function () {
                                 stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </span>
+                    <span class="reply-comment">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
+                            <path fill="currentColor"
+                                d="M6.598 5.013a.144.144 0 0 1 .202.134V6.3a.5.5 0 0 0 .5.5c.667 0 2.013.005 3.3.822c.984.624 1.99 1.76 2.595 3.876c-1.02-.983-2.185-1.516-3.205-1.799a8.74 8.74 0 0 0-1.921-.306a7.404 7.404 0 0 0-.798.008h-.013l-.005.001h-.001L7.3 9.9l-.05-.498a.5.5 0 0 0-.45.498v1.153c0 .108-.11.176-.202.134L2.614 8.254a.503.503 0 0 0-.042-.028a.147.147 0 0 1 0-.252a.499.499 0 0 0 .042-.028zM7.8 10.386c.068 0 .143.003.223.006c.434.02 1.034.086 1.7.271c1.326.368 2.896 1.202 3.94 3.08a.5.5 0 0 0 .933-.305c-.464-3.71-1.886-5.662-3.46-6.66c-1.245-.79-2.527-.942-3.336-.971v-.66a1.144 1.144 0 0 0-1.767-.96l-3.994 2.94a1.147 1.147 0 0 0 0 1.946l3.994 2.94a1.144 1.144 0 0 0 1.767-.96z" />
+                        </svg>
+                    </span>
                 </p>
+                <form endpoint="${data.route.commentCreate}" comment-parent=${comment.id}
+                    class="d-none storeTheReply" method="POST">
+                    <input name="comment" required />
+                    <div>
+                        <button type="submit" class="d-none" id="{{ 'replyComment' . $comment->id }}"></button>
+                        <label for="{{ 'replyComment' . $comment->id }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                class="bi bi-send" viewBox="0 0 16 16">
+                                <path
+                                    d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
+                            </svg>
+                        </label>
+                        <label class="revert-update">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                class="bi bi-x-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                <path
+                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                            </svg>
+                        </label>
+                    </div>
+                </form>
+
                 <form method="post" action="${data.route.commentUpdate}" class="updateComment d-none">
                     <input name="comment" data-id=${comment.id} value="${comment.content}" required />
                     <div>
@@ -63,21 +95,38 @@ $(document).ready(function () {
                         </label>
                     </div>
                 </form>
-                <span class="color-time">${comment.time_elapsed}</span>
+                <span class="color-time">${comment.time_elapsed} &nbsp;&nbsp; </span>
+
+                <span class="color-time cursor-pointer totalReply d-none"
+                    endpoint="${data.route.replyIndex}?parentId=${comment.id}">
+                        0 Reply
+                </span>
+
+                <div class="replies mt-4">
+                </div>
             </div>`
         return result;
     }
 
     $('#comments').on('click', '.useAjax', function (event) {
         event.preventDefault();
+        let replyElement = $(this).closest('div.replies');
         $.ajax({
-            url: $(this).attr('endpoint'),
+            url: $(this).attr('href'),
             type: 'GET',
             success: function (response) {
-                $('html, body').animate({
-                    scrollTop: $("#commentAjax").offset().top
-                }, 0);
-                $("#comments").html(response);
+                if (replyElement.length) {
+                    replyElement.html(response);
+                    replyElement.find('ul.pagination').addClass('mb-2');
+                    $('html, body').animate({
+                        scrollTop: replyElement.offset().top
+                    }, 0);
+                } else {
+                    $('html, body').animate({
+                        scrollTop: $("#commentAjax").offset().top
+                    }, 0);
+                    $("#comments").html(response);
+                }
             },
             error: function (xhr) {
                 throw new Error(xhr);
@@ -99,13 +148,8 @@ $(document).ready(function () {
                 let data = JSON.parse(response);
                 let newElement = createElement(data.comment, data.user);
                 let commentElement = $("<div></div>").addClass("single-comment").html(newElement);
-                let newTotalCommentlement = $('<span>').attr('id', 'totalComment');
-                newTotalCommentlement.text(parseInt($('#totalComment').text()) + 1);
                 $("#comments").prepend(commentElement);
-                $('#totalComment').slideUp(function () {
-                    $(this).replaceWith(newTotalCommentlement);
-                    newTotalCommentlement.hide().slideDown();
-                });
+                handleIncrementComment();
                 $('#comment').val("");
             },
             error: function (xhr) {
@@ -134,6 +178,8 @@ $(document).ready(function () {
                 oldComment.find('span:first').text(comment.content);
                 oldComment.show();
                 form.addClass('d-none');
+                formUpdateCommentCurrent = null;
+                formUpdateReplyCurrent = null;
             },
             error: function (xhr) {
                 if (xhr.status == 401) {
@@ -153,6 +199,11 @@ $(document).ready(function () {
                 id: id,
             },
             success: function (response) {
+                let data = JSON.parse(response);
+                if (data.parent_id) {
+                    let totalReplyElement = comment.parent().siblings('span.totalReply');
+                    handleDisplayTotalReply(totalReplyElement, false)
+                }
                 comment.remove();
                 let newTotalCommentlement = $('<span>').attr('id', 'totalComment');
                 newTotalCommentlement.text(parseInt($('#totalComment').text()) - 1);
@@ -169,7 +220,9 @@ $(document).ready(function () {
 
     $('#comments').on('click', '.update-comment', function () {
         let parrentElement = $(this).closest('p');
-        let form = parrentElement.siblings('form');
+        let form = parrentElement.siblings('form.updateComment');
+        handleUpdateComment();
+        formUpdateCommentCurrent = form;
         parrentElement.hide();
         form.removeClass('d-none');
         let inputElement = form.find('input[name="comment"]');
@@ -182,4 +235,109 @@ $(document).ready(function () {
         parrentElement.find('p').show();
         parrentElement.find('form').addClass('d-none');
     });
+
+
+    $('#comments').on('click', '.totalReply', function () {
+        let divElement = $(this).siblings('div.replies');
+        let endpoint = $(this).attr('endpoint');
+        if (divElement.text().trim()) {
+            divElement.html('');
+        } else {
+            $.ajax({
+                url: endpoint,
+                type: 'GET',
+                success: function (response) {
+                    divElement.html(response);
+                    divElement.find('ul.pagination').addClass('mb-2');
+                },
+                error: function (xhr) {
+                    throw new Error(xhr);
+                }
+            });
+        }
+    });
+
+    $('#comments').on('submit', '.storeTheReply', function (event) {
+        event.preventDefault();
+        let form = $(this);
+        let content = $(this).find('input[name=comment]').val().replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        let endpoint = $(this).attr('endpoint');
+        let parentId = $(this).attr('comment-parent');
+        let divElement = form.siblings('div:first');
+        let totalReplyElement = form.siblings('span.totalReply');
+        $.ajax({
+            url: endpoint,
+            type: 'POST',
+            data: {
+                blog_id: data.blog.id,
+                content: content,
+                parentId: parentId,
+            },
+            success: function (response) {
+                form.addClass('d-none');
+                form.find('input[name=comment]').val('');
+                handleCreateReplySuccess(totalReplyElement.attr('endpoint'), divElement);
+                handleDisplayTotalReply(totalReplyElement, true);
+                totalReplyElement.removeClass('d-none');
+                handleIncrementComment();
+            },
+            error: function (xhr) {
+                if (xhr.status == 401 || xhr.status == 403) {
+                    window.location.href = data.route.login;
+                }
+            }
+        });
+    });
+
+    $('#comments').on('click', '.reply-comment', function () {
+        let formElement = $(this).parent().siblings('form:first');
+        handleUpdateComment();
+        formUpdateReplyCurrent = formElement;
+        formElement.removeClass('d-none');
+        formElement.find('input').focus();
+    });
+
+    function handleIncrementComment() {
+        let newTotalCommentlement = $('<span>').attr('id', 'totalComment');
+        newTotalCommentlement.text(parseInt($('#totalComment').text()) + 1);
+        $('#totalComment').slideUp(function () {
+            $(this).replaceWith(newTotalCommentlement);
+            newTotalCommentlement.hide().slideDown();
+        });
+    }
+
+    function handleDisplayTotalReply(totalReplyElement, incrementReply) {
+        let totalReply = parseInt(totalReplyElement.text().match(/\d+/)[0]);
+        let updateTotalReplyElement;
+        if (incrementReply) {
+            updateTotalReplyElement = totalReplyElement.text().replace(/\d+/, ++totalReply);
+        } else {
+            updateTotalReplyElement = totalReplyElement.text().replace(/\d+/, --totalReply);
+        }
+        totalReply ? totalReplyElement.text(updateTotalReplyElement) : totalReplyElement.addClass('d-none')
+    }
+
+    function handleUpdateComment() {
+        if (formUpdateReplyCurrent) {
+            formUpdateReplyCurrent.addClass('d-none');
+            formUpdateReplyCurrent.siblings('p').show();
+        }
+        if (formUpdateCommentCurrent) {
+            formUpdateCommentCurrent.addClass('d-none');
+            formUpdateCommentCurrent.siblings('p').show();
+        }
+    }
+
+    function handleCreateReplySuccess(endpoint, divElement) {
+        $.ajax({
+            url: endpoint,
+            type: 'GET',
+            success: function (response) {
+                divElement.html(response);
+            },
+            error: function (xhr) {
+                throw new Error(xhr);
+            }
+        });
+    }
 });
