@@ -9,21 +9,24 @@ use App\Services\Admin\BlogService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Services\Common\BlogService as CommonBlogService;
+use App\Services\Common\CategoryService;
+use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
     public function __construct(
         private BlogService $blogService,
         private CommonBlogService $commonBlogService,
+        private CategoryService $categoryService,
     ) {
     }
 
-    public function index(): View
+    public function index(Request $request): View
     {
-        $status = request()->query('status');
-        $data = $this->blogService->index($status);
+        $data = $this->blogService->index($request->status, $request->categoryId, $request->title);
         $statuses = config('blog.statuses');
-        return view('admin.blog.list', compact('data', 'statuses'));
+        $categories = $this->categoryService->index();
+        return view('admin.blog.list')->with(['data' => $data, 'statuses' => $statuses, 'categories' => $categories]);
     }
 
     public function changeStatus(int $id): RedirectResponse
