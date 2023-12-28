@@ -2,6 +2,7 @@
 
 namespace App\Services\Common;
 
+use App\Events\CommentEvent;
 use App\Models\Comment;
 use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -24,7 +25,9 @@ class CommentService
     public function store(array $data): Comment
     {
         try {
-            return Comment::create($data);
+            $comment = Comment::create($data);
+            broadcast(new CommentEvent($data['blog_id'], $comment, Comment::CREATE))->toOthers();
+            return $comment;
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }
@@ -34,6 +37,7 @@ class CommentService
     {
         try {
             Comment::where('parent_id', $comment->id)->delete();
+            broadcast(new CommentEvent($comment->blog_id, $comment,  Comment::DESTROY))->toOthers();
             return $comment->delete();
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
@@ -44,7 +48,9 @@ class CommentService
     {
         try {
             $comment->update(['content' => $content]);
-            return $comment->refresh();
+            $updateComment = $comment->refresh();
+            broadcast(new CommentEvent($updateComment->blog_id, $updateComment, Comment::UPDATE))->toOthers();
+            return $updateComment;
         } catch (Exception $ex) {
             throw new Exception($ex->getMessage());
         }

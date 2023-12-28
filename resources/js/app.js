@@ -68,7 +68,7 @@ function currentSlide(index) {
 function showSlides(index) {
     let slides = $(".slide");
     let dots = $(".dot");
-    if (slides.length > 1) {
+    if (slides.length) {
         if (index > slides.length) {
             slideIndex = 1;
         }

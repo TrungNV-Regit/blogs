@@ -11,6 +11,10 @@ class Comment extends Model
 {
     use HasFactory;
 
+    const CREATE = 1;
+    const UPDATE = 2;
+    const DESTROY = 3;
+
     protected $table = 'comments';
 
     protected $fillable = [
