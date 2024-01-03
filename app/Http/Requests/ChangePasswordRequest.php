@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 
-class ResetPasswordRequest extends FormRequest
+class ChangePasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +23,18 @@ class ResetPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'oldPassword' => 'required',
+            'currentPassword' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if (!Hash::check($value, auth()->user()->password)) {
+                        $fail(__('message.current_password_incorrect'));
+                    }
+                },
+            ],
             'password' => [
                 'required',
                 'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,30}$/',
-                'different:oldPassword',
+                'different:currentPassword',
                 'confirmed',
             ],
         ];
