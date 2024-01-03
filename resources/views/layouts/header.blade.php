@@ -82,7 +82,7 @@
             </button>
         </form>
 
-        <a href="{{ route('blog.top') }}" class="top-blog @yield('backgroundTopBlog')">
+        <a href="{{ route('index') }}" class="top-blog @yield('backgroundTopBlog')">
             <span>{{ __('message.top') }}</span>
         </a>
 

@@ -2,6 +2,8 @@
 
 @section('title', __('message.home'))
 
+@section('backgroundTopBlog', 'background')
+
 @section('content')
 
 @section('banner')
