@@ -45,9 +45,9 @@ class UserService
     {
         try {
             $user = auth()->user();
-            $oldPassword = $data['oldPassword'];
+            $currentPassword = $data['currentPassword'];
             $newPassword = $data['password'];
-            if (Hash::check($oldPassword, $user->password)) {
+            if (Hash::check($currentPassword, $user->password)) {
                 $user->update(['password' => Hash::make($newPassword)]);
                 return true;
             }
