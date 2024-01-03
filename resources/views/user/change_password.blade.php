@@ -23,14 +23,14 @@
 
                     <h4>{{ trans('message.change_password') }}</h4>
 
-                    <label for="oldPassword">
+                    <label for="currentPassword">
                         {{ trans('message.old_password') }}
                         <span>*</span>
                     </label>
-                    <input type="password" id='oldPassword' name="oldPassword">
+                    <input type="password" id='currentPassword' name="currentPassword">
 
-                    @if ($errors->has('oldPassword'))
-                        <p>{{ $errors->first('oldPassword') }}</p>
+                    @if ($errors->has('currentPassword'))
+                        <p>{{ $errors->first('currentPassword') }}</p>
                     @endif
 
                     <label for="password">

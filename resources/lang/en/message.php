@@ -85,7 +85,7 @@ return [
     'no_result' => 'No matching results.',
     'old_password' => 'Current Password',
     'new_password_confirmation' => 'New Password Confirmation',
-    'old_password_incorrect' => 'Old Password Incorrect',
+    'current_password_incorrect' => 'Incorrect current password. Please try again!',
     'change_password_success' => 'Change password successfully',
     'edit' => 'Edit',
     'update' => 'Update',

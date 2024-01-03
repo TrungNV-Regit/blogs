@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ResetPasswordRequest;
+use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Services\User\UserService;
 use Illuminate\Http\RedirectResponse;
@@ -21,13 +21,10 @@ class UserController extends Controller
         return view('user.change_password');
     }
 
-    public function changePassword(ResetPasswordRequest $request): RedirectResponse
+    public function changePassword(ChangePasswordRequest $request): RedirectResponse
     {
-        $result = $this->userService->resetPassword($request->only(['oldPassword', 'password']));
-        if ($result) {
-            return back()->with('notification', __('message.change_password_success'));
-        }
-        return back()->withErrors(['oldPassword' => __('message.old_password_incorrect')]);
+        $this->userService->resetPassword($request->only(['currentPassword', 'password']));
+        return redirect()->route('index')->with('notification', __('message.change_password_success'));
     }
 
     public function show(): View
